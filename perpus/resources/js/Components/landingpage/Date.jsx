@@ -20,11 +20,23 @@ function Tanggal(){
         "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"
     ]
 
-    return(
-        <h1 className="text-xl text-white text-center">
-            {hari[date.getDay()-1]+", "+transform(date.getDate())+" "+bulan[date.getMonth()]+" "+date.getFullYear() +"   "+ transform(date.getHours()) +":"+transform(date.getMinutes())+":"+transform(date.getSeconds())}
+    return (
+        <h1 className="text-xl font-bold text-white text-center">
+            {hari[date.getDay() - 1] +
+                ", " +
+                transform(date.getDate()) +
+                " " +
+                bulan[date.getMonth()] +
+                " " +
+                date.getFullYear() +
+                "   " +
+                transform(date.getHours()) +
+                ":" +
+                transform(date.getMinutes()) +
+                ":" +
+                transform(date.getSeconds())}
         </h1>
-    )
+    );
 }
 
 export default Tanggal
