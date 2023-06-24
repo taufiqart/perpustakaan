@@ -1,5 +1,6 @@
 import Nav from '@/Components/Nav';
 import Tanggal from '@/Components/landingpage/Date';
+import Card from '@/Components/landingpage/card';
 import Slider from '@/Components/landingpage/slider';
 import { Link, Head } from '@inertiajs/react';
 import Typical from "react-typical";
@@ -164,9 +165,7 @@ export default function gatau(props) {
                                 </div>
                                 <div className="flex flex-col justify-between mx-5 mt-5 mb-5">
                                     <div className="items-center ">
-                                        <h1 className="text-black text-center text-lg">
-                                            Tidak ada aktifitas
-                                        </h1>
+                                        <Card/>
                                     </div>
                                 </div>
                             </div>
@@ -277,7 +276,7 @@ export default function gatau(props) {
                                         </div>
                                     </div>
                                     <div className="items-center mx-5">
-                                        <p className="text-black text-center font-bold text-lg">
+                                        <p className="text-black text-center font-bold text-base md:text-lg">
                                             (0343) 421380
                                         </p>
                                     </div>
@@ -316,7 +315,7 @@ export default function gatau(props) {
                                         </div>
                                     </div>
                                     <div className="items-center mx-5">
-                                        <p className="text-black text-center font-bold text-lg">
+                                        <p className="text-black text-center font-bold text-base md:text-lg">
                                             smk1pasuruan@yahoo.com
                                         </p>
                                     </div>
