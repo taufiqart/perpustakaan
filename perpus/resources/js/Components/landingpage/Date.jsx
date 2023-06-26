@@ -21,21 +21,23 @@ function Tanggal(){
     ]
 
     return (
-        <h1 className="text-xl font-bold text-white text-center">
-            {hari[date.getDay() - 1] +
-                ", " +
-                transform(date.getDate()) +
-                " " +
-                bulan[date.getMonth()] +
-                " " +
-                date.getFullYear() +
-                "   " +
-                transform(date.getHours()) +
-                ":" +
-                transform(date.getMinutes()) +
-                ":" +
-                transform(date.getSeconds())}
-        </h1>
+        <div className="max-w-lg mx-5 my-1 bg-gradient-to-r from-green-400 to-blue-400 rounded-lg shadow-md p-5">
+            <h1 className="text-xl font-bold text-white text-center">
+                {hari[date.getDay() - 1] +
+                    ", " +
+                    transform(date.getDate()) +
+                    " " +
+                    bulan[date.getMonth()] +
+                    " " +
+                    date.getFullYear() +
+                    "   " +
+                    transform(date.getHours()) +
+                    ":" +
+                    transform(date.getMinutes()) +
+                    ":" +
+                    transform(date.getSeconds())}
+            </h1>
+        </div>
     );
 }
 

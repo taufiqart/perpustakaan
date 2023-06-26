@@ -1,4 +1,5 @@
 import Dropdown from "./landingpage/Dropdown"
+import CButton from "./landingpage/button";
 
 const Nav = () =>{
     return (
@@ -17,12 +18,7 @@ const Nav = () =>{
                         >
                             <ul className="block lg:flex ">
                                 <li className="group">
-                                    <a
-                                        href="/"
-                                        className="text-base text-black active:bg-blue-400 group-hover:bg-green-400 group-hover:drop-shadow-xl group-hover:text-white group-hover:rounded-full focus:ring focus:ring-green-300 duration-500 py-2 px-7 mx-2 flex"
-                                    >
-                                        Beranda
-                                    </a>
+                                    <CButton></CButton>
                                 </li>
                                 <li className="group">
                                     <Dropdown></Dropdown>
