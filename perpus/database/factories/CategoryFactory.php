@@ -16,8 +16,14 @@ class CategoryFactory extends Factory
      */
     public function definition()
     {
+        $title = join(' ', fake()->unique()->words(3));
+        $slug = str_replace(' ', '-', $title);
+        $slug = str_replace('!', '', $slug);
+        $slug = str_replace('.', '', $slug);
+        $slug = str_replace('?', '', $slug);
         return [
-            //
+            'title' => $title,
+            'slug' => $slug,
         ];
     }
 }

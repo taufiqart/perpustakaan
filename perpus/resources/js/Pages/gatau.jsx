@@ -1,8 +1,8 @@
-import Nav from '@/Components/Nav';
-import Tanggal from '@/Components/landingpage/Date';
-import Card from '@/Components/landingpage/card';
-import Slider from '@/Components/landingpage/slider';
-import { Link, Head } from '@inertiajs/react';
+import Nav from "@/Components/Nav";
+import Tanggal from "@/Components/landingpage/Date";
+import Card from "@/Components/landingpage/card";
+import Slider from "@/Components/landingpage/slider";
+import { Link, Head } from "@inertiajs/react";
 import Typical from "react-typical";
 
 const slides = [
@@ -13,10 +13,11 @@ const slides = [
 ];
 
 export default function gatau(props) {
+    // console.log(props);
     return (
         <>
             <Head title="Selamat datang" />
-            <Nav />
+            <Nav data={props.category} />
             <div className="flex max-h-[50%] overflow-hidden">
                 {/* <img src="coba.svg" alt="" className="object-cover" /> */}
                 <svg
@@ -40,9 +41,9 @@ export default function gatau(props) {
                             y2="313.726"
                             gradientUnits="userSpaceOnUse"
                         >
-                            <stop stop-color="#0891B2" />
-                            <stop offset="1" stop-color="#4ade80" />
-                            <stop offset="1" stop-color="#60a5fa" />
+                            <stop stopColor="#0891B2" />
+                            <stop offset="1" stopColor="#4ade80" />
+                            <stop offset="1" stopColor="#60a5fa" />
                         </linearGradient>
                     </defs>
                 </svg>
@@ -103,9 +104,9 @@ export default function gatau(props) {
                                                 <path
                                                     d="M34.8737 46.7523L29.6682 40.0511L32.4716 30.6714"
                                                     stroke="#63737A"
-                                                    stroke-width="4"
-                                                    stroke-linecap="round"
-                                                    stroke-linejoin="round"
+                                                    strokeWidth="4"
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
                                                 />
                                                 <path
                                                     d="M11.1212 11.7865C10.9199 11.8552 10.7067 11.8817 10.4949 11.8643C10.283 11.847 10.077 11.7862 9.88943 11.6857C9.70189 11.5852 9.53688 11.4472 9.40459 11.2801C9.2723 11.113 9.17555 10.9204 9.12032 10.7143C8.82251 8.78917 9.19255 6.81976 10.1685 5.13604C11.1444 3.45232 12.6668 2.15659 14.4807 1.46597C16.2946 0.775349 18.2898 0.731797 20.1319 1.34261C21.974 1.95343 23.551 3.18149 24.5989 4.82104C25.1327 5.62518 24.7314 6.56239 23.7982 6.96541L11.1212 11.7865Z"
@@ -165,7 +166,7 @@ export default function gatau(props) {
                                 </div>
                                 <div className="flex flex-col justify-between mx-5 mt-5 mb-5">
                                     <div className="items-center ">
-                                        <Card/>
+                                        <Card />
                                     </div>
                                 </div>
                             </div>
@@ -251,8 +252,8 @@ export default function gatau(props) {
                                                 xmlns="http://www.w3.org/2000/svg"
                                             >
                                                 <path
-                                                    fill-rule="evenodd"
-                                                    clip-rule="evenodd"
+                                                    fillRule="evenodd"
+                                                    clipRule="evenodd"
                                                     d="M3.77082 1.02039C4.12076 0.670949 4.54096 0.399875 5.00358 0.225131C5.4662 0.0503863 5.96066 -0.0240391 6.45422 0.00678674C6.94777 0.0376126 7.42914 0.172986 7.86642 0.403935C8.3037 0.634885 8.68692 0.956137 8.99066 1.3464L12.5805 5.95861C13.2385 6.80465 13.4705 7.9067 13.2105 8.94675L12.1166 13.327C12.06 13.5538 12.0631 13.7915 12.1254 14.0168C12.1878 14.2421 12.3074 14.4475 12.4726 14.613L17.3864 19.5272C17.5521 19.6927 17.7578 19.8125 17.9835 19.8749C18.2092 19.9373 18.4472 19.9402 18.6744 19.8833L23.0522 18.7892C23.5654 18.6609 24.1011 18.6509 24.6187 18.7601C25.1364 18.8692 25.6224 19.0946 26.0401 19.4192L30.652 23.0074C32.3099 24.2975 32.4619 26.7476 30.978 28.2296L28.91 30.2977C27.4301 31.7778 25.2182 32.4278 23.1562 31.7018C17.8787 29.8448 13.0871 26.8232 9.13666 22.8614C5.17536 18.9112 2.15409 14.1199 0.296933 8.84275C-0.427045 6.78265 0.222935 4.56855 1.70289 3.08848L3.77082 1.02039Z"
                                                     fill="url(#paint0_linear_71_193)"
                                                 />
@@ -265,10 +266,10 @@ export default function gatau(props) {
                                                         y2="32"
                                                         gradientUnits="userSpaceOnUse"
                                                     >
-                                                        <stop stop-color="#0891B2" />
+                                                        <stop stopColor="#0891B2" />
                                                         <stop
                                                             offset="1"
-                                                            stop-color="#059669"
+                                                            stopColor="#059669"
                                                         />
                                                     </linearGradient>
                                                 </defs>
@@ -304,10 +305,10 @@ export default function gatau(props) {
                                                         y2="24"
                                                         gradientUnits="userSpaceOnUse"
                                                     >
-                                                        <stop stop-color="#059669" />
+                                                        <stop stopColor="#059669" />
                                                         <stop
                                                             offset="1"
-                                                            stop-color="#0891B2"
+                                                            stopColor="#0891B2"
                                                         />
                                                     </linearGradient>
                                                 </defs>
@@ -363,8 +364,8 @@ export default function gatau(props) {
                                 y2="0%"
                                 gradientUnits="userSpaceOnUse"
                             >
-                                <stop stop-color="#4ade80" />
-                                <stop offset="1" stop-color="#60a5fa" />
+                                <stop stopColor="#4ade80" />
+                                <stop offset="1" stopColor="#60a5fa" />
                             </linearGradient>
                         </defs>
                     </svg>
