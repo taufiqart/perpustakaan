@@ -7,7 +7,7 @@ function Dropdown(){
         <div className="relative flex flex-col items-center w-full md:rounded-xl">
             <button
                 onClick={() => setIsOpen((prev) => !prev)}
-                className="text-black w-full group-hover:bg-green-400 group-hover:text-white focus:ring focus:ring-green-300 group-hover:shadow-lg md:px-8 md:py-2  md:rounded-full flex justify-between items-center "
+                className="text-black w-full group-hover:bg-green-400 group-hover:text-white  duration-500 focus:ring focus:ring-green-300 group-hover:shadow-lg md:px-8 md:py-2  md:rounded-full flex justify-between items-center "
             >
                 Kontol
                 {!isOpen ? (
