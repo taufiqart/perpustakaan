@@ -2,7 +2,7 @@ export default function Card(){
     return(
         <div className="max-w-2xl mx-auto">
 
-            <div className="bg-white shadow-md border border-gray-200 rounded-lg max-w-sm ">
+            <div className="bg-white shadow-md border border-gray-200 rounded-lg max-w-full ">
                 <a href="#">
                     <img className="rounded-t-lg" src="https://flowbite.com/docs/images/blog/image-1.jpg" alt="" />
                 </a>

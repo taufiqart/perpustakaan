@@ -7,7 +7,7 @@ function Dropdown(){
         <div className="relative flex flex-col items-center w-full md:rounded-xl">
             <button
                 onMouseEnter={() => setIsOpen((prev) => !prev)}
-                className="relative inline-flex items-center justify-center px-5 py-3 overflow-hidden font-medium transition duration-300 ease-out rounded-full hover:shadow-xl group hover:ring-1 hover:ring-green-500"
+                className="relative inline-flex items-center justify-center px-5 py-1 overflow-hidden font-medium transition duration-300 ease-out rounded-full hover:shadow-xl group hover:ring-1 hover:ring-green-500"
             >
 
 

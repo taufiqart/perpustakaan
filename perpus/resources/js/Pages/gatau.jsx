@@ -7,22 +7,22 @@ import Isi from '@/Components/landingpage/Isi';
 import Kontak from '@/Components/landingpage/Kontakt';
 import Operasional from '@/Components/landingpage/Operasional';
 import Card from '@/Components/landingpage/card';
-import Slider from '@/Components/landingpage/slider';
 import { Link, Head } from '@inertiajs/react';
+import Carousel from '@/Components/landingpage/Carousel';
 
 
 const slides = [
-    "/WhatsApp Image 2023-06-07 at 13.32.39 (1).jpeg",
-    "/WhatsApp Image 2023-06-07 at 13.32.39.jpeg",
-    "/WhatsApp Image 2023-06-07 at 13.32.41.jpeg",
-    "/WhatsApp Image 2023-06-07 at 13.32.42.jpeg",
+    "/1.jpeg",
+    "/2.jpeg",
+    "/3.jpeg",
+    "/4.jpeg",
 ];
 
 export default function gatau(props) {
     return (
         <>
             <Head title="Selamat datang" />
-            <Nav />
+
             <div className="flex max-h-[50%] overflow-hidden">
                 {/* <img src="coba.svg" alt="" className="object-cover" /> */}
                 <svg
@@ -52,7 +52,20 @@ export default function gatau(props) {
                         </linearGradient>
                     </defs>
                 </svg>
+                <div className="absolute flex flex-col w-full">
+                    <div className="h-[50%] w-[65%]">
+                        <Carousel autoSlide={true} autoSlideInterval={5000}>
+                            {
+                                slides.map((s) => (
+                                    <img src={s}/>
+                                ))
+                            }
+                        </Carousel>
+                    </div>
+                    <Nav />
+                </div>
             </div>
+
             {/* content bang start */}
             <section className="pt-36">
                 <div className="w-[90%] mx-auto">

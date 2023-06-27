@@ -14,7 +14,7 @@ const Nav = () =>{
                         ></button>
                         <nav
                             id="nav-menu"
-                            className="py-5  bg-white shadow-lg rounded-lg w-full right-4 top-full lg:block lg:static lg:bg-transparent lg:max-w-full lg:shadow-none lg:rounded-none"
+                            className="py-5 bg-white shadow-lg rounded-lg w-full right-4 top-full lg:block lg:static lg:bg-transparent lg:max-w-full lg:shadow-none lg:rounded-none"
                         >
                             <ul className="block lg:flex ">
                                 <li className="group">

@@ -1,4 +1,5 @@
 import Card from '@/Components/landingpage/card';
+import CardSlider from './SliderCard';
 
 export default function Aktifitas(){
     return (
@@ -9,8 +10,8 @@ export default function Aktifitas(){
                 </h1>
             </div>
             <div className="flex flex-col justify-between mx-5 mt-5 mb-5">
-                <div className="items-center ">
-                    <Card/>
+                <div className="items-center max-w-xs">
+                    <CardSlider/>
                 </div>
             </div>
         </div>

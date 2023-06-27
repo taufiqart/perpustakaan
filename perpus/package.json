@@ -20,6 +20,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "feather-icons-react": "^0.6.2",
         "react-icons": "^4.9.0",
         "react-typical": "^0.1.3"
     }
