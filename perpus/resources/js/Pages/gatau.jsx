@@ -75,7 +75,7 @@ export default function gatau(props) {
                         {/* isi end */}
 
                         {/* kanan start */}
-                        <div className="flex flex-col md:basis-7/12 lg:basis-4/12 w-full backdrop-blur-sm">
+                        <div className="flex flex-col max-w-sm backdrop-blur-sm">
                             {/* Tanggal guys start*/}
                                 <Tanggal />
                             {/* Tanggal guys end*/}

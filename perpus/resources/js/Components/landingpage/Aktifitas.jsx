@@ -10,7 +10,7 @@ export default function Aktifitas(){
                 </h1>
             </div>
             <div className="flex flex-col justify-between mx-5 mt-5 mb-5">
-                <div className="items-center max-w-xs">
+                <div className="items-center max-w-lg">
                     <CardSlider/>
                 </div>
             </div>

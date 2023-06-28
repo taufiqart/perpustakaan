@@ -5,10 +5,10 @@ import ChevronRight from "feather-icons-react/build/IconComponents/ChevronRight"
 function CardSlider() {
 
 const scrollLeft = () => {
-    document.getElementById("content").scrollLeft -= 400;
+    document.getElementById("content").scrollLeft -= 270;
 }
 const scrollRight = () => {
-    document.getElementById("content").scrollLeft += 400;
+    document.getElementById("content").scrollLeft += 270;
 }
 
 
@@ -22,7 +22,7 @@ const scrollRight = () => {
           <ChevronRight />
         </button>
       </div>
-      <div id="content" className="flex items-center justify-start overflow-x-auto scroll-smooth  scrollbar-hide">
+      <div id="content" className="flex items-center justify-start overflow-auto scroll-smooth scrollbar-hide">
         <div>
           <Card />
         </div>
