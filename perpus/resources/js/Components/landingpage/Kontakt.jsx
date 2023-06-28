@@ -1,4 +1,4 @@
-export default function Kontak (){
+export default function Kontak() {
     return (
         <div className="max-w-lg mx-5 my-1 bg-opacity-50 bg-white rounded-lg shadow-md p-5">
             <div className="mx-auto bg-gradient-to-r from-green-400 to-blue-400 py-3 rounded-lg">
@@ -32,10 +32,7 @@ export default function Kontak (){
                                     gradientUnits="userSpaceOnUse"
                                 >
                                     <stop stop-color="#0891B2" />
-                                    <stop
-                                        offset="1"
-                                        stop-color="#059669"
-                                    />
+                                    <stop offset="1" stop-color="#059669" />
                                 </linearGradient>
                             </defs>
                         </svg>
@@ -71,10 +68,7 @@ export default function Kontak (){
                                     gradientUnits="userSpaceOnUse"
                                 >
                                     <stop stop-color="#059669" />
-                                    <stop
-                                        offset="1"
-                                        stop-color="#0891B2"
-                                    />
+                                    <stop offset="1" stop-color="#0891B2" />
                                 </linearGradient>
                             </defs>
                         </svg>
@@ -87,5 +81,5 @@ export default function Kontak (){
                 </div>
             </div>
         </div>
-    )
+    );
 }

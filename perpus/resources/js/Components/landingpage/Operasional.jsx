@@ -1,6 +1,6 @@
 import Typical from "react-typical";
 
-export default function Operasional(){
+export default function Operasional() {
     return (
         <div className="max-w-lg mx-5 my-1 bg-opacity-50 bg-white rounded-lg shadow-md p-5">
             <div className="mx-auto bg-gradient-to-r from-green-400 to-blue-400 py-3 rounded-lg">
@@ -64,12 +64,7 @@ export default function Operasional(){
                 <div className="items-center">
                     <h1 className="text-black font-bold text-center text-lg">
                         <Typical
-                            steps={[
-                                "Senin - Kamis",
-                                6000,
-                                "Jum'at",
-                                7000,
-                            ]}
+                            steps={["Senin - Kamis", 6000, "Jum'at", 7000]}
                             loop={Infinity}
                             wrapper="p"
                         />
@@ -88,5 +83,5 @@ export default function Operasional(){
                 </div>
             </div>
         </div>
-    )
+    );
 }

@@ -1,27 +1,22 @@
-import Nav from '@/Components/Nav';
-import Aktifitas from '@/Components/landingpage/Aktifitas';
-import Alamat from '@/Components/landingpage/Alamat';
-import Tanggal from '@/Components/landingpage/Date';
-import Footer from '@/Components/landingpage/Footer';
-import Isi from '@/Components/landingpage/Isi';
-import Kontak from '@/Components/landingpage/Kontakt';
-import Operasional from '@/Components/landingpage/Operasional';
-import Card from '@/Components/landingpage/card';
-import { Link, Head } from '@inertiajs/react';
-import Carousel from '@/Components/landingpage/Carousel';
+import Aktifitas from "@/Components/landingpage/Aktifitas";
+import Alamat from "@/Components/landingpage/Alamat";
+import Tanggal from "@/Components/landingpage/Date";
+import Footer from "@/Components/landingpage/Footer";
+import Isi from "@/Components/landingpage/Isi";
+import Kontak from "@/Components/landingpage/Kontakt";
+import Operasional from "@/Components/landingpage/Operasional";
+import { Link, Head } from "@inertiajs/react";
+import Carousel from "@/Components/landingpage/Carousel";
+import Navbar from "@/Components/landingpage/Navbar";
+import Nav from "@/Components/Nav";
 
-
-const slides = [
-    "/1.jpeg",
-    "/2.jpeg",
-    "/3.jpeg",
-    "/4.jpeg",
-];
+const slides = ["/1.jpeg", "/2.jpeg", "/3.jpeg", "/4.jpeg"];
 
 export default function gatau(props) {
     return (
         <>
             <Head title="Selamat datang" />
+            <Navbar />
 
             <div className="flex max-h-[50%] overflow-hidden">
                 {/* <img src="coba.svg" alt="" className="object-cover" /> */}
@@ -53,16 +48,13 @@ export default function gatau(props) {
                     </defs>
                 </svg>
                 <div className="absolute flex flex-col w-full">
-                    <div className="h-[50%] w-[65%]">
+                    <div className="h-[50%] w-full md:w-[75%] lg:w-[66%]">
                         <Carousel autoSlide={true} autoSlideInterval={5000}>
-                            {
-                                slides.map((s) => (
-                                    <img src={s}/>
-                                ))
-                            }
+                            {slides.map((s) => (
+                                <img src={s} />
+                            ))}
                         </Carousel>
                     </div>
-                    <Nav />
                 </div>
             </div>
 
@@ -71,29 +63,29 @@ export default function gatau(props) {
                 <div className="w-[90%] mx-auto">
                     <div className="flex flex-col md:flex-col lg:flex-row">
                         {/* isi start */}
-                        <Isi/>
+                        <Isi />
                         {/* isi end */}
 
                         {/* kanan start */}
                         <div className="flex flex-col max-w-sm backdrop-blur-sm">
                             {/* Tanggal guys start*/}
-                                <Tanggal />
+                            <Tanggal />
                             {/* Tanggal guys end*/}
 
                             {/* waktu operasional start */}
-                                <Operasional/>
+                            <Operasional />
                             {/* waktu operasional start */}
 
                             {/* Aktifitas start */}
-                                <Aktifitas/>
+                            <Aktifitas />
                             {/* Aktifitas start */}
 
                             {/* Alamat start */}
-                                <Alamat/>
+                            <Alamat />
                             {/* Alamat start */}
 
                             {/* Kontak start */}
-                                <Kontak/>
+                            <Kontak />
                             {/* Kontak start */}
 
                             {/* Developer start */}
@@ -146,7 +138,7 @@ export default function gatau(props) {
             {/* content bang end */}
 
             {/* footer start */}
-            <Footer/>
+            <Footer />
             {/* footer end */}
         </>
     );

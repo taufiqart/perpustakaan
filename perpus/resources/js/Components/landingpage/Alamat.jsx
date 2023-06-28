@@ -1,5 +1,5 @@
-export default function Alamat(){
-    return(
+export default function Alamat() {
+    return (
         <div className="max-w-lg mx-5 my-1 bg-opacity-50 bg-white rounded-lg shadow-md p-5">
             <div className="mx-auto bg-gradient-to-r from-green-400 to-blue-400 py-3 rounded-lg">
                 <h1 className="text-white text-center text-lg font-bold">
@@ -52,12 +52,11 @@ export default function Alamat(){
                 <div className="items-center">
                     <p className="text-black font-bold text-center mt-5 text-sm">
                         {" "}
-                        Jalan Veteran Panggungrejo, Bugul
-                        Lor, Panggungrejo, Kota Pasuruan,
-                        Jawa Timur 67122
+                        Jalan Veteran Panggungrejo, Bugul Lor, Panggungrejo,
+                        Kota Pasuruan, Jawa Timur 67122
                     </p>
                 </div>
             </div>
         </div>
-    )
+    );
 }
