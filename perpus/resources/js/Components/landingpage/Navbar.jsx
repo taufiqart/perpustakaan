@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
-import CButton from "./button";
+import CButton from "./CButton";
 import Dropdown from "./Dropdown";
 export default function Navbar() {
     const navRef = useRef();

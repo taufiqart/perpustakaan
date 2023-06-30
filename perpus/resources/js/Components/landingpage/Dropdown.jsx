@@ -1,6 +1,6 @@
 import { AiOutlineCaretDown, AiOutlineCaretUp } from "react-icons/ai";
 import { useState } from "react";
-import CButton from "./button";
+import CButton from "./CButton";
 
 function Dropdown() {
     const [isOpen, setIsOpen] = useState(false);

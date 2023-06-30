@@ -1,5 +1,5 @@
 import Dropdown from "./landingpage/Dropdown";
-import CButton from "./landingpage/button";
+import CButton from "./landingpage/CButton";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { useRef } from "react";
 
