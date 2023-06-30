@@ -17,7 +17,6 @@ export default function gatau(props) {
         <>
             <Head title="Selamat datang" />
             <Navbar />
-
             <div className="flex max-h-[50%] overflow-hidden">
                 {/* <img src="coba.svg" alt="" className="object-cover" /> */}
                 <svg
@@ -48,12 +47,13 @@ export default function gatau(props) {
                     </defs>
                 </svg>
                 <div className="absolute flex flex-col w-full">
-                    <div className="h-[50%] w-full md:w-[75%] lg:w-[66%]">
+                    <div className="w-full ">
                         <Carousel autoSlide={true} autoSlideInterval={5000}>
                             {slides.map((s) => (
-                                <img src={s} />
+                                <img src={s} className="object-cover" />
                             ))}
                         </Carousel>
+                        {/* <img src="1.jpeg" alt="" className="w-[100vw]" /> */}
                     </div>
                 </div>
             </div>
