@@ -12,6 +12,7 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
+                poppins: "Poppins",
                 sans: ["Figtree", ...defaultTheme.fontFamily.sans],
             },
         },

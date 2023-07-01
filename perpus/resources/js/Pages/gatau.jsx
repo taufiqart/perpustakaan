@@ -46,8 +46,8 @@ export default function gatau(props) {
                         </linearGradient>
                     </defs>
                 </svg>
-                <div className="absolute flex flex-col w-full">
-                    <div className="w-full ">
+                <div className="absolute overflow-hidden flex flex-col w-full ">
+                    <div className="w-full lg:w-[67%]">
                         <Carousel autoSlide={true} autoSlideInterval={5000}>
                             {slides.map((s) => (
                                 <img src={s} className="object-cover" />
@@ -55,6 +55,40 @@ export default function gatau(props) {
                         </Carousel>
                         {/* <img src="1.jpeg" alt="" className="w-[100vw]" /> */}
                     </div>
+                    {/* kotak - kotak ga jelas bangsat */}
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="absolute right-0 -z-50 lg:z-10 lg:h-full"
+                        viewBox="0 0 829 605"
+                        fill="none"
+                    >
+                        <path
+                            d="M298.5 604.5L865.5 604.5C865.5 604.5 865.5 252.528 865.5 27.0004C865.5 16.4562 865.5 10.5445 865.5 0.000244141C744.242 0.000324644 274.5 0.000792468 274.5 0.000792468L0 142.286L298.5 604.5Z"
+                            fill="#059669"
+                        />
+                        <path
+                            d="M352 604.5L865.5 604.5C865.5 604.5 865.5 252.528 865.5 27.0004C865.5 16.4562 865.5 10.5445 865.5 0.000244141C777.632 0.00031794 360 0.000773395 360 0.000773395L61.207 157.783L352 604.5Z"
+                            fill="#065F46"
+                        />
+                        <path
+                            d="M409.5 604.5L865.5 604.5C865.5 604.5 865.5 553 865.5 520C865.5 520 865.5 203.073 865.5 0.000244141C810.046 0.000310677 443 0.000754321 443 0.000754321L119.259 172.954L409.5 604.5Z"
+                            fill="url(#paint0_linear_392_441)"
+                            fill-opacity="0.541176"
+                        />
+                        <defs>
+                            <linearGradient
+                                id="paint0_linear_392_441"
+                                x1="843.465"
+                                y1="615.294"
+                                x2="489.616"
+                                y2="-30.1011"
+                                gradientUnits="userSpaceOnUse"
+                            >
+                                <stop stop-color="#002118" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <div className="absolute"></div>
                 </div>
             </div>
 
