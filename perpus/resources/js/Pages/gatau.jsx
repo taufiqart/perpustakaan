@@ -88,7 +88,27 @@ export default function gatau(props) {
                             </linearGradient>
                         </defs>
                     </svg>
-                    <div className="absolute"></div>
+                    <div className="absolute right-20 -z-10 lg:z-10 lg:top-10 xl:top-20 text-white items-center justify-center">
+                        <div className="flex flex-col items-center justify-center">
+                            <div className="">
+                                <img
+                                    src="Vector.svg"
+                                    alt=""
+                                    className="w-36 xl:w-56"
+                                />
+                            </div>
+                            <div className="">
+                                <h1 className="text-3xl xl:text-4xl text-center">
+                                    Perpustakaan
+                                </h1>
+                            </div>
+                            <div className="">
+                                <h1 className="text-4xl xl:text-6xl font-bold text-center">
+                                    SMKN 1 PASURUAN
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
