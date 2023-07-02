@@ -88,13 +88,13 @@ export default function Index(props) {
                             </linearGradient>
                         </defs>
                     </svg>
-                    <div className="absolute right-20 -z-10 lg:z-10 lg:top-10 xl:top-20 text-white items-center justify-center">
+                    <div className="absolute lg:right-0 xl:right-20 -z-10 lg:z-10 lg:top-10 xl:top-20 text-white items-center justify-center">
                         <div className="flex flex-col items-center justify-center">
                             <div className="">
                                 <img
                                     src="Vector.svg"
                                     alt=""
-                                    className="w-36 xl:w-56"
+                                    className="w-28 lg:w-36 xl:w-56"
                                 />
                             </div>
                             <div className="">
