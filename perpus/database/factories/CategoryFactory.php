@@ -24,6 +24,7 @@ class CategoryFactory extends Factory
         return [
             'title' => $title,
             'slug' => $slug,
+            'order' => random_int(1, 10)
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use Inertia\Inertia;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -13,11 +14,36 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($any = '/')
     {
+        $menu = $any;
+        if ($any != '/') {
+            $menu = explode('/', $any);
+        }
+        // return dd($menu[0]);
+        // return dd($menu->article);
         $category = Category::where('parent_id', null)->get();
 
-        return Inertia::render('gatau', compact('category'));
+        if ($menu[0] && isset($menu[1])) {
+            $article = Category::where('slug', $menu[1])->first()?->article;
+            if ($article) {
+                return Inertia::render('gatau', compact('category', 'article'));
+            }
+            return abort(404);
+        }
+
+        if ($menu[0]) {
+            $article = Category::where('slug', $menu[0])->first()?->article;
+            if ($article) {
+
+                return Inertia::render('gatau', compact('category', 'article'));
+            }
+            // $article = Article::latest()->first();
+            // return dd($article);
+            return Inertia::render('gatau', compact('category', 'article'));
+            // return dd('ka');
+            return abort(404);
+        }
     }
 
     /**

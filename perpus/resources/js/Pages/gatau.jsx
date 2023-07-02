@@ -13,7 +13,7 @@ const slides = [
 ];
 
 export default function gatau(props) {
-    // console.log(props);
+    console.log(props);
     return (
         <>
             <Head title="Selamat datang" />
@@ -55,7 +55,14 @@ export default function gatau(props) {
                         {/* kiri start */}
                         <div className=" w-full ">
                             <div className="backdrop-blur-sm bg-white h-auto w-full rounded-lg shadow-md">
-                                <div className="h-96"></div>
+                                <div
+                                    className="min-h-[24rem] p-4"
+                                    dangerouslySetInnerHTML={{
+                                        __html: props.article
+                                            ? props.article.content
+                                            : "<p class='text-center'>content belum tersedia</p>",
+                                    }}
+                                ></div>
                             </div>
                         </div>
                         {/* kiri end */}

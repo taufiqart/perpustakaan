@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('filename');
             $table->longText('base64');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

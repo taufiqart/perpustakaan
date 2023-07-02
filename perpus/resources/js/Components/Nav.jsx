@@ -1,7 +1,6 @@
 import Dropdown from "./landingpage/Dropdown";
 
 const Nav = ({ data }) => {
-    console.log(data);
     return (
         <header className="backdrop-blur-lg shadow-lg top-0 w-full flex items-center z-10 sticky">
             <div className="w-full">
@@ -20,7 +19,6 @@ const Nav = ({ data }) => {
                                 {data &&
                                     data.map((da) => {
                                         if (da.child.length > 0) {
-                                            console.log(da.child);
                                             return (
                                                 <li
                                                     className="group"
