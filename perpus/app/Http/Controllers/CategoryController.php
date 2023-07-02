@@ -27,7 +27,7 @@ class CategoryController extends Controller
         if ($menu[0] && isset($menu[1])) {
             $article = Category::where('slug', $menu[1])->first()?->article;
             if ($article) {
-                return Inertia::render('gatau', compact('category', 'article'));
+                return Inertia::render('Index', compact('category', 'article'));
             }
             return abort(404);
         }
@@ -36,11 +36,11 @@ class CategoryController extends Controller
             $article = Category::where('slug', $menu[0])->first()?->article;
             if ($article) {
 
-                return Inertia::render('gatau', compact('category', 'article'));
+                return Inertia::render('Index', compact('category', 'article'));
             }
             // $article = Article::latest()->first();
             // return dd($article);
-            return Inertia::render('gatau', compact('category', 'article'));
+            return Inertia::render('Index', compact('category', 'article'));
             // return dd('ka');
             return abort(404);
         }

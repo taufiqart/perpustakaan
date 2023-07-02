@@ -1,42 +1,61 @@
 import { useEffect, useState } from "react";
 
-function Tanggal(){
+function Tanggal() {
     const [date, setDate] = useState(new Date());
-    useEffect(()=>{
-        const timer = setInterval(()=>{
-            setDate(new Date())
-        }, 1000)
-        return ()=>{
-            clearInterval(timer)
-        }
-    }, [])
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setDate(new Date());
+        }, 1000);
+        return () => {
+            clearInterval(timer);
+        };
+    }, []);
     const transform = (tes) => {
-        return tes < 10? '0'+tes : tes
-    }
-    const hari =[
-        "Senin", "Selasa", "Rabu", "Kamis", "Jum'at", "Sabtu", "Minggu"
-    ]
+        return tes < 10 ? "0" + tes : tes;
+    };
+    const hari = [
+        "Senin",
+        "Selasa",
+        "Rabu",
+        "Kamis",
+        "Jum'at",
+        "Sabtu",
+        "Minggu",
+    ];
     const bulan = [
-        "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"
-    ]
+        "Januari",
+        "Februari",
+        "Maret",
+        "April",
+        "Mei",
+        "Juni",
+        "Juli",
+        "Agustus",
+        "September",
+        "Oktober",
+        "November",
+        "Desember",
+    ];
 
     return (
-        <h1 className="text-xl font-bold text-white text-center">
-            {hari[date.getDay() - 1] +
-                ", " +
-                transform(date.getDate()) +
-                " " +
-                bulan[date.getMonth()] +
-                " " +
-                date.getFullYear() +
-                "   " +
-                transform(date.getHours()) +
-                ":" +
-                transform(date.getMinutes()) +
-                ":" +
-                transform(date.getSeconds())}
-        </h1>
+        <div className="max-w-lg mx-5 my-1 bg-gradient-to-r from-green-400 to-blue-400 rounded-lg shadow-md p-5">
+            <h1 className="text-xl font-bold text-white text-center">
+                {hari[date.getDay() - 1] +
+                    ", " +
+                    transform(date.getDate()) +
+                    " " +
+                    bulan[date.getMonth()] +
+                    " " +
+                    date.getFullYear() +
+                    "   " +
+                    transform(date.getHours()) +
+                    ":" +
+                    transform(date.getMinutes()) +
+                    ":" +
+                    transform(date.getSeconds())}
+            </h1>
+        </div>
     );
 }
 
-export default Tanggal
+export default Tanggal;

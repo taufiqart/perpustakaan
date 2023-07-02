@@ -24,6 +24,7 @@
         "@popperjs/core": "^2.11.8",
         "@tinymce/tinymce-react": "^4.3.0",
         "chart.js": "^4.3.0",
+        "feather-icons-react": "^0.6.2",
         "react-icons": "^4.9.0",
         "react-typical": "^0.1.3"
     }
