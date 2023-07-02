@@ -1,8 +1,7 @@
 import { Link } from "@inertiajs/react";
 
-export default function CButton({data}) {
+export default function CButton({ data }) {
     return (
- 
         <Link
             href={data.slug}
             class="relative w-full  inline-flex items-center justify-center px-4 py-1 overflow-hidden font-medium transition duration-300 ease-out md:rounded-full hover:shadow-xl group hover:ring-1 hover:ring-green-500"

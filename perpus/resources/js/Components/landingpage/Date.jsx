@@ -14,13 +14,13 @@ function Tanggal() {
         return tes < 10 ? "0" + tes : tes;
     };
     const hari = [
+        "Minggu",
         "Senin",
         "Selasa",
         "Rabu",
         "Kamis",
         "Jum'at",
         "Sabtu",
-        "Minggu",
     ];
     const bulan = [
         "Januari",
@@ -38,9 +38,9 @@ function Tanggal() {
     ];
 
     return (
-        <div className="max-w-lg mx-5 my-1 bg-gradient-to-r from-green-400 to-blue-400 rounded-lg shadow-md p-5">
+        <div className="w-full mx-5 my-1 bg-gradient-to-r from-green-400 to-blue-400 rounded-lg shadow-md p-5">
             <h1 className="text-xl font-bold text-white text-center">
-                {hari[date.getDay() - 1] +
+                {hari[date.getDay()] +
                     ", " +
                     transform(date.getDate()) +
                     " " +

@@ -114,14 +114,14 @@ export default function Index(props) {
 
             {/* content bang start */}
             <section className="pt-36">
-                <div className="w-[90%] mx-auto">
+                <div className="w-full mx-auto">
                     <div className="flex flex-col md:flex-col lg:flex-row">
                         {/* isi start */}
                         <Isi article={props.article} />
                         {/* isi end */}
 
                         {/* kanan start */}
-                        <div className="flex flex-col max-w-sm backdrop-blur-sm">
+                        <div className="flex flex-col w-full items-center lg:max-w-sm backdrop-blur-sm">
                             {/* Tanggal guys start*/}
                             <Tanggal />
                             {/* Tanggal guys end*/}
@@ -143,7 +143,7 @@ export default function Index(props) {
                             {/* Kontak start */}
 
                             {/* Developer start */}
-                            <div className="max-w-lg mx-5 my-1 bg-opacity-50 bg-white rounded-lg shadow-md p-5">
+                            <div className="w-full lg:max-w-lg mx-5 my-1 bg-opacity-50 bg-white rounded-lg shadow-md p-5">
                                 <div className="mx-auto bg-gradient-to-r from-green-400 to-blue-400 py-3 rounded-lg">
                                     <h1 className="text-white text-center text-lg font-bold">
                                         Developer
