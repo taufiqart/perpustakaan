@@ -98,12 +98,12 @@ export default function Index(props) {
                                 />
                             </div>
                             <div className="">
-                                <h1 className="text-3xl xl:text-4xl text-center">
+                                <h1 className="lg:text-3xl xl:text-4xl text-center">
                                     Perpustakaan
                                 </h1>
                             </div>
                             <div className="">
-                                <h1 className="text-4xl xl:text-6xl font-bold text-center">
+                                <h1 className="lg:text-4xl xl:text-5xl font-bold text-center">
                                     SMKN 1 PASURUAN
                                 </h1>
                             </div>
