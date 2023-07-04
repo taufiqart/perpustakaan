@@ -29,6 +29,7 @@ class CategoryController extends Controller
             if ($article) {
                 return Inertia::render('Index', compact('category', 'article'));
             }
+            return Inertia::render('Index', compact('category', 'article'));
             return abort(404);
         }
 

@@ -2,7 +2,7 @@ import Typical from "react-typical";
 
 export default function Operasional() {
     return (
-        <div className="max-w-lg mx-5 my-1 bg-opacity-50 bg-white rounded-lg shadow-md p-5">
+        <div className="w-full lg:max-w-lg mx-5 my-1 bg-opacity-50 bg-white rounded-lg shadow-md p-5">
             <div className="mx-auto bg-gradient-to-r from-green-400 to-blue-400 py-3 rounded-lg">
                 <h1 className="text-white text-center text-lg font-bold">
                     Waktu Operasional
@@ -37,9 +37,9 @@ export default function Operasional() {
                             <path
                                 d="M34.8737 46.7523L29.6682 40.0511L32.4716 30.6714"
                                 stroke="#63737A"
-                                stroke-width="4"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
+                                strokeWidth="4"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
                             />
                             <path
                                 d="M11.1212 11.7865C10.9199 11.8552 10.7067 11.8817 10.4949 11.8643C10.283 11.847 10.077 11.7862 9.88943 11.6857C9.70189 11.5852 9.53688 11.4472 9.40459 11.2801C9.2723 11.113 9.17555 10.9204 9.12032 10.7143C8.82251 8.78917 9.19255 6.81976 10.1685 5.13604C11.1444 3.45232 12.6668 2.15659 14.4807 1.46597C16.2946 0.775349 18.2898 0.731797 20.1319 1.34261C21.974 1.95343 23.551 3.18149 24.5989 4.82104C25.1327 5.62518 24.7314 6.56239 23.7982 6.96541L11.1212 11.7865Z"

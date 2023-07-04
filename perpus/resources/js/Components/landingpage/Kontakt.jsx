@@ -1,6 +1,6 @@
 export default function Kontak() {
     return (
-        <div className="max-w-lg mx-5 my-1 bg-opacity-50 bg-white rounded-lg shadow-md p-5">
+        <div className="w-full lg:max-w-lg mx-5 my-1 bg-opacity-50 bg-white rounded-lg shadow-md p-5">
             <div className="mx-auto bg-gradient-to-r from-green-400 to-blue-400 py-3 rounded-lg">
                 <h1 className="text-white text-center text-lg font-bold">
                     Kontak
@@ -17,8 +17,8 @@ export default function Kontak() {
                             xmlns="http://www.w3.org/2000/svg"
                         >
                             <path
-                                fill-rule="evenodd"
-                                clip-rule="evenodd"
+                                fillRule="evenodd"
+                                clipRule="evenodd"
                                 d="M3.77082 1.02039C4.12076 0.670949 4.54096 0.399875 5.00358 0.225131C5.4662 0.0503863 5.96066 -0.0240391 6.45422 0.00678674C6.94777 0.0376126 7.42914 0.172986 7.86642 0.403935C8.3037 0.634885 8.68692 0.956137 8.99066 1.3464L12.5805 5.95861C13.2385 6.80465 13.4705 7.9067 13.2105 8.94675L12.1166 13.327C12.06 13.5538 12.0631 13.7915 12.1254 14.0168C12.1878 14.2421 12.3074 14.4475 12.4726 14.613L17.3864 19.5272C17.5521 19.6927 17.7578 19.8125 17.9835 19.8749C18.2092 19.9373 18.4472 19.9402 18.6744 19.8833L23.0522 18.7892C23.5654 18.6609 24.1011 18.6509 24.6187 18.7601C25.1364 18.8692 25.6224 19.0946 26.0401 19.4192L30.652 23.0074C32.3099 24.2975 32.4619 26.7476 30.978 28.2296L28.91 30.2977C27.4301 31.7778 25.2182 32.4278 23.1562 31.7018C17.8787 29.8448 13.0871 26.8232 9.13666 22.8614C5.17536 18.9112 2.15409 14.1199 0.296933 8.84275C-0.427045 6.78265 0.222935 4.56855 1.70289 3.08848L3.77082 1.02039Z"
                                 fill="url(#paint0_linear_71_193)"
                             />
@@ -31,8 +31,8 @@ export default function Kontak() {
                                     y2="32"
                                     gradientUnits="userSpaceOnUse"
                                 >
-                                    <stop stop-color="#0891B2" />
-                                    <stop offset="1" stop-color="#059669" />
+                                    <stop stopColor="#0891B2" />
+                                    <stop offset="1" stopColor="#059669" />
                                 </linearGradient>
                             </defs>
                         </svg>
@@ -67,8 +67,8 @@ export default function Kontak() {
                                     y2="24"
                                     gradientUnits="userSpaceOnUse"
                                 >
-                                    <stop stop-color="#059669" />
-                                    <stop offset="1" stop-color="#0891B2" />
+                                    <stop stopColor="#059669" />
+                                    <stop offset="1" stopColor="#0891B2" />
                                 </linearGradient>
                             </defs>
                         </svg>

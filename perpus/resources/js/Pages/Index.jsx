@@ -40,9 +40,9 @@ export default function Index(props) {
                             y2="313.726"
                             gradientUnits="userSpaceOnUse"
                         >
-                            <stop stop-color="#0891B2" />
-                            <stop offset="1" stop-color="#4ade80" />
-                            <stop offset="1" stop-color="#60a5fa" />
+                            <stop stopColor="#0891B2" />
+                            <stop offset="1" stopColor="#4ade80" />
+                            <stop offset="1" stopColor="#60a5fa" />
                         </linearGradient>
                     </defs>
                 </svg>
@@ -73,7 +73,7 @@ export default function Index(props) {
                         <path
                             d="M409.5 604.5L865.5 604.5C865.5 604.5 865.5 553 865.5 520C865.5 520 865.5 203.073 865.5 0.000244141C810.046 0.000310677 443 0.000754321 443 0.000754321L119.259 172.954L409.5 604.5Z"
                             fill="url(#paint0_linear_392_441)"
-                            fill-opacity="0.541176"
+                            fillOpacity="0.541176"
                         />
                         <defs>
                             <linearGradient
@@ -84,7 +84,7 @@ export default function Index(props) {
                                 y2="-30.1011"
                                 gradientUnits="userSpaceOnUse"
                             >
-                                <stop stop-color="#002118" />
+                                <stop stopColor="#002118" />
                             </linearGradient>
                         </defs>
                     </svg>
@@ -92,7 +92,7 @@ export default function Index(props) {
                         <div className="flex flex-col items-center justify-center">
                             <div className="">
                                 <img
-                                    src="Vector.svg"
+                                    src="/assets/images/Vector.svg"
                                     alt=""
                                     className="w-36 xl:w-56"
                                 />
@@ -182,8 +182,8 @@ export default function Index(props) {
                                 y2="0%"
                                 gradientUnits="userSpaceOnUse"
                             >
-                                <stop stop-color="#4ade80" />
-                                <stop offset="1" stop-color="#60a5fa" />
+                                <stop stopColor="#4ade80" />
+                                <stop offset="1" stopColor="#60a5fa" />
                             </linearGradient>
                         </defs>
                     </svg>
