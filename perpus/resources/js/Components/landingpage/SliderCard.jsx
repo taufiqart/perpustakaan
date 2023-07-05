@@ -11,7 +11,7 @@ function CardSlider() {
     };
 
     return (
-        <div className="relative">
+        <div className="relative justify-center w-[80vw] lg:w-80">
             <div className="absolute right-0 top-5 ">
                 <button
                     onClick={scrollLeft}
@@ -28,7 +28,7 @@ function CardSlider() {
             </div>
             <div
                 id="content"
-                className="flex items-center justify-start overflow-auto scroll-smooth scrollbar-hide"
+                className="flex overflow-auto w-[80vw] md:w-[90vw] lg:w-80 scroll-smooth scrollbar-hide"
             >
                 <div>
                     <Card />

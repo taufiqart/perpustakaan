@@ -1,6 +1,6 @@
 export default function Card() {
     return (
-        <div className="flex-1 w-64 mx-2">
+        <div className="flex-1 w-72 mx-2">
             <div className="bg-white shadow-md border border-gray-200 rounded-lg max-w-2xl">
                 <a href="#">
                     <img
