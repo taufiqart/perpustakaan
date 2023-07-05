@@ -7,11 +7,14 @@ export default defineConfig({
         laravel({
             input: "resources/js/app.jsx",
             refresh: true,
+            publicDirectory: "../build/",
+            buildDirectory: "../build/",
         }),
         react(),
     ],
-    publicDirectory: "../",
+    publicDirectory: "../build/",
     build: {
-        outDir: "../",
+        outDir: "../build/",
     },
+    assetsDir: "../build/",
 });

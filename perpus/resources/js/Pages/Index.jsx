@@ -3,21 +3,26 @@ import Alamat from "@/Components/landingpage/Alamat";
 import Tanggal from "@/Components/landingpage/Date";
 import Footer from "@/Components/landingpage/Footer";
 import Isi from "@/Components/landingpage/Isi";
-import Kontak from "@/Components/landingpage/Kontakt";
+import Kontak from "@/Components/landingpage/Kontak";
 import Operasional from "@/Components/landingpage/Operasional";
 import { Link, Head } from "@inertiajs/react";
 import Carousel from "@/Components/landingpage/Carousel";
 import Navbar from "@/Components/landingpage/Navbar";
 import Nav from "@/Components/Nav";
 
-const slides = ["/1.jpeg", "/2.jpeg", "/3.jpeg", "/4.jpeg"];
+const slides = [
+    "/assets/images/1.jpeg",
+    "/assets/images/2.jpeg",
+    "/assets/images/3.jpeg",
+    "/assets/images/4.jpeg",
+];
 
 export default function Index(props) {
     return (
         <>
             <Head title="Selamat datang" />
-            <Navbar data={props.category} />
-            <div className="flex max-h-[50%] overflow-hidden">
+
+            <div className="flex max-h-[50%] overflow-hidden ">
                 {/* <img src="coba.svg" alt="" className="object-cover" /> */}
                 <svg
                     className="object-cover"
@@ -50,10 +55,12 @@ export default function Index(props) {
                     <div className="w-full lg:w-[67%]">
                         <Carousel autoSlide={true} autoSlideInterval={5000}>
                             {slides.map((s) => (
-                                <img src={s} className="object-cover" />
+                                <img
+                                    src={s}
+                                    className="object-cover h-[50vh] md:h-auto"
+                                />
                             ))}
                         </Carousel>
-                        {/* <img src="1.jpeg" alt="" className="w-[100vw]" /> */}
                     </div>
                     {/* kotak - kotak ga jelas bangsat */}
                     <svg
@@ -88,13 +95,13 @@ export default function Index(props) {
                             </linearGradient>
                         </defs>
                     </svg>
-                    <div className="absolute right-20 -z-10 lg:z-10 lg:top-10 xl:top-20 text-white items-center justify-center">
+                    <div className="absolute right-10 xl:right-4 -z-10 lg:z-10 lg:top-10 xl:top-20 text-white items-center justify-center">
                         <div className="flex flex-col items-center justify-center">
                             <div className="">
                                 <img
                                     src="/assets/images/Vector.svg"
                                     alt=""
-                                    className="w-36 xl:w-56"
+                                    className="w-48 xl:w-56 2xl:w-72"
                                 />
                             </div>
                             <div className="">
@@ -103,7 +110,7 @@ export default function Index(props) {
                                 </h1>
                             </div>
                             <div className="">
-                                <h1 className="text-4xl xl:text-6xl font-bold text-center">
+                                <h1 className="text-4xl xl:text-5xl 2xl:text-6xl font-bold text-center">
                                     SMKN 1 PASURUAN
                                 </h1>
                             </div>
@@ -111,17 +118,24 @@ export default function Index(props) {
                     </div>
                 </div>
             </div>
+            <Navbar
+                data={props.category}
+                className="-mt-[calc(50%+3.5rem)] md:mt-7 md:mb-0 lg:-mt-[15.6%]"
+            />
 
             {/* content bang start */}
-            <section className="pt-36">
-                <div className="w-[90%] mx-auto">
-                    <div className="flex flex-col md:flex-col lg:flex-row">
+            <section className="mt-[50vh] md:mt-0 pt-20 md:pt-36">
+                <div className="w-[90%] xl:w-[85%] mx-auto ">
+                    <div className="grid grid-flow-row  gap-10 grid-cols-1 lg:grid-cols-3 xl:grid-cols-4">
                         {/* isi start */}
-                        <Isi article={props.article} />
+                        <Isi
+                            article={props.article}
+                            className="lg:col-span-2 xl:col-span-3"
+                        />
                         {/* isi end */}
 
                         {/* kanan start */}
-                        <div className="flex flex-col max-w-sm backdrop-blur-sm">
+                        <div className="flex flex-col col-span-1 backdrop-blur-sm mb-20">
                             {/* Tanggal guys start*/}
                             <Tanggal />
                             {/* Tanggal guys end*/}
@@ -131,7 +145,7 @@ export default function Index(props) {
                             {/* waktu operasional start */}
 
                             {/* Aktifitas start */}
-                            <Aktifitas />
+                            <Aktifitas data={props.other} />
                             {/* Aktifitas start */}
 
                             {/* Alamat start */}
@@ -143,7 +157,7 @@ export default function Index(props) {
                             {/* Kontak start */}
 
                             {/* Developer start */}
-                            <div className="max-w-lg mx-5 my-1 bg-opacity-50 bg-white rounded-lg shadow-md p-5">
+                            <div className="w-full  my-1 bg-opacity-50 bg-white rounded-lg shadow-md p-5">
                                 <div className="mx-auto bg-gradient-to-r from-green-400 to-blue-400 py-3 rounded-lg">
                                     <h1 className="text-white text-center text-lg font-bold">
                                         Developer

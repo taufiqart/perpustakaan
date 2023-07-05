@@ -1,6 +1,6 @@
 import React from "react";
 import AdminFooter from "@/Components/admin/AdminFooter";
-import AdminNavbar from "@/Components/admin/AdminNavbar ";
+import AdminNavbar from "@/Components/admin/AdminNavbar";
 import AdminSidebar from "@/Components/admin/AdminSidebar";
 
 

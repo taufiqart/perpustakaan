@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\AdminDashboardController;
 use App\Http\Controllers\admin\AdminNavigationController;
 use App\Http\Controllers\admin\AdminPagesController;
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AssetController;
 use App\Http\Controllers\AssetsController;
 use App\Http\Controllers\CategoryController;
@@ -38,7 +39,7 @@ Route::prefix('dashboard')->group(function () {
 
 
 // Route::get('/', [CategoryController::class, 'index']);
-Route::get('{any}', [CategoryController::class, 'index'])->where('any', '.*');
+Route::get('{any}', [ArticleController::class, 'index'])->where('any', '.*');
 // Route::get('/{menu?:slug}/{submenu?:slug}', [CategoryController::class, 'index']);
 // Route::get('/', function () {
 //     return Inertia::render('gatau');

@@ -30,7 +30,7 @@ class AdminPagesController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
+        $categories = Category::where('parent_id','!=',null)->get();
         return Inertia::render('admin/Pages/Create', compact('categories'));
     }
 

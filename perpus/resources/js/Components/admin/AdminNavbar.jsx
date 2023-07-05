@@ -1,5 +1,4 @@
 import React from "react";
-import Dropdown from "@/Components/admin/Dropdown/Dropdown";
 import { Link } from "@inertiajs/react";
 
 export default function AdminNavbar() {

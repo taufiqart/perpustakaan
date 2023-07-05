@@ -1,0 +1,139 @@
+{
+  "_AdminLayout-8ed1aef8.js": {
+    "file": "assets/AdminLayout-8ed1aef8.js",
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "_BookLoader-a55cfee4.js": {
+    "file": "assets/BookLoader-a55cfee4.js",
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "_SecondaryButton-7115fe62.js": {
+    "file": "assets/SecondaryButton-7115fe62.js",
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "_TextInput-e9dc6453.js": {
+    "file": "assets/TextInput-e9dc6453.js",
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "_function-6c0aa4d6.js": {
+    "file": "assets/function-6c0aa4d6.js",
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "resources/js/Pages/Index.jsx": {
+    "file": "assets/Index-9a5562f9.js",
+    "imports": [
+      "resources/js/app.jsx"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Index.jsx"
+  },
+  "resources/js/Pages/Welcome.jsx": {
+    "file": "assets/Welcome-c858fcb4.js",
+    "imports": [
+      "resources/js/app.jsx"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/Welcome.jsx"
+  },
+  "resources/js/Pages/admin/Dashboard.jsx": {
+    "file": "assets/Dashboard-b574b99e.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_AdminLayout-8ed1aef8.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/admin/Dashboard.jsx"
+  },
+  "resources/js/Pages/admin/FileManager/Index.jsx": {
+    "file": "assets/Index-eb5bddd0.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_AdminLayout-8ed1aef8.js",
+      "resources/js/Pages/admin/FileManager/partials/CardFile.jsx",
+      "_SecondaryButton-7115fe62.js",
+      "_TextInput-e9dc6453.js",
+      "_BookLoader-a55cfee4.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/admin/FileManager/Index.jsx"
+  },
+  "resources/js/Pages/admin/FileManager/partials/CardFile.jsx": {
+    "file": "assets/CardFile-d38478af.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_BookLoader-a55cfee4.js",
+      "_SecondaryButton-7115fe62.js",
+      "_TextInput-e9dc6453.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/admin/FileManager/partials/CardFile.jsx"
+  },
+  "resources/js/Pages/admin/Navigation.jsx": {
+    "file": "assets/Navigation-15d3ed14.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_AdminLayout-8ed1aef8.js",
+      "_SecondaryButton-7115fe62.js",
+      "_TextInput-e9dc6453.js",
+      "_function-6c0aa4d6.js",
+      "_BookLoader-a55cfee4.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/admin/Navigation.jsx"
+  },
+  "resources/js/Pages/admin/Pages.jsx": {
+    "file": "assets/Pages-8223269c.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_AdminLayout-8ed1aef8.js",
+      "_SecondaryButton-7115fe62.js",
+      "_BookLoader-a55cfee4.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/admin/Pages.jsx"
+  },
+  "resources/js/Pages/admin/Pages/Create.jsx": {
+    "file": "assets/Create-b57d3df4.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_BookLoader-a55cfee4.js",
+      "_TextInput-e9dc6453.js",
+      "_AdminLayout-8ed1aef8.js",
+      "_function-6c0aa4d6.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/admin/Pages/Create.jsx"
+  },
+  "resources/js/app.css": {
+    "file": "assets/app-0f9ce091.css",
+    "src": "resources/js/app.css"
+  },
+  "resources/js/app.jsx": {
+    "css": [
+      "assets/app-0f9ce091.css"
+    ],
+    "dynamicImports": [
+      "resources/js/Pages/Index.jsx",
+      "resources/js/Pages/Welcome.jsx",
+      "resources/js/Pages/admin/Dashboard.jsx",
+      "resources/js/Pages/admin/FileManager/Index.jsx",
+      "resources/js/Pages/admin/FileManager/partials/CardFile.jsx",
+      "resources/js/Pages/admin/Navigation.jsx",
+      "resources/js/Pages/admin/Pages.jsx",
+      "resources/js/Pages/admin/Pages/Create.jsx"
+    ],
+    "file": "assets/app-ec749146.js",
+    "isEntry": true,
+    "src": "resources/js/app.jsx"
+  }
+}

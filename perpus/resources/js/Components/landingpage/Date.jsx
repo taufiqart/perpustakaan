@@ -38,7 +38,7 @@ function Tanggal() {
     ];
 
     return (
-        <div className="w-full mx-5 my-1 bg-gradient-to-r from-green-400 to-blue-400 rounded-lg shadow-md p-5">
+        <div className="w-full my-1 bg-gradient-to-r from-green-400 to-blue-400 rounded-lg shadow-md p-5">
             <h1 className="text-xl font-bold text-white text-center">
                 {hari[date.getDay()] +
                     ", " +

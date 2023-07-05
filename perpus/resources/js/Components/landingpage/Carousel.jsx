@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import ChevronLeft from "feather-icons-react/build/IconComponents/ChevronLeft";
 import ChevronRight from "feather-icons-react/build/IconComponents/ChevronRight";
+import Navbar from "./Navbar";
 
 export default function Carousel({
     children: slides,

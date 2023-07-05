@@ -1,65 +1,47 @@
 import Card from "./Card";
 import ChevronLeft from "feather-icons-react/build/IconComponents/ChevronLeft";
 import ChevronRight from "feather-icons-react/build/IconComponents/ChevronRight";
+import { useRef } from "react";
 
-function CardSlider() {
+function CardSlider({data}) {
+    const contentRef = useRef();
     const scrollLeft = () => {
-        document.getElementById("content").scrollLeft -= 270;
+        contentRef.current.scrollLeft -=
+            contentRef.current.firstChild.getBoundingClientRect().width;
     };
     const scrollRight = () => {
-        document.getElementById("content").scrollLeft += 270;
+        contentRef.current.scrollLeft +=
+            contentRef.current.firstChild.getBoundingClientRect().width;
     };
 
     return (
-        <div className="relative justify-center w-[80vw] lg:w-80">
-            <div className="absolute right-0 top-5 ">
+        <div className="relative justify-center group">
+            <div className="absolute right-0 top-5 md:group-hover:block md:hidden">
                 <button
                     onClick={scrollLeft}
-                    className="p-2 m-2 rounded-full bg-white"
+                    className="p-2 m-2 rounded-full bg-white shadow-md"
                 >
                     <ChevronLeft />
                 </button>
                 <button
                     onClick={scrollRight}
-                    className="p-2 m-2 rounded-full bg-white"
+                    className="p-2 m-2 rounded-full bg-white shadow-md"
                 >
                     <ChevronRight />
                 </button>
             </div>
             <div
                 id="content"
-                className="flex overflow-auto w-[80vw] md:w-[90vw] lg:w-80 scroll-smooth scrollbar-hide"
+                ref={contentRef}
+                className="flex overflow-auto scroll-smooth scrollbar-hide snap-mandatory snap-x py-2"
             >
-                <div>
-                    <Card />
-                </div>
-                <div>
-                    <Card />
-                </div>
-                <div>
-                    <Card />
-                </div>
-                <div>
-                    <Card />
-                </div>
-                <div>
-                    <Card />
-                </div>
-                <div>
-                    <Card />
-                </div>
-                <div>
-                    <Card />
-                </div>
-                <div>
-                    <Card />
-                </div>
-                <div>
-                    <Card />
-                </div>
-                <div>
-                    <Card />
-                </div>
+                {data.map((article) => {
+                    return (
+                        <div>
+                            <Card article={article}/>
+                        </div>
+                    );
+                })}
             </div>
         </div>
     );
