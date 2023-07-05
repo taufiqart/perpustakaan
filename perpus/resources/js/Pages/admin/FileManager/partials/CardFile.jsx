@@ -70,6 +70,25 @@ export default function CardFile({ file }) {
         console.log(flash);
     };
 
+    const copyFunction = async (type = "link", file) => {
+        let text = "";
+        if (type == "link") {
+            text = window.location.origin + file.path;
+        } else if (type == "code") {
+            text =
+                '<embed src="' +
+                window.location.origin +
+                file.path +
+                '" height="500" width="100%"></embed>';
+        }
+        if (text != "") {
+            try {
+                await navigator.clipboard.writeText(text);
+            } catch (err) {
+                alert("Failed to copy: ", err);
+            }
+        }
+    };
     return (
         <div className="relative flex flex-col items-center group">
             <div className="overflow-hidden  text-center break-words ">
@@ -104,6 +123,22 @@ export default function CardFile({ file }) {
                     </Dropdown.Trigger>
 
                     <Dropdown.Content>
+                        <div
+                            className="block w-full px-4 py-2 text-left text-sm leading-5 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out !text-gray-500 hover:!text-gray-700"
+                            onClick={() => {
+                                copyFunction("link", file);
+                            }}
+                        >
+                            <i className="fas fa-link"></i> Link
+                        </div>
+                        <div
+                            className="block w-full px-4 py-2 text-left text-sm leading-5 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out !text-gray-500 hover:!text-gray-700"
+                            onClick={() => {
+                                copyFunction("code", file);
+                            }}
+                        >
+                            <i className="fas fa-code"></i> Embed
+                        </div>
                         <div
                             className="block w-full px-4 py-2 text-left text-sm leading-5 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out !text-gray-500 hover:!text-gray-700"
                             onClick={() => {
