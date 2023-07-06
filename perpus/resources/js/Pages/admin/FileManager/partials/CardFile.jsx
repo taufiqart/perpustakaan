@@ -11,11 +11,13 @@ import TextInput from "@/Components/TextInput";
 import { Transition } from "@headlessui/react";
 import { useForm, usePage } from "@inertiajs/react";
 import React, { Fragment, useEffect, useRef, useState } from "react";
+import Toast from "@/Components/Toast";
 
 export default function CardFile({ file }) {
     const fileRef = useRef();
     const props = usePage().props;
     const [open, setOpen] = useState(false);
+    const [messageCopy, setMessageCopy] = useState();
     const {
         data,
         setData,
@@ -75,17 +77,51 @@ export default function CardFile({ file }) {
         if (type == "link") {
             text = window.location.origin + file.path;
         } else if (type == "code") {
-            text =
-                '<embed src="' +
-                window.location.origin +
-                file.path +
-                '" height="500" width="100%"></embed>';
+            text = `<object data="${window.location.origin + file.path}">
+            <object data="https://docs.google.com/viewer?url=${
+                window.location.origin + file.path
+            }&embedded=true" height="1000" width="100%">
+            <a href="${window.location.origin + file.path}" download="${
+                file.filename
+            }">Download document ${file.filename}</a> 
+            </object>
+            </object>`;
         }
         if (text != "") {
             try {
-                await navigator.clipboard.writeText(text);
+                if (navigator.clipboard && window.isSecureContext) {
+                    await navigator.clipboard.writeText(text);
+                } else {
+                    const textarea = document.createElement("textarea");
+                    textarea.value = text;
+
+                    // Move the textarea outside the viewport to make it invisible
+                    textarea.style.position = "absolute";
+                    textarea.style.left = "-99999999px";
+
+                    document.body.prepend(textarea);
+
+                    // highlight the content of the textarea element
+                    textarea.select();
+
+                    try {
+                        document.execCommand("copy");
+                        setMessageCopy("Copied");
+                    } catch (err) {
+                        setMessageCopy("Failed to Copy");
+                    } finally {
+                        setTimeout(() => {
+                            setMessageCopy(null);
+                        }, [1000]);
+                        textarea.remove();
+                    }
+                }
             } catch (err) {
-                alert("Failed to copy: ", err);
+                setMessageCopy("Failed to Copy");
+            } finally {
+                setTimeout(() => {
+                    setMessageCopy(null);
+                }, [1000]);
             }
         }
     };
@@ -243,6 +279,13 @@ export default function CardFile({ file }) {
                     </div>
                 </form>
             </Modal>
+            {messageCopy && (
+            <Toast className="left-0 md:left-64 md:w-[calc(100%-16rem)]">
+                <h1 className="text-slate-600 text-md md:text-lg">
+                    {messageCopy}
+                </h1>
+            </Toast>
+            )} 
         </div>
     );
 }

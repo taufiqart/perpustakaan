@@ -108,23 +108,15 @@ export default function AdminSidebar() {
                     {/* <!-- Heading --> */}
                     <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
                         <li className="items-center">
-                            <a
-                                href="../auth/login.html"
+                            <Link
+                                method="post"
+                                href={route("logout")}
+                                as="button"
                                 className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
                             >
                                 <i className="fas fa-fingerprint text-blueGray-300 mr-2 text-sm"></i>
-                                Login
-                            </a>
-                        </li>
-
-                        <li className="items-center">
-                            <a
-                                href="../auth/register.html"
-                                className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
-                            >
-                                <i className="fas fa-clipboard-list text-blueGray-300 mr-2 text-sm"></i>
-                                Register
-                            </a>
+                                Logout
+                            </Link>
                         </li>
                     </ul>
                 </div>

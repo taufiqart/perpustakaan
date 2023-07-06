@@ -6,7 +6,6 @@ import CardBarChart from "@/Components/admin/Card/CardBarChart";
 import TableTrafik from "@/Components/admin/Table/TableTrafik";
 import TableVisitor from "@/Components/admin/Table/TableVisitor";
 export default function Dashboard(props) {
-    console.log(props);
     return (
         <AdminLayout>
             <div className="flex flex-wrap">

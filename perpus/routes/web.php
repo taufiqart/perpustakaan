@@ -26,7 +26,7 @@ use Inertia\Inertia;
 // Route::get('/', function(){
 //     return Inertia::render('gatau');
 // });
-Route::prefix('dashboard')->group(function () {
+Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     Route::get('/', [AdminDashboardController::class, 'index']);
     Route::resource('/navigation', AdminNavigationController::class);
     Route::put('/navigation/{navigation:id}/order', [AdminNavigationController::class, 'updateOrder'])->name('navigation.updateOrder');
@@ -39,7 +39,6 @@ Route::prefix('dashboard')->group(function () {
 
 
 // Route::get('/', [CategoryController::class, 'index']);
-Route::get('{any}', [ArticleController::class, 'index'])->where('any', '.*');
 // Route::get('/{menu?:slug}/{submenu?:slug}', [CategoryController::class, 'index']);
 // Route::get('/', function () {
 //     return Inertia::render('gatau');
@@ -55,4 +54,6 @@ Route::get('{any}', [ArticleController::class, 'index'])->where('any', '.*');
 //     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 // });
 
-// require __DIR__ . '/auth.php';
+require __DIR__ . '/auth.php';
+
+Route::get('{any}', [ArticleController::class, 'index'])->where('any', '.*');
