@@ -1,4 +1,4 @@
-import{j as jsx,r as reactExports}from"./app-46b63e30.js";function Alert({type:t,message:e}){let r;switch(t){case"error":r="bg-red-500";break;case"info":r="bg-blue-500";break;case"success":r="bg-green-500";break;case"warning":r="bg-orange-500";break;default:r="bg-green-500";break}return jsx("div",{className:`${r} font-regular relative mb-4 block w-full rounded-lg  p-4 text-base leading-5 text-white opacity-100`,children:e})}/*! *****************************************************************************
+import{j as jsx,r as reactExports}from"./app-7e599d37.js";function Alert({type:t,message:e}){let r;switch(t){case"error":r="bg-red-500";break;case"info":r="bg-blue-500";break;case"success":r="bg-green-500";break;case"warning":r="bg-orange-500";break;default:r="bg-green-500";break}return jsx("div",{className:`${r} font-regular relative mb-4 block w-full rounded-lg  p-4 text-base leading-5 text-white opacity-100`,children:e})}/*! *****************************************************************************
 Copyright (c) Microsoft Corporation.
 
 Permission to use, copy, modify, and/or distribute this software for any

@@ -25,7 +25,7 @@ export default function Index(props) {
             <div className="flex max-h-[50%] overflow-hidden ">
                 {/* <img src="coba.svg" alt="" className="object-cover" /> */}
                 <svg
-                    className="object-cover"
+                    className="object-cover opacity-0 md:opacity-100"
                     width="100%"
                     height="100%"
                     viewBox="0 0 1440 767"
@@ -65,7 +65,7 @@ export default function Index(props) {
                     {/* kotak - kotak ga jelas bangsat */}
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="absolute right-0 -z-50 lg:z-10 lg:h-full"
+                        className="absolute right-0 -z-50 lg:z-10 lg:h-full opacity-0 md:opacity-100"
                         viewBox="0 0 829 605"
                         fill="none"
                     >
