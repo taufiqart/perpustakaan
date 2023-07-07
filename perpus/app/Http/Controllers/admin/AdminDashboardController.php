@@ -35,7 +35,7 @@ class AdminDashboardController extends Controller
         $files_new = [];
         foreach ($files as $file) {
             if (date('Y-m-d', filemtime($folder . $file)) == date('Y-m-d')) {
-                array_push($files_array, $file);
+                array_push($files_new, $file);
             }
         }
 
