@@ -20,7 +20,13 @@ const slides = [
 export default function Index(props) {
     return (
         <>
-            <Head title="Selamat datang" />
+            <Head
+                title={
+                    props?.article?.title == "/"
+                        ? "Selamat Datang"
+                        : props?.article?.title
+                }
+            />
 
             <div className="flex max-h-[50%] overflow-hidden ">
                 {/* <img src="coba.svg" alt="" className="object-cover" /> */}
@@ -54,10 +60,11 @@ export default function Index(props) {
                 <div className="absolute overflow-hidden flex flex-col w-full ">
                     <div className="w-full lg:w-[67%]">
                         <Carousel autoSlide={true} autoSlideInterval={5000}>
-                            {slides.map((s) => (
+                            {slides.map((s, idx) => (
                                 <img
                                     src={s}
                                     className="object-cover h-[50vh] md:h-auto"
+                                    key={idx}
                                 />
                             ))}
                         </Carousel>

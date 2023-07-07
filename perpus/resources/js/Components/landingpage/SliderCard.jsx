@@ -35,9 +35,9 @@ function CardSlider({data}) {
                 ref={contentRef}
                 className="flex overflow-auto scroll-smooth scrollbar-hide snap-mandatory snap-x py-2"
             >
-                {data.map((article) => {
+                {data.map((article,idx) => {
                     return (
-                        <div>
+                        <div key={idx}>
                             <Card article={article}/>
                         </div>
                     );

@@ -10,7 +10,7 @@ import TextInput from "@/Components/TextInput";
 import InputError from "@/Components/InputError";
 import SecondaryButton from "@/Components/SecondaryButton";
 import DangerButton from "@/Components/DangerButton";
-import { useForm, usePage } from "@inertiajs/react";
+import { Head, useForm, usePage } from "@inertiajs/react";
 import { convertToSlug } from "@/config/function";
 import PrimaryButton from "@/Components/PrimaryButton";
 import Alert from "../../Components/Alert";
@@ -84,6 +84,10 @@ export default function Navigation({ categories }) {
 
     const handleOrder = () => {};
     return (
+<>
+
+        <Head title="Navigation"/>
+
         <AdminLayout>
             <div className="w-full flex gap-x-3 p-4 pt-0 pl-0 -mt-5">
                 <PrimaryButton
@@ -286,5 +290,6 @@ export default function Navigation({ categories }) {
                 </form>
             </Modal>
         </AdminLayout>
+        </>
     );
 }

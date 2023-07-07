@@ -8,12 +8,12 @@ export default function Navbar({ data, className }) {
     const showNavbar = () => {
         navRef.current.classList.toggle("translate-y-[200vh]");
     };
-    
-    window.addEventListener('resize',(e)=>{
-        if(window.innerWidth >= 768){
+
+    window.addEventListener("resize", (e) => {
+        if (window.innerWidth >= 768) {
             navRef.current.classList.remove("translate-y-[200vh]");
         }
-    })
+    });
 
     return (
         <header
@@ -25,11 +25,11 @@ export default function Navbar({ data, className }) {
                 ref={navRef}
             >
                 {data &&
-                    data.map((dat) => {
+                    data.map((dat, idx) => {
                         if (dat.child.length > 0) {
-                            return <Dropdown data={dat} />;
+                            return <Dropdown data={dat} key={idx} />;
                         } else {
-                            return <CButton data={dat} />;
+                            return <CButton data={dat} key={idx} />;
                         }
                     })}
                 <button
