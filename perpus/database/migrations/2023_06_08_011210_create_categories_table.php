@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->foreignId('parent_id')->nullable()->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('slug')->unique();
+            $table->string('slug');
             $table->integer('order');
             $table->timestamps();
             $table->softDeletes();

@@ -43,7 +43,7 @@ class AdminNavigationController extends Controller
             'parent_id' => 'nullable',
             'title' => 'required',
             'order' => 'nullable',
-            'slug' => 'required|unique:categories'
+            'slug' => 'required|unique:categories,slug,NULL,id,deleted_at,NULL'
         ]);
 
         if ($validateData->fails()) {
@@ -92,7 +92,7 @@ class AdminNavigationController extends Controller
             'parent_id' => 'nullable',
             'title' => 'required',
             'order' => 'nullable',
-            'slug' => 'required|unique:categories,slug,' . $navigation->id
+            'slug' => 'required|unique:categories,slug,' . $navigation->id . ',id,deleted_at,NULL'
         ]);
 
         if ($validateData->fails()) {

@@ -10,6 +10,35 @@ use Inertia\Inertia;
 
 class AssetsController extends Controller
 {
+    function better_scandir($dir, $sorting_order = SCANDIR_SORT_ASCENDING)
+    {
+
+        /****************************************************************************/
+        // Roll through the scandir values.
+        $files = array();
+        foreach (scandir($dir, $sorting_order) as $file) {
+            if ($file[0] === '.') {
+                continue;
+            }
+            $files[$file] = filemtime($dir . '/' . $file);
+        } // foreach
+
+        /****************************************************************************/
+        // Sort the files array.
+        if ($sorting_order == SCANDIR_SORT_ASCENDING) {
+            asort($files, SORT_NUMERIC);
+        } else {
+            arsort($files, SORT_NUMERIC);
+        }
+
+        /****************************************************************************/
+        // Set the final return value.
+        $ret = array_keys($files);
+
+        /****************************************************************************/
+        // Return the final value.
+        return $ret;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -21,7 +50,7 @@ class AssetsController extends Controller
         $folder = str_replace('//', '/', $folder);
         if (is_dir($folder)) {
             $files = [];
-            foreach (scandir($folder) as $dir) {
+            foreach ($this->better_scandir($folder, SCANDIR_SORT_DESCENDING) as $dir) {
                 if ($dir == '.' || $dir == '..') {
                 } else {
                     if (in_array(pathinfo($dir, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png', 'svg', 'gif'])) {
@@ -43,7 +72,6 @@ class AssetsController extends Controller
             return Inertia::render('admin/FileManager/Index', compact('files'));
             return dd($files);
         }
-        return dd($folder);
         // return dd($request->file('img')->getClientMimeType());
         // return dd($request->file('img')->getClientOriginalName());
         // $asset = $request->file('img');
@@ -132,7 +160,7 @@ class AssetsController extends Controller
      * @param  \App\Models\Assets  $assets
      * @return \Illuminate\Http\Response
      */
-    public function show(Assets $assets)
+    public function show($assets)
     {
         //
     }
@@ -143,7 +171,7 @@ class AssetsController extends Controller
      * @param  \App\Models\Assets  $assets
      * @return \Illuminate\Http\Response
      */
-    public function edit(Assets $assets)
+    public function edit($assets)
     {
         //
     }

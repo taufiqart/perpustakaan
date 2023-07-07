@@ -19,7 +19,7 @@ class AdminPagesController extends Controller
      */
     public function index()
     {
-        $articles = Article::all();
+        $articles = Article::latest()->get();
         return Inertia::render('admin/Pages', compact('articles'));
     }
 
@@ -30,7 +30,7 @@ class AdminPagesController extends Controller
      */
     public function create()
     {
-        $categories = Category::where('parent_id','!=',null)->get();
+        $categories = Category::where('parent_id', '!=', null)->get();
         return Inertia::render('admin/Pages/Create', compact('categories'));
     }
 
@@ -45,7 +45,7 @@ class AdminPagesController extends Controller
         $validateData = Validator::make($request->all(), [
             'title' => 'required',
             'content' => 'required',
-            'category_id' => 'required',
+            'category_id' => 'nullable',
         ]);
 
         if ($validateData->fails()) {
@@ -99,7 +99,7 @@ class AdminPagesController extends Controller
         $validateData = Validator::make($request->all(), [
             'title' => 'required',
             'content' => 'required',
-            'category_id' => 'required',
+            'category_id' => 'nullable',
         ]);
 
         if ($validateData->fails()) {

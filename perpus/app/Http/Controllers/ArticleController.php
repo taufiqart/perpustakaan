@@ -39,6 +39,7 @@ class ArticleController extends Controller
             if ($article) {
                 return Inertia::render('Index', compact('category', 'article', 'other'));
             }
+            $article = Article::where('slug', $menu[1])->first();
             return Inertia::render('Index', compact('category', 'article', 'other'));
             return abort(404);
         }
@@ -49,6 +50,7 @@ class ArticleController extends Controller
 
                 return Inertia::render('Index', compact('category', 'article', 'other'));
             }
+            $article = Article::where('slug', $menu[0])->first();
             // $article = Article::latest()->first();
             // return dd($article);
             return Inertia::render('Index', compact('category', 'article', 'other'));

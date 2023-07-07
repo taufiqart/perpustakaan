@@ -1,5 +1,4 @@
 export default function Card({ article }) {
-    console.log(article);
     return (
         <div className="flex-1 w-64 sm:w-72 mx-2 ">
             <div className="bg-white shadow-md border border-gray-200 rounded-lg max-w-2xl">

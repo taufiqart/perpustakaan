@@ -74,7 +74,7 @@ export default function Pages({ articles }) {
                         articles.map((article) => {
                             return (
                                 <tr key={article.slug}>
-                                    <Table.Td>{article.title}</Table.Td>
+                                    <Table.Td>{article?.title}</Table.Td>
                                     <Table.Td className="!align-top">
                                         {" "}
                                         <div
@@ -85,7 +85,7 @@ export default function Pages({ articles }) {
                                         ></div>{" "}
                                     </Table.Td>
                                     <Table.Td>
-                                        {article.category.title}
+                                        {article?.category?.title}
                                     </Table.Td>
                                     <Table.Td className="text-right">
                                         <Dropdown>

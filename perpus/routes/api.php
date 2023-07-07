@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\AssetController;
-use App\Http\Controllers\AssetsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +19,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/images', [AssetsController::class, 'index']);
 
-Route::post('/upload_images', [AssetController::class, 'images'])->name('upload.images');
+Route::middleware('auth:sanctum')->post('/upload_images', [AssetController::class, 'images'])->name('upload.images');

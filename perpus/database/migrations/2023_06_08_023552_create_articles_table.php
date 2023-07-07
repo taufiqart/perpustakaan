@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('slug')->unique();
+            $table->string('slug');
             $table->foreignId('category_id')->nullable()->references('id')->on('categories')->onUpdate('cascade');
             $table->longText('content');
             $table->timestamps();
