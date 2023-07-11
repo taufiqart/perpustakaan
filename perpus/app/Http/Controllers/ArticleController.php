@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Slider;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -33,14 +34,16 @@ class ArticleController extends Controller
                 return $q->where('slug', '!=', '/');
             })->limit(5)->get();
         }
+        $sliders = Slider::latest()->get();
+        $sliders = count($sliders) > 0 ? $sliders : json_decode(json_encode([['image' => '/assets/images/1.jpeg'], ['image' => '/assets/images/2.jpeg'], ['image' => '/assets/images/3.jpeg'], ['image' => '/assets/images/4.jpeg']]));
 
         if ($menu[0] && isset($menu[1])) {
             $article = Category::where('slug', $menu[1])->first()?->article;
             if ($article) {
-                return Inertia::render('Index', compact('category', 'article', 'other'));
+                return Inertia::render('Index', compact('category', 'article', 'other','sliders'));
             }
             $article = Article::where('slug', $menu[1])->first();
-            return Inertia::render('Index', compact('category', 'article', 'other'));
+            return Inertia::render('Index', compact('category', 'article', 'other','sliders'));
             return abort(404);
         }
 
@@ -48,12 +51,12 @@ class ArticleController extends Controller
             $article = Category::where('slug', $menu[0])->first()?->article;
             if ($article) {
 
-                return Inertia::render('Index', compact('category', 'article', 'other'));
+                return Inertia::render('Index', compact('category', 'article', 'other','sliders'));
             }
             $article = Article::where('slug', $menu[0])->first();
             // $article = Article::latest()->first();
             // return dd($article);
-            return Inertia::render('Index', compact('category', 'article', 'other'));
+            return Inertia::render('Index', compact('category', 'article', 'other','sliders'));
             // return dd('ka');
             return abort(404);
         }

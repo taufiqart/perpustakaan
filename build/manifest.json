@@ -1,51 +1,57 @@
 {
-  "_AdminLayout-5a85b604.js": {
-    "file": "assets/AdminLayout-5a85b604.js",
+  "_AdminLayout-eb8a2cc8.js": {
+    "file": "assets/AdminLayout-eb8a2cc8.js",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
-  "_BookLoader-997586cf.js": {
-    "file": "assets/BookLoader-997586cf.js",
+  "_BookLoader-3800bd00.js": {
+    "file": "assets/BookLoader-3800bd00.js",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
-  "_PrimaryButton-bf089901.js": {
-    "file": "assets/PrimaryButton-bf089901.js",
+  "_PrimaryButton-d4bd25f4.js": {
+    "file": "assets/PrimaryButton-d4bd25f4.js",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
-  "_SecondaryButton-57234cee.js": {
-    "file": "assets/SecondaryButton-57234cee.js",
+  "_SecondaryButton-9f839a7d.js": {
+    "file": "assets/SecondaryButton-9f839a7d.js",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
-  "_TextInput-390c3620.js": {
-    "file": "assets/TextInput-390c3620.js",
+  "_Table-fa6d6331.js": {
+    "file": "assets/Table-fa6d6331.js",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
-  "_function-d9202938.js": {
-    "file": "assets/function-d9202938.js",
+  "_TextInput-5d87e6af.js": {
+    "file": "assets/TextInput-5d87e6af.js",
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "_function-64e1764d.js": {
+    "file": "assets/function-64e1764d.js",
     "imports": [
       "resources/js/app.jsx"
     ]
   },
   "resources/js/Pages/Auth/Login.jsx": {
-    "file": "assets/Login-daa39ccd.js",
+    "file": "assets/Login-aec0d5fc.js",
     "imports": [
       "resources/js/app.jsx",
-      "_TextInput-390c3620.js"
+      "_TextInput-5d87e6af.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Auth/Login.jsx"
   },
   "resources/js/Pages/Index.jsx": {
-    "file": "assets/Index-5f2ce182.js",
+    "file": "assets/Index-69d50fe6.js",
     "imports": [
       "resources/js/app.jsx"
     ],
@@ -53,7 +59,7 @@
     "src": "resources/js/Pages/Index.jsx"
   },
   "resources/js/Pages/Welcome.jsx": {
-    "file": "assets/Welcome-0cc1817f.js",
+    "file": "assets/Welcome-f756828f.js",
     "imports": [
       "resources/js/app.jsx"
     ],
@@ -61,85 +67,100 @@
     "src": "resources/js/Pages/Welcome.jsx"
   },
   "resources/js/Pages/admin/Dashboard.jsx": {
-    "file": "assets/Dashboard-e67b6631.js",
+    "file": "assets/Dashboard-1bdee4a5.js",
     "imports": [
       "resources/js/app.jsx",
-      "_AdminLayout-5a85b604.js"
+      "_AdminLayout-eb8a2cc8.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/admin/Dashboard.jsx"
   },
   "resources/js/Pages/admin/FileManager/Index.jsx": {
-    "file": "assets/Index-b04ee812.js",
+    "file": "assets/Index-0311e863.js",
     "imports": [
       "resources/js/app.jsx",
-      "_AdminLayout-5a85b604.js",
+      "_AdminLayout-eb8a2cc8.js",
       "resources/js/Pages/admin/FileManager/partials/CardFile.jsx",
-      "_SecondaryButton-57234cee.js",
-      "_PrimaryButton-bf089901.js",
-      "_TextInput-390c3620.js",
-      "_BookLoader-997586cf.js"
+      "_SecondaryButton-9f839a7d.js",
+      "_PrimaryButton-d4bd25f4.js",
+      "_TextInput-5d87e6af.js",
+      "_BookLoader-3800bd00.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/admin/FileManager/Index.jsx"
   },
   "resources/js/Pages/admin/FileManager/partials/CardFile.jsx": {
-    "file": "assets/CardFile-60870de3.js",
+    "file": "assets/CardFile-9785f393.js",
     "imports": [
       "resources/js/app.jsx",
-      "_BookLoader-997586cf.js",
-      "_SecondaryButton-57234cee.js",
-      "_TextInput-390c3620.js",
-      "_PrimaryButton-bf089901.js"
+      "_BookLoader-3800bd00.js",
+      "_SecondaryButton-9f839a7d.js",
+      "_TextInput-5d87e6af.js",
+      "_PrimaryButton-d4bd25f4.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/admin/FileManager/partials/CardFile.jsx"
   },
   "resources/js/Pages/admin/Navigation.jsx": {
-    "file": "assets/Navigation-15137c4b.js",
+    "file": "assets/Navigation-d6c8690c.js",
     "imports": [
       "resources/js/app.jsx",
-      "_AdminLayout-5a85b604.js",
-      "_SecondaryButton-57234cee.js",
-      "_TextInput-390c3620.js",
-      "_function-d9202938.js",
-      "_PrimaryButton-bf089901.js",
-      "_BookLoader-997586cf.js"
+      "_AdminLayout-eb8a2cc8.js",
+      "_SecondaryButton-9f839a7d.js",
+      "_TextInput-5d87e6af.js",
+      "_function-64e1764d.js",
+      "_PrimaryButton-d4bd25f4.js",
+      "_BookLoader-3800bd00.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/admin/Navigation.jsx"
   },
   "resources/js/Pages/admin/Pages.jsx": {
-    "file": "assets/Pages-dc496c75.js",
+    "file": "assets/Pages-861651e4.js",
     "imports": [
       "resources/js/app.jsx",
-      "_AdminLayout-5a85b604.js",
-      "_SecondaryButton-57234cee.js",
-      "_BookLoader-997586cf.js"
+      "_Table-fa6d6331.js",
+      "_AdminLayout-eb8a2cc8.js",
+      "_SecondaryButton-9f839a7d.js",
+      "_BookLoader-3800bd00.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/admin/Pages.jsx"
   },
   "resources/js/Pages/admin/Pages/Create.jsx": {
-    "file": "assets/Create-9fb291cb.js",
+    "file": "assets/Create-ce16fd8e.js",
     "imports": [
       "resources/js/app.jsx",
-      "_BookLoader-997586cf.js",
-      "_TextInput-390c3620.js",
-      "_PrimaryButton-bf089901.js",
-      "_AdminLayout-5a85b604.js",
-      "_function-d9202938.js"
+      "_BookLoader-3800bd00.js",
+      "_TextInput-5d87e6af.js",
+      "_PrimaryButton-d4bd25f4.js",
+      "_AdminLayout-eb8a2cc8.js",
+      "_function-64e1764d.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/admin/Pages/Create.jsx"
   },
+  "resources/js/Pages/admin/Slider.jsx": {
+    "file": "assets/Slider-a25a25c0.js",
+    "imports": [
+      "resources/js/app.jsx",
+      "_AdminLayout-eb8a2cc8.js",
+      "_SecondaryButton-9f839a7d.js",
+      "_PrimaryButton-d4bd25f4.js",
+      "_TextInput-5d87e6af.js",
+      "_BookLoader-3800bd00.js",
+      "_Table-fa6d6331.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/Pages/admin/Slider.jsx"
+  },
   "resources/js/app.css": {
-    "file": "assets/app-fcf0035c.css",
+    "file": "assets/app-63d6e5dc.css",
     "src": "resources/js/app.css"
   },
   "resources/js/app.jsx": {
     "css": [
-      "assets/app-fcf0035c.css"
+      "assets/app-63d6e5dc.css"
     ],
     "dynamicImports": [
       "resources/js/Pages/Auth/Login.jsx",
@@ -150,9 +171,10 @@
       "resources/js/Pages/admin/FileManager/partials/CardFile.jsx",
       "resources/js/Pages/admin/Navigation.jsx",
       "resources/js/Pages/admin/Pages.jsx",
-      "resources/js/Pages/admin/Pages/Create.jsx"
+      "resources/js/Pages/admin/Pages/Create.jsx",
+      "resources/js/Pages/admin/Slider.jsx"
     ],
-    "file": "assets/app-6459511e.js",
+    "file": "assets/app-72eb3583.js",
     "isEntry": true,
     "src": "resources/js/app.jsx"
   }

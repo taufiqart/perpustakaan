@@ -121,11 +121,9 @@ class AssetsController extends Controller
                     $upload = move_uploaded_file($file->getPathName(), $imageFolder . $file->getClientOriginalName());
                     if (!$upload) {
                         array_push($errors, ['filename' => "gagal upload " . $file->getClientOriginalName()]);
-                        return dd('kk');
                     }
                 } catch (Exception $e) {
                     array_push($errors, ['filename' => "gagal upload " . $file->getClientOriginalName()]);
-                    return dd('kk');
                 }
             } else {
                 array_push($errors, ['filename' => "gagal upload " . $file->getClientOriginalName()]);
@@ -228,8 +226,8 @@ class AssetsController extends Controller
         $originalFilename = str_replace('//', '/', $originalFilename);
         $delete = unlink($originalFilename);
         if (!$delete) {
-            return back()->with(['error' => 'gagal mengedit data']);
+            return back()->with(['error' => 'gagal menghapus data']);
         }
-        return back()->with(['success' => 'berhasil mengedit data']);
+        return back()->with(['success' => 'berhasil menhapus data']);
     }
 }

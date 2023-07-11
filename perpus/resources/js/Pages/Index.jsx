@@ -10,12 +10,12 @@ import Carousel from "@/Components/landingpage/Carousel";
 import Navbar from "@/Components/landingpage/Navbar";
 import Nav from "@/Components/Nav";
 
-const slides = [
-    "/assets/images/1.jpeg",
-    "/assets/images/2.jpeg",
-    "/assets/images/3.jpeg",
-    "/assets/images/4.jpeg",
-];
+// const slides = [
+//     "/assets/images/1.jpeg",
+//     "/assets/images/2.jpeg",
+//     "/assets/images/3.jpeg",
+//     "/assets/images/4.jpeg",
+// ];
 
 export default function Index(props) {
     return (
@@ -60,13 +60,14 @@ export default function Index(props) {
                 <div className="absolute overflow-hidden flex flex-col w-full ">
                     <div className="w-full lg:w-[67%]">
                         <Carousel autoSlide={true} autoSlideInterval={5000}>
-                            {slides.map((s, idx) => (
-                                <img
-                                    src={s}
-                                    className="object-cover h-[50vh] md:h-auto"
-                                    key={idx}
-                                />
-                            ))}
+                            {props.sliders &&
+                                props.sliders.map((s, idx) => (
+                                    <img
+                                        src={s.image}
+                                        className="object-cover h-[50vh] md:h-auto"
+                                        key={idx}
+                                    />
+                                ))}
                         </Carousel>
                     </div>
                     {/* kotak - kotak ga jelas bangsat */}
