@@ -38,7 +38,7 @@ function Tanggal() {
     ];
 
     return (
-        <div className="w-full my-1 bg-gradient-to-r from-green-400 to-blue-400 rounded-lg shadow-md p-5">
+        <div className="w-full md:w-2/3 mx-auto lg:w-full my-1 bg-gradient-to-r from-green-400 to-blue-400 rounded-lg shadow-md p-5">
             <h1 className="text-xl font-bold text-white text-center">
                 {hari[date.getDay()] +
                     ", " +
@@ -50,9 +50,7 @@ function Tanggal() {
                     "   " +
                     transform(date.getHours()) +
                     ":" +
-                    transform(date.getMinutes()) +
-                    ":" +
-                    transform(date.getSeconds())}
+                    transform(date.getMinutes())}
             </h1>
         </div>
     );

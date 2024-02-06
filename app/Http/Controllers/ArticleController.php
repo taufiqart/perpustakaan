@@ -56,7 +56,7 @@ class ArticleController extends Controller
             $article = Article::where('slug', $menu[0])->first();
             // $article = Article::latest()->first();
             // return dd($article);
-            return Inertia::render('Index', compact('category', 'article', 'other','sliders'));
+            return Inertia::render('situsiba/Index', compact('category', 'article', 'other','sliders'));
             // return dd('ka');
             return abort(404);
         }

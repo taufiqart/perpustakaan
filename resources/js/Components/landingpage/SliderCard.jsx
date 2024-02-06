@@ -25,7 +25,7 @@ function CardSlider({data}) {
                 </button>
                 <button
                     onClick={scrollRight}
-                    className="p-2 m-2 rounded-full bg-white shadow-md"
+                    className="p-2 m-2 rounded-full bg-white shadow-md lg:z-3"
                 >
                     <ChevronRight />
                 </button>
