@@ -186,7 +186,7 @@ export default function Slider({ sliders }) {
                                 onChange={(e) =>
                                     setData("image", e.target.files)
                                 }
-                                className="mt-1 block w-full text-sm text-slate-500 focus:outline-none focus:border-none
+                                className="mt-1 block w-full text-sm text-blueGray-500 focus:outline-none focus:border-none
                             file:mr-4 file:py-2 file:px-4
                             file:rounded-full file:border-0
                             file:text-sm file:font-semibold

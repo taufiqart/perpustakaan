@@ -146,7 +146,7 @@ export default function Index(props) {
                 </div>
 
                 {/* kanan start */}
-                <div className="flex flex-col col-span-1 backdrop-blur-sm mb-20">
+                <div className="w-[90%] xl:w-[85%] mx-auto my-10 backdrop-blur-sm mb-20">
                     {/* Terbaru start */}
                     <Terbaru data={props.other} />
                     {/* Terbaru end */}
@@ -154,23 +154,6 @@ export default function Index(props) {
                     {/* Terbanyak start */}
                     <Terbanyak data={props.other} />
                     {/* Terbanyak end */}
-
-                    {/* Developer start */}
-                    <div className="w-full md:w-2/3 mx-auto lg:w-full  my-1 bg-opacity-50 bg-white rounded-lg shadow-md p-5">
-                        <div className="mx-auto bg-gradient-to-r from-green-400 to-blue-400 py-3 rounded-lg">
-                            <h1 className="text-white text-center text-lg font-bold">
-                                Developer
-                            </h1>
-                        </div>
-                        <div className="flex flex-col justify-between mx-5 mt-5 mb-5">
-                            <div className="items-center ">
-                                <h1 className="text-black font-bold text-center text-lg">
-                                    RPLPOJOK
-                                </h1>
-                            </div>
-                        </div>
-                    </div>
-                    {/* Developer end */}
                 </div>
                 {/* kanan end */}
                 <div className="flex max-h-[50%] bg-bottom">

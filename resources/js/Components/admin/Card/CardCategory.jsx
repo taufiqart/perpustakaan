@@ -30,7 +30,7 @@ export default function CardCategory({
     return (
         <>
             <div
-                className={` w-full h-10 bg-white hover:bg-slate-100 shadow-md group rounded-sm flex justify-between items-center px-3 ${className}`}
+                className={` w-full h-10 bg-white hover:bg-blueGray-100 shadow-md group rounded-sm flex justify-between items-center px-3 ${className}`}
             >
                 {category.title}
                 <div className="flex gap-x-5">

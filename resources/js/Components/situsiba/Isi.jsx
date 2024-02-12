@@ -21,6 +21,7 @@ export default function SituSiba({ article,className='' }) {
                 {/* Input Search start */}
                 <Search/>
                 {/* Input Search end */}
+
                 <div
                     className="min-h-[24rem] p-4"
                     dangerouslySetInnerHTML={{

@@ -70,7 +70,7 @@ export default function Index({ files }) {
                         Add
                     </PrimaryButton>
                 </div>
-                <div className="w-full h-full bg-slate-100 rounded-md relative justify-evenly flex flex-wrap p-4 gap-4">
+                <div className="w-full h-full bg-blueGray-100 rounded-md relative justify-evenly flex flex-wrap p-4 gap-4">
                     {files &&
                         files.map((file, idx) => {
                             return <CardFile file={file} key={idx} />;
@@ -109,7 +109,7 @@ export default function Index({ files }) {
                                 onChange={(e) =>
                                     setData("file", e.target.files)
                                 }
-                                className="mt-1 block w-full text-sm text-slate-500 focus:outline-none focus:border-none
+                                className="mt-1 block w-full text-sm text-blueGray-500 focus:outline-none focus:border-none
                             file:mr-4 file:py-2 file:px-4
                             file:rounded-full file:border-0
                             file:text-sm file:font-semibold
