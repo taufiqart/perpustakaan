@@ -1,3 +1,5 @@
+import Dropdown from "../Dropdown";
+
 export default function Search() {
     return (
         <div className="flex flex-row justify-center pt-10 ">
@@ -16,6 +18,7 @@ export default function Search() {
             </div>
 
             {/* Filter start */}
+            <Dropdown/>
             <div className="">
                 <select name="" id="" className="w-28 rounded-lg text-blueGray-500 text-sm border-green-400 hover:border-blue-400 active:border-blue-700 ring-green-400 transition delay-150 duration-300 ease-in-out">
                     <option value="" className="text-black">Terbaru</option>

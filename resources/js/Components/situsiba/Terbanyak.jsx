@@ -1,5 +1,5 @@
 import { Link } from "@inertiajs/react";
-import CardSlider from "../landingpage/SliderCard";
+import BookSlider from "./BookSlider";
 
 export default function Terbanyak({data}) {
     return (
@@ -12,7 +12,7 @@ export default function Terbanyak({data}) {
             </div>
             <div className="flex flex-col justify-between my-2">
                 <div className="items-center ">
-                    <CardSlider data={data}/>
+                    <BookSlider/>
                 </div>
             </div>
         </div>

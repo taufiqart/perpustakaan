@@ -1,3 +1,4 @@
+import BookCard from "../BookCard";
 import Search from "./Search";
 
 export default function SituSiba({ article,className='' }) {
@@ -21,6 +22,21 @@ export default function SituSiba({ article,className='' }) {
                 {/* Input Search start */}
                 <Search/>
                 {/* Input Search end */}
+
+                {/* BookCard start */}
+                <div className="flex flex-wrap justify-center gap-10 mt-20">
+                    <BookCard/>
+                    <BookCard/>
+                    <BookCard/>
+                    <BookCard/>
+                    <BookCard/>
+                    <BookCard/>
+                    <BookCard/>
+                    <BookCard/>
+                    <BookCard/>
+                </div>
+                {/* BookCard end */}
+
 
                 <div
                     className="min-h-[24rem] p-4"
