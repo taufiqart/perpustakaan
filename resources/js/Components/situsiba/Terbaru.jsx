@@ -10,8 +10,8 @@ export default function Terbaru({data}) {
                 </h1>
                 <Link className="text-lg font-bold hover:text-blue-500 hover:underline">Lihat lebih banyak</Link>
             </div>
-            <div className="flex flex-col justify-between my-2">
-                <div className="items-center ">
+            <div className="my-2">
+                <div className="flex flex-col justify-center items-center ">
                     <BookSlider/>
                 </div>
             </div>
