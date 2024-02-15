@@ -1,10 +1,8 @@
-import Card from "./Card";
-import ChevronLeft from "feather-icons-react/build/IconComponents/ChevronLeft";
-import ChevronRight from "feather-icons-react/build/IconComponents/ChevronRight";
-import { useRef } from "react";
+import { ChevronLeft, ChevronRight } from "feather-icons-react/build/IconComponents";
+import BookCard from "../BookCard";
 
-function CardSlider({data}) {
-    const contentRef = useRef();
+function BookSlider() {
+    // const contentRef = useRef();
     const scrollLeft = () => {
         contentRef.current.scrollLeft -=
             contentRef.current.firstChild.getBoundingClientRect().width;
@@ -15,36 +13,41 @@ function CardSlider({data}) {
     };
 
     return (
-        <div className="relative justify-center group">
+        <div className="relative lg:hi justify-center group">
             <div className="absolute right-0 top-5 md:group-hover:block md:hidden">
                 <button
                     onClick={scrollLeft}
-                    className="p-2 m-2 rounded-full bg-white shadow-md"
+                    className="lg:hidden p-2 m-2 rounded-full bg-white shadow-md"
                 >
                     <ChevronLeft />
                 </button>
                 <button
                     onClick={scrollRight}
-                    className="p-2 m-2 rounded-full bg-white shadow-md lg:z-3"
+                    className="lg:hidden p-2 m-2 rounded-full bg-white shadow-md lg:z-3"
                 >
                     <ChevronRight />
                 </button>
             </div>
             <div
                 id="content"
-                ref={contentRef}
+                // ref={contentRef}
                 className="flex overflow-auto scroll-smooth scrollbar-hide snap-mandatory snap-x py-2"
             >
-                {data.map((article,idx) => {
+                {/* {data.map((title,idx) => {
                     return (
-                        <div key={idx}>
-                            <Card article={article}/>
+                         <div key={idx}> */}
+                        <div className="flex flex-row items-center justify-center gap-16 my-20">
+                            <BookCard/>
+                            <BookCard/>
+                            <BookCard/>
+                            <BookCard/>
+                            <BookCard/>
                         </div>
-                    );
-                })}
+                    {/* );
+                })} */}
             </div>
         </div>
     );
 }
 
-export default CardSlider;
+export default BookSlider;

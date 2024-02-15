@@ -1,6 +1,6 @@
 export default function Kontak() {
     return (
-        <div className="w-full  my-1 bg-opacity-50 bg-white rounded-lg shadow-md p-5">
+        <div className="w-full md:w-2/3 mx-auto lg:w-full my-1 bg-opacity-50 bg-white rounded-lg shadow-md p-5">
             <div className="mx-auto bg-gradient-to-r from-green-400 to-blue-400 py-3 rounded-lg">
                 <h1 className="text-white text-center text-lg font-bold">
                     Kontak
@@ -75,9 +75,9 @@ export default function Kontak() {
                     </div>
                 </div>
                 <div className="items-center mx-5 break-words overflow-clip">
-                    <p className="text-black text-center font-bold text-md sm:text-base md:text-lg break-words">
+                    <a href="mailto:smk1pasuruan@yahoo.com" className="text-black text-center font-bold text-md sm:text-base md:text-lg break-words">
                         smk1pasuruan@yahoo.com
-                    </p>
+                    </a>
                 </div>
             </div>
         </div>

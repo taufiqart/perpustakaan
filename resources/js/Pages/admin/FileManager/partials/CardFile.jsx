@@ -83,7 +83,7 @@ export default function CardFile({ file }) {
             }&embedded=true" height="1000" width="100%">
             <a href="${window.location.origin + file.path}" download="${
                 file.filename
-            }">Download document ${file.filename}</a> 
+            }">Download document ${file.filename}</a>
             </object>
             </object>`;
         }
@@ -281,11 +281,11 @@ export default function CardFile({ file }) {
             </Modal>
             {messageCopy && (
             <Toast className="left-0 md:left-64 md:w-[calc(100%-16rem)]">
-                <h1 className="text-slate-600 text-md md:text-lg">
+                <h1 className="text-blueGray-600 text-md md:text-lg">
                     {messageCopy}
                 </h1>
             </Toast>
-            )} 
+            )}
         </div>
     );
 }

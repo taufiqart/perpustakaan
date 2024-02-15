@@ -43,7 +43,7 @@ function Dropdown({ data }) {
                                                 idx == data.child.length - 1
                                                     ? "rounded-b-lg"
                                                     : ""
-                                            } bg-slate-50 md:bg-white w-full inline-flex items-center justify-start px-4 py-1 font-medium duration-200 hover:shadow-xl group hover:ring-1 hover:bg-green-400`}
+                                            } bg-blueGray-50 md:bg-white w-full inline-flex items-center justify-start px-4 py-1 font-medium duration-200 hover:shadow-xl group hover:ring-1 hover:bg-green-400`}
                                         >
                                             {idx == 0 && (
                                                 <svg
@@ -74,7 +74,7 @@ function Dropdown({ data }) {
                                                 idx == data.child.length - 1
                                                     ? "rounded-b-lg"
                                                     : ""
-                                            } bg-slate-50 md:bg-white w-full inline-flex items-center justify-start px-4 py-1 font-medium duration-200 hover:shadow-xl group hover:ring-1 hover:bg-green-400`}
+                                            } bg-blueGray-50 md:bg-white w-full inline-flex items-center justify-start px-4 py-1 font-medium duration-200 hover:shadow-xl group hover:ring-1 hover:bg-green-400`}
                                         >
                                             {idx == 0 && (
                                                 <svg
