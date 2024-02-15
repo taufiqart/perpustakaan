@@ -9,6 +9,9 @@ import { Link, Head } from "@inertiajs/react";
 import Carousel from "@/Components/landingpage/Carousel";
 import Navbar from "@/Components/landingpage/Navbar";
 import Nav from "@/Components/Nav";
+import ModalWelcome from "../Components/ModalWelcome";
+import Modal from "../Components/Modal";
+import { useState } from "react";
 
 // const slides = [
 //     "/assets/images/1.jpeg",
@@ -18,6 +21,7 @@ import Nav from "@/Components/Nav";
 // ];
 
 export default function Index(props) {
+    const [show, setShow] = useState(true)
     return (
         <>
             <Head
@@ -27,6 +31,28 @@ export default function Index(props) {
                         : props?.article?.title
                 }
             />
+            {/* <ModalWelcome/> */}
+            <Modal show={show} onClose={() => setShow(!show)}>
+                <div className="max-h-full w-full overflow-y-auto sm:rounded-2xl bg-white">
+                    <div className="w-full">
+                    <div className="m-8 my-20 max-w-[400px] md:max-w-[450px] mx-auto text-center">
+                        <div className="mb-8">
+                        <h1 className="mb-4 text-xl md:text-3xl font-extrabold">SELAMAT DATANG DI SITU SIBA</h1>
+                        <p className="text-base mx-2 md:mx-0 md:text-xl text-gray-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam blanditiis autem culpa nostrum.</p>
+                        </div>
+                        <div className="space-y-4">
+                        <a onClose={() => setShow(!show)} className="p-3 w-2/3 md:w-full  relative inline-flex items-center justify-center overflow-hidden font-medium transition duration-300 ease-out rounded-full hover:shadow-xl group hover:ring-1 hover:ring-green-500">
+                            <span className="absolute inset-0 w-full h-full group-hover:bg-gradient-to-br from-blue-400 to-green-400"></span>
+                            <span className="absolute bottom-0 right-0 hidden md:block w-64 h-64 mb-32 mr-4 transition duration-700 origin-bottom-left transform rotate-90 translate-x-24 group-hover:bg-green-500 rounded-full opacity-80 group-hover:rotate-45 ease"></span>
+                            <span className="text-base md:text-lg relative text-black group-hover:text-white ">
+                                LANJUT
+                            </span>
+                        </a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </Modal>
 
             <div className="flex max-h-[50%] overflow-hidden ">
                 {/* <img src="coba.svg" alt="" className="object-cover" /> */}
