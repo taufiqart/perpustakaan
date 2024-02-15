@@ -1,22 +1,10 @@
-import Alamat from "@/Components/landingpage/Alamat";
-import Tanggal from "@/Components/landingpage/Date";
 import Footer from "@/Components/landingpage/Footer";
 import SituSiba from "@/Components/situsiba/Isi";
-import Kontak from "@/Components/landingpage/Kontak";
-import Operasional from "@/Components/landingpage/Operasional";
 import { Link, Head } from "@inertiajs/react";
 import Carousel from "@/Components/landingpage/Carousel";
 import Navbar from "@/Components/landingpage/Navbar";
-import Nav from "@/Components/Nav";
 import Terbaru from "../../Components/situsiba/Terbaru";
 import Terbanyak from "../../Components/situsiba/Terbanyak";
-
-// const slides = [
-//     "/assets/images/1.jpeg",
-//     "/assets/images/2.jpeg",
-//     "/assets/images/3.jpeg",
-//     "/assets/images/4.jpeg",
-// ];
 
 export default function Index(props) {
     return (

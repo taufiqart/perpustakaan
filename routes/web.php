@@ -55,5 +55,8 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
 
 require __DIR__ . '/auth.php';
 
-Route::get('papers/{paper:slug}', [\App\Http\Controllers\Post\PaperController::class, 'show'])->name('paper.show');
+Route::prefix('situsiba')->group(function(){
+    Route::get('/', [\App\Http\Controllers\Situsiba\Situsiba::class, 'index'])->name('situsiba.index');
+    Route::get('papers/{paper:slug}', [\App\Http\Controllers\Situsiba\Situsiba::class, 'show'])->name('paper.show');
+});
 Route::get('{any}', [ArticleController::class, 'index'])->where('any', '.*');

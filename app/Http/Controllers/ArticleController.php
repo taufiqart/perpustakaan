@@ -24,10 +24,9 @@ class ArticleController extends Controller
         $category = Category::where('parent_id', null)->get();
         if ($any != '/') {
             $other = Article::latest()->whereHas('category', function ($q) use ($menu) {
-                return $q->where('slug', '!=', $menu[count($menu) - 1]);
+                return $q->where('slug', '!=', $menu[count($menu) - 1])->where('slug', '!=', '/');
             })->limit(5)->get();
         } else {
-
             $other = Article::latest()->whereHas('category', function ($q) use ($menu) {
                 return $q->where('slug', '!=', '/');
             })->limit(5)->get();
