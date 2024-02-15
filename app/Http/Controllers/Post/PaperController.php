@@ -115,8 +115,8 @@ class PaperController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  \App\Models\Post  $id
+     * @return \Illuminate\Http\Response | \Inertia\Response | null
      */
     public function edit($id)
     {
@@ -127,8 +127,8 @@ class PaperController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  \App\Models\Post  $id
+     * @return \Illuminate\Http\Response | \Inertia\Response | null
      */
     public function update(Request $request, $id)
     {
@@ -138,8 +138,8 @@ class PaperController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  \App\Models\Post  $id
+     * @return \Illuminate\Http\Response | \Inertia\Response | null
      */
     public function destroy($id)
     {
