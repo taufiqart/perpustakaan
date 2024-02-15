@@ -12,14 +12,12 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('post_v_genres', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            // $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->enum('role', ["admin", "user"])->default("user");
-            $table->rememberToken();
+            $table->unsignedBigInteger("post_id");
+            $table->unsignedBigInteger("genre_id");
+            $table->foreign("post_id")->references("id")->on("posts")->onDelete("cascade")->onUpdate("cascade");
+            $table->foreign("genre_id")->references("id")->on("post_genres")->onDelete("cascade")->onUpdate("cascade");
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('post_v_genres');
     }
 };
