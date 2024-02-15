@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
                 "type"=>$identity
             ]);
         });
-        
+
         collect(["SISWA","GURU","KARYAWAN"])->map(function($member){
             \App\Models\MemberType::create([
                 "type"=>$member
@@ -77,7 +77,7 @@ class DatabaseSeeder extends Seeder
                 "date_of_birth"=>$user->date_of_birth,
                 "place_of_birth"=>$user->place_of_birth,
             ]);
-            
+
         });
 
         collect(["video","paper"])->map(function($type){
@@ -86,21 +86,21 @@ class DatabaseSeeder extends Seeder
                 "type"=>$type
             ]);
         });
-        
+
         collect(["Novel","Cerpen","Puisi","Karya Ilimiah"])->map(function($type){
             \App\Models\PostCategory::create([
                 "slug"=> str_replace(" ","-",strtolower($type)),
                 "category"=>$type
             ]);
         });
-       
+
         collect(['Genre Aksi', 'Komedi', 'Romantis', 'Drama', 'Petualangan', 'Science Fiction', 'Horor', 'Thriller', 'Animasi', 'Misteri', 'Biografi', 'Dokumenter', 'Fantasi', 'Musikal', 'Perang'])->map(function($type){
             \App\Models\PostGenre::create([
                 "slug"=> str_replace(" ","-",strtolower($type)),
                 "genre"=>$type
             ]);
         });
-            
+
         // \App\Models\User::factory()->create([
         //     'id' => 1,
         //     'name' => 'Admin Perpustakaan SKENSA',

@@ -9,7 +9,6 @@ import { Link, Head } from "@inertiajs/react";
 import Carousel from "@/Components/landingpage/Carousel";
 import Navbar from "@/Components/landingpage/Navbar";
 import Nav from "@/Components/Nav";
-import ModalWelcome from "../Components/ModalWelcome";
 import Modal from "../Components/Modal";
 import { useState } from "react";
 
