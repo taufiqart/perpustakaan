@@ -13,7 +13,7 @@ class AdminNavigationController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response | \Inertia\Response
      */
     public function index()
     {
@@ -24,7 +24,7 @@ class AdminNavigationController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response | null
      */
     public function create()
     {
@@ -35,7 +35,7 @@ class AdminNavigationController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response | \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -61,7 +61,7 @@ class AdminNavigationController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response | null
      */
     public function show($id)
     {
@@ -72,7 +72,7 @@ class AdminNavigationController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response | null
      */
     public function edit($id)
     {
@@ -84,7 +84,7 @@ class AdminNavigationController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response | \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Category $navigation)
     {
@@ -111,7 +111,7 @@ class AdminNavigationController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response | \Illuminate\Http\RedirectResponse
      */
     public function updateOrder(Request $request, Category $navigation)
     {
@@ -127,7 +127,7 @@ class AdminNavigationController extends Controller
 
         $validateData = $validateData->validate();
 
-        return dd(Category::where());
+        // return dd(Category::where());
         $navigation = $navigation->update($validateData);
         if (!$navigation) {
             return back()->with(['error' => 'gagal mengedit data']);
@@ -139,7 +139,7 @@ class AdminNavigationController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response | \Illuminate\Http\RedirectResponse
      */
     public function destroy(Category $navigation)
     {

@@ -15,7 +15,7 @@ class AdminPagesController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response | \Inertia\Response
      */
     public function index()
     {
@@ -26,7 +26,7 @@ class AdminPagesController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response | \Inertia\Response
      */
     public function create()
     {
@@ -38,7 +38,7 @@ class AdminPagesController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response | \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -65,7 +65,7 @@ class AdminPagesController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Article  $article
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response | null
      */
     public function show(Article $article)
     {
@@ -76,11 +76,12 @@ class AdminPagesController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Article  $article
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response | \Inertia\Response
      */
     public function edit(Article $page)
     {
         $article = $page;
+        $article->content = clean_directive($article->content);
         $categories = Category::all();
         return Inertia::render('admin/Pages/Create', compact('article', 'categories'));
     }
@@ -90,12 +91,12 @@ class AdminPagesController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Article  $article
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response | \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Article $page)
     {
         $article = $page;
-        // return dd($request);
+
         $validateData = Validator::make($request->all(), [
             'title' => 'required',
             'content' => 'required',
@@ -109,8 +110,9 @@ class AdminPagesController extends Controller
         if ($request->title != $page->title) {
             $slug = SlugService::createSlug(Article::class, 'slug', $request['title']);
         }
-        // return dd($navigation);
+
         $validateData = $validateData->validate();
+        $validateData['content'] = clean_directive($validateData['content']);
         $validateData['slug'] = $slug;
         $article = $article->update($validateData);
         if (!$article) {
@@ -123,7 +125,7 @@ class AdminPagesController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Article  $article
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response | \Illuminate\Http\RedirectResponse
      */
     public function destroy(Article $page)
     {

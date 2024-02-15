@@ -14,7 +14,7 @@ class AdminSliderController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response | \Inertia\Response
      */
     public function index()
     {
@@ -25,7 +25,7 @@ class AdminSliderController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response | null
      */
     public function create()
     {
@@ -36,7 +36,7 @@ class AdminSliderController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response | \Illuminate\Http\RedirectResponse 
      */
     public function store(Request $request)
     {
@@ -75,7 +75,7 @@ class AdminSliderController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Slider  $slider
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response | null
      */
     public function show(Slider $slider)
     {
@@ -86,7 +86,7 @@ class AdminSliderController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Slider  $slider
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response | null
      */
     public function edit(Slider $slider)
     {
@@ -98,7 +98,7 @@ class AdminSliderController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Slider  $slider
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response | null
      */
     public function update(Request $request, Slider $slider)
     {
@@ -109,7 +109,7 @@ class AdminSliderController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Slider  $slider
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response | \Illuminate\Http\RedirectResponse
      */
     public function destroy(Slider $slider)
     {

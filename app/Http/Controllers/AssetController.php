@@ -22,7 +22,7 @@ class AssetController extends Controller
             move_uploaded_file($temp['tmp_name'], $filetowrite);
             $location = env('ASSET_LOCATION') . $temp['name'];
 
-            return response()->json(['location' => '//' . $request->getHttpHost() . $location]);
+            return response()->json(['location' => $location]);
         } else {
             header("HTTP/1.1 500 Server Error");
             return;
