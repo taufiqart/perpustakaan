@@ -1,7 +1,105 @@
 import React, { useEffect, useState } from "react";
 import Dropdown from "@/Components/admin/Dropdown/Dropdown";
 import { Link, usePage } from "@inertiajs/react";
+const getActivePage = (slug) => {
+    return (
+        (slug.split("/").length == 2 && window.location.pathname == slug) ||
+        (slug.split("/").length > 2 &&
+            window.location.pathname.startsWith(slug))
+    );
+};
+const SideMenu = ({ data }) => {
+    const [open, setOpen] = useState(false);
+    const [active, setActive] = useState(false);
 
+    if (data.child.length > 0) {
+        useEffect(() => {
+            data.child.map((e) => {
+                if (active) return;
+                if (getActivePage(e.slug)) {
+                    setOpen(true);
+                    setActive(true);
+                    return;
+                }
+            });
+        }, []);
+
+        return (
+            <li className="items-center">
+                <button
+                    onClick={() => setOpen(!open)}
+                    type="button"
+                    className={`text-xs uppercase py-3 font-bold flex items-center w-full ${
+                        active
+                            ? "text-pink-500 hover:text-pink-600"
+                            : "text-blueGray-700 hover:text-blueGray-500"
+                    }`}
+                >
+                    <i
+                        className="fas mr-2 text-sm opacity-75 w-6 align-middle"
+                        dangerouslySetInnerHTML={{
+                            __html: data.icon,
+                        }}
+                    ></i>
+                    {data.title}
+                    <svg
+                        className={`w-6 h-6 ml-auto flex-end transition-all duration-150 ${
+                            open && "rotate-180"
+                        }`}
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            fillRule="evenodd"
+                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                            clipRule="evenodd"
+                        ></path>
+                    </svg>
+                </button>
+                <ul className={`opcity-100 h-auto ${!open&&'!h-0 !opacity-0'} transition-all duration-200`}>
+                    {data.child.map((nav,key) => {
+                        return (
+                            <li key={nav.slug+key} className="items-center">
+                                <Link
+                                    href={nav.slug}
+                                    className={`text-xs uppercase py-3 font-bold block ${
+                                        getActivePage(nav.slug)
+                                            ? "text-pink-500 hover:text-pink-600"
+                                            : "text-blueGray-700 hover:text-blueGray-500"
+                                    }`}
+                                >
+                                    <i className="fas mr-2 text-sm opacity-75 w-6 align-middle"></i>
+                                    {nav.title}
+                                </Link>
+                            </li>
+                        );
+                    })}
+                </ul>
+            </li>
+        );
+    }
+    return (
+        <li className="items-center">
+            <Link
+                href={data.slug}
+                className={`text-xs uppercase py-3 font-bold block ${
+                    getActivePage(data.slug)
+                        ? "text-pink-500 hover:text-pink-600"
+                        : "text-blueGray-700 hover:text-blueGray-500"
+                }`}
+            >
+                <i
+                    className="fas mr-2 text-sm opacity-75 w-6 align-middle"
+                    dangerouslySetInnerHTML={{
+                        __html: data.icon,
+                    }}
+                ></i>
+                {data.title}
+            </Link>
+        </li>
+    );
+};
 export default function AdminSidebar() {
     const [toggleNavbar, setToggleNavbar] = useState(false);
     const [navigation, setNavigation] = useState();
@@ -10,13 +108,6 @@ export default function AdminSidebar() {
         setNavigation(props.navigation);
     }, []);
 
-    const getActivePage = (slug) => {
-        return (
-            (slug.split("/").length == 2 && window.location.pathname == slug) ||
-            (slug.split("/").length > 2 &&
-                window.location.pathname.startsWith(slug))
-        );
-    };
     return (
         <nav className="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6">
             <div className="md:flex-col md:items-stretch md:min-h-full md:flex-nowrap px-0 flex flex-wrap items-center justify-between w-full mx-auto">
@@ -46,7 +137,7 @@ export default function AdminSidebar() {
                             <div className="w-6/12">
                                 <Link
                                     className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-                                    href="../../index.html"
+                                    href="/"
                                 >
                                     Perpustakaan SKENSA
                                 </Link>
@@ -79,27 +170,8 @@ export default function AdminSidebar() {
 
                     <ul className="md:flex-col md:min-w-full flex flex-col list-none">
                         {navigation &&
-                            navigation.map((nav) => {
-                                return (
-                                    <li className="items-center" key={nav.slug}>
-                                        <Link
-                                            href={nav.slug}
-                                            className={`text-xs uppercase py-3 font-bold block ${
-                                                getActivePage(nav.slug)
-                                                    ? "text-pink-500 hover:text-pink-600"
-                                                    : "text-blueGray-700 hover:text-blueGray-500"
-                                            }`}
-                                        >
-                                            <i
-                                                className="fas mr-2 text-sm opacity-75 w-6 align-middle"
-                                                dangerouslySetInnerHTML={{
-                                                    __html: nav.icon,
-                                                }}
-                                            ></i>
-                                            {nav.title}
-                                        </Link>
-                                    </li>
-                                );
+                            navigation.map((nav,key) => {
+                                return <SideMenu data={nav} key={nav.slug+key} />;
                             })}
                     </ul>
 

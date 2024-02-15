@@ -20,22 +20,40 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware(['auth'])->prefix('dashboard')->group(function () {
+
     Route::get('/', [AdminDashboardController::class, 'index']);
-    Route::resource('/navigation', AdminNavigationController::class);
-    Route::put('/navigation/{navigation:id}/order', [AdminNavigationController::class, 'updateOrder'])->name('navigation.updateOrder');
-    Route::resource('/pages', AdminPagesController::class);
 
-    Route::get('/slider', [AdminSliderController::class, 'index'])->name('slider.index');
-    Route::post('/slider', [AdminSliderController::class, 'store'])->name('slider.store');
-    Route::delete('/slider/{slider:id}/delete', [AdminSliderController::class, 'destroy'])->name('slider.delete');
+    Route::middleware(["roles:admin"])->group(function () {
 
-    Route::put('/file-manager/rename', [AssetsController::class, 'update'])->name('file.rename');
-    Route::post('/file-manager', [AssetsController::class, 'store'])->name('file.store');
-    Route::delete('/file-manager/delete', [AssetsController::class, 'destroy'])->name('file.delete');
-    Route::get('/file-manager', [AssetsController::class, 'index'])->name('file.index');
+        Route::resource('/navigation', AdminNavigationController::class);
+        Route::put('/navigation/{navigation:id}/order', [AdminNavigationController::class, 'updateOrder'])->name('navigation.updateOrder');
+        Route::resource('/pages', AdminPagesController::class);
+
+        Route::get('/slider', [AdminSliderController::class, 'index'])->name('slider.index');
+        Route::post('/slider', [AdminSliderController::class, 'store'])->name('slider.store');
+        Route::delete('/slider/{slider:id}/delete', [AdminSliderController::class, 'destroy'])->name('slider.delete');
+
+        Route::put('/file-manager/rename', [AssetsController::class, 'update'])->name('file.rename');
+        Route::post('/file-manager', [AssetsController::class, 'store'])->name('file.store');
+        Route::delete('/file-manager/delete', [AssetsController::class, 'destroy'])->name('file.delete');
+        Route::get('/file-manager', [AssetsController::class, 'index'])->name('file.index');
+
+    });
+
+    Route::middleware(["roles:user"])->group(function () {
+
+        Route::get('/papers', [\App\Http\Controllers\Post\PaperController::class, 'index'])->name('paper.index');
+        Route::get('/papers/create', [\App\Http\Controllers\Post\PaperController::class, 'create'])->name('paper.create');
+        Route::post('/papers/create', [\App\Http\Controllers\Post\PaperController::class, 'store'])->name('paper.store');
+        Route::get('/papers/edit/{paper:slug}', [\App\Http\Controllers\Post\PaperController::class, 'index'])->name('paper.update');
+        Route::get('/bookmarks', [AssetsController::class, 'index'])->name('file.index');
+
+    });
+
 });
 
 
 require __DIR__ . '/auth.php';
 
+Route::get('papers/{paper:slug}', [\App\Http\Controllers\Post\PaperController::class, 'show'])->name('paper.show');
 Route::get('{any}', [ArticleController::class, 'index'])->where('any', '.*');

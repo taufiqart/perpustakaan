@@ -3,7 +3,6 @@ import BookLoader from "@/Components/BookLoader";
 import InputError from "@/Components/InputError";
 import InputLabel from "@/Components/InputLabel";
 import PrimaryButton from "@/Components/PrimaryButton";
-import SecondaryButton from "@/Components/SecondaryButton";
 import TextInput from "@/Components/TextInput";
 import AdminLayout from "@/Layouts/admin/AdminLayout";
 import { convertToSlug, tiny_image_upload_handler } from "@/config/function";
@@ -14,7 +13,11 @@ import React, { useEffect, useRef, useState } from "react";
 export default function Create({ article, categories }) {
     const [flash, setFlash] = useState();
     const editorRef = useRef(null);
-    // const navigate = use()
+
+    if (article?.content) {
+        article["content"] = article.content.replaceAll('src="../..', 'src="');
+    }
+
     const {
         data,
         setData,
@@ -36,24 +39,19 @@ export default function Create({ article, categories }) {
     const onSubmit = (e) => {
         e.preventDefault();
         data["content"] = editorRef.current.getContent();
-
         data.id
             ? put(route("pages.update", data.id), {
                   onSuccess: () => {
-                      // if (errors == Object) {
                       setTimeout(() => {
                           window.location = route("pages.index");
                       }, 1000);
-                      // }
                   },
               })
             : post(route("pages.store"), {
                   onSuccess: () => {
-                      // if (errors == Object) {
                       setTimeout(() => {
                           window.location = route("pages.index");
                       }, 1000);
-                      // }
                   },
               });
     };
@@ -72,11 +70,7 @@ export default function Create({ article, categories }) {
                             <Alert type="success" message={flash?.success} />
                         )}
                         <div className="mt-3">
-                            <InputLabel
-                                htmlFor="title"
-                                value="Title"
-                                // className="sr-only"
-                            />
+                            <InputLabel htmlFor="title" value="Title" />
 
                             <TextInput
                                 id="title"
@@ -100,7 +94,6 @@ export default function Create({ article, categories }) {
                             <InputLabel
                                 htmlFor="category_id"
                                 value="Category"
-                                // className="sr-only"
                             />
 
                             <select
@@ -133,11 +126,7 @@ export default function Create({ article, categories }) {
                             />
                         </div>
                         <div className="mt-3">
-                            <InputLabel
-                                htmlFor="content"
-                                value="Content"
-                                // className="sr-only"
-                            />
+                            <InputLabel htmlFor="content" value="Content" />
 
                             <Editor
                                 tinymceScriptSrc="/assets/tinymce/tinymce.min.js"
@@ -145,14 +134,6 @@ export default function Create({ article, categories }) {
                                     (editorRef.current = editor)
                                 }
                                 initialValue={data.content}
-                                // value={data.content}
-                                // onEditorChange={(e) =>
-                                //     // console.log(e)
-                                //     setData("content2", e)
-                                // }
-                                // onChange={(e) =>
-                                //     setData("content", e.target.getContent())
-                                // }
                                 init={{
                                     automatic_uploads: true,
                                     images_upload_url: route("upload.images"),
@@ -195,7 +176,6 @@ export default function Create({ article, categories }) {
                                 className="inline-flex justify-center items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150 "
                                 href={route("pages.index")}
                             >
-                                {" "}
                                 <i className="fas fa-arrow-left"></i> Back
                             </Link>
 

@@ -23,9 +23,10 @@
         "@lottiefiles/react-lottie-player": "^3.5.3",
         "@popperjs/core": "^2.11.8",
         "@tinymce/tinymce-react": "^4.3.0",
-        "chart.js": "^4.3.0",
+        "chart.js": "^4.4.1",
         "feather-icons-react": "^0.6.2",
         "react-icons": "^4.9.0",
+        "react-select": "^5.8.0",
         "react-typical": "^0.1.3"
     }
 }

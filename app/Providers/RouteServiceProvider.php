@@ -26,8 +26,10 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->configureRateLimiting();
+        $this->checkOrCreateDirectory();
 
+        $this->configureRateLimiting();
+        
         $this->routes(function () {
             Route::middleware('api')
                 ->prefix('api')
@@ -48,5 +50,15 @@ class RouteServiceProvider extends ServiceProvider
         RateLimiter::for('api', function (Request $request) {
             return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
         });
+    }
+
+    protected function checkOrCreateDirectory(){
+        $env_list = ["ASSET_LOCATION","POST_LOCATION","SLIDER_LOCATION"];
+
+        foreach($env_list as $dir){
+            if(!is_dir(public_path(env($dir)))){
+                mkdir(public_path(env($dir)));
+            }
+        }
     }
 }
