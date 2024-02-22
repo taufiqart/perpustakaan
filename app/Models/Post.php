@@ -26,6 +26,14 @@ class Post extends Model
     {
         return $this->hasMany(PostAsset::class, 'post_id');
     }
+    public function categories()
+    {
+        return $this->belongsToMany(PostCategory::class,'post_v_categories','post_id', 'category_id');
+    }
+    public function genres()
+    {
+        return $this->belongsToMany(PostGenre::class,'post_v_genres','post_id', 'genre_id');
+    }
     public function post_type()
     {
         return $this->belongsTo(PostType::class, 'type_id');

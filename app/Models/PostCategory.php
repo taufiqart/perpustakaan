@@ -10,10 +10,12 @@ class PostCategory extends Model
 {
     use HasFactory;
     use Sluggable;
+
+    protected $guarded = ['id'];
     public function sluggable(): array
     {
         return [
-            "slug"  => [
+            "slug" => [
                 "source" => "category",
             ],
         ];

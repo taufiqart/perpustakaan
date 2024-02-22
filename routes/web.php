@@ -45,18 +45,24 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
         Route::get('/papers', [\App\Http\Controllers\Post\PaperController::class, 'index'])->name('paper.index');
         Route::get('/papers/create', [\App\Http\Controllers\Post\PaperController::class, 'create'])->name('paper.create');
         Route::post('/papers/create', [\App\Http\Controllers\Post\PaperController::class, 'store'])->name('paper.store');
-        Route::get('/papers/edit/{paper:slug}', [\App\Http\Controllers\Post\PaperController::class, 'index'])->name('paper.update');
-        Route::get('/bookmarks', [AssetsController::class, 'index'])->name('file.index');
+        Route::get('/papers/{paper:slug}', [\App\Http\Controllers\Post\PaperController::class, 'show'])->name('paper.show');
+        Route::get('/papers/edit/{paper:slug}', [\App\Http\Controllers\Post\PaperController::class, 'edit'])->name('paper.edit');
+        Route::post('/papers/edit/{paper:slug}', [\App\Http\Controllers\Post\PaperController::class, 'update'])->name('paper.update');
+        Route::get('/bookmarks', [AssetsController::class, 'index'])->name('bookmark.index');
 
     });
 
+    Route::post('/upload_images', [\App\Http\Controllers\AssetController::class, 'images'])->name('upload.images');
+    Route::delete('/asset/delete', [\App\Http\Controllers\Helper\AssetController::class, 'destroy'])->name('asset.delete');
+
+    Route::get('profile',[\App\Http\Controllers\admin\ProfileController::class,'index'])->name('profile');
 });
 
 
 require __DIR__ . '/auth.php';
 
-Route::prefix('situsiba')->group(function(){
+Route::prefix('situsiba')->group(function () {
     Route::get('/', [\App\Http\Controllers\Situsiba\Situsiba::class, 'index'])->name('situsiba.index');
-    Route::get('papers/{paper:slug}', [\App\Http\Controllers\Situsiba\Situsiba::class, 'show'])->name('paper.show');
+    Route::get('papers/{paper:slug}', [\App\Http\Controllers\Situsiba\Situsiba::class, 'show'])->name('situsiba.paper.show');
 });
 Route::get('{any}', [ArticleController::class, 'index'])->where('any', '.*');

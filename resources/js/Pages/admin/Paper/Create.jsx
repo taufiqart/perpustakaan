@@ -5,7 +5,6 @@ import InputLabel from "@/Components/InputLabel";
 import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 import AdminLayout from "@/Layouts/admin/AdminLayout";
-import { convertToSlug, tiny_image_upload_handler } from "@/config/function";
 import { Head, Link, useForm, usePage } from "@inertiajs/react";
 import { Editor } from "@tinymce/tinymce-react";
 import React, { useEffect, useRef, useState } from "react";
@@ -15,38 +14,9 @@ import CreatableSelect from "react-select/creatable";
 import SimpleFileUpload from "@/Components/admin/SimpleFileUpload";
 import ImageFromText from "@/Components/admin/ImageFromText";
 import FileUploadPreview from "@/Components/admin/FileUploadPreview";
-
-const createOption = (value, label) => {
-    return { value, label };
-};
-const tinymceInit = {
-    automatic_uploads: true,
-    images_upload_url: route("upload.images"),
-    images_upload_handler: tiny_image_upload_handler,
-    images_upload_credentials: true,
-    height: 500,
-    menubar: true,
-    pagebreak_split_block: true,
-    plugins: [
-        "advlist autolink lists link image charmap print preview anchor",
-        "searchreplace visualblocks code fullscreen",
-        "insertdatetime media table paste code help wordcount",
-        "print code preview importcss searchreplace autolink autosave save directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr toc insertdatetime advlist lists wordcount imagetools textpattern noneditable help charmap quickbars emoticons",
-    ],
-
-    content_style:
-        "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
-
-    toolbar:
-        "undo redo | code  bold italic underline strikethrough | pagebreak | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist checklist | forecolor backcolor casechange permanentpen formatpainter removeformat | charmap emoticons | fullscreen preview save print | image media pageembed link anchor codesample | ltr rtl",
-    fontsize_formats: "8pt 10pt 12pt 14pt 18pt 24pt 36pt",
-    importcss_append: true,
-    template_cdate_format: "[Date Created (CDATE): %m/%d/%Y : %H:%M:%S]",
-    template_mdate_format: "[Date Modified (MDATE): %m/%d/%Y : %H:%M:%S]",
-    toolbar_mode: "sliding",
-    font_formats:
-        "Andale Mono=andale mono,times;Poppins; Arial=arial,helvetica,sans-serif; Arial Black=arial black,avant garde; Book Antiqua=book antiqua,palatino; Comic Sans MS=comic sans ms,sans-serif; Courier New=courier new,courier; Georgia=georgia,palatino; Helvetica=helvetica; Impact=impact,chicago; Symbol=symbol; Tahoma=tahoma,arial,helvetica,sans-serif; Terminal=terminal,monaco; Times New Roman=times new roman,times; Trebuchet MS=trebuchet ms,geneva; Verdana=verdana,geneva; Webdings=webdings; Wingdings=wingdings,zapf dingbats",
-};
+import { tinymceInit } from "@/config/tinymce";
+import { createOption } from "@/config/function";
+import FilePreview from "@/Components/admin/FilePreview";
 
 export default function Create({ paper, categories, genres }) {
     const [flash, setFlash] = useState();
@@ -64,24 +34,29 @@ export default function Create({ paper, categories, genres }) {
         genres.map((genre) => createOption(genre.id, genre.genre))
     );
 
-    const [valueCategories, setValueCategories] = useState(paper?.categories);
-    const [valueGenres, setValueGenres] = useState(paper?.genres);
+    const [valueCategories, setValueCategories] = useState(
+        paper?.categories.map((e) => createOption(e.id, e.category))
+    );
+    const [valueGenres, setValueGenres] = useState(
+        paper?.genres.map((e) => createOption(e.id, e.genre))
+    );
 
     if (paper?.content) {
         paper["content"] = paper.content.replaceAll('src="../..', 'src="');
     }
 
-    const {
-        data,
-        setData,
-        errors,
-        processing,
-        post,
-        put,
-        delete: destroy,
-        reset,
-        clearErrors,
-    } = useForm(paper ?? { title: "", cover: null });
+    const { data, setData, errors, processing, post, clearErrors } = useForm(
+        paper
+            ? {
+                  slug: paper.slug,
+                  title: paper.title,
+                  content: paper.content,
+                  poster: paper.poster,
+                  categories: paper.categories,
+                  genres: paper.genres,
+              }
+            : { title: "", cover: null }
+    );
 
     const props = usePage().props;
 
@@ -95,24 +70,18 @@ export default function Create({ paper, categories, genres }) {
         data["genres"] = valueGenres;
         data["content"] = editorRef.current.getContent();
         data["cover"] = coverFile || cover;
-        console.log(data);
-        clearErrors()
-        data.id
-            ? put(route("paper.update", data.id), {
-                  onSuccess: () => {
-                      setTimeout(() => {
-                          window.location = route("paper.index");
-                      }, 1000);
-                  },
-              })
-            : post(route("paper.store"), {
-                  onSuccess: (e) => {
-                      console.log(e);
-                      setTimeout(() => {
-                          window.location = route("paper.index");
-                      }, 1000);
-                  },
-              });
+
+        clearErrors();
+        post(
+            data.slug ? route("paper.update", data.slug) : route("paper.store"),
+            {
+                onSuccess: () => {
+                    setTimeout(() => {
+                        window.location = route("paper.index");
+                    }, 1000);
+                },
+            }
+        );
     };
 
     return (
@@ -196,13 +165,19 @@ export default function Create({ paper, categories, genres }) {
                         </div>
                         <div className="mt-3">
                             <InputLabel htmlFor="cover" value="cover" />
-                            {coverFile == null && (
+                            {coverFile == null && data?.poster == null && (
                                 <ImageFromText
                                     text={data.title}
                                     setData={(_cover) => setCover(_cover)}
                                 />
                             )}
                             {/* <SimpleFileUpload required accept={".jpg,.jpeg,.png,.gif"} setData={(data) => setData("cover", data)}/> */}
+                            {data?.poster && coverFile == null && (
+                                <img
+                                    className="w-[180px] h-[255px] overflow-hidden rounded-lg"
+                                    src={data.poster}
+                                />
+                            )}
                             <p className="text-sm text-red-400 mt-4">
                                 or Upload File
                             </p>
@@ -237,13 +212,21 @@ export default function Create({ paper, categories, genres }) {
                         <div className="mt-3">
                             <InputLabel value="Assets" />
                             <FileUpload
-                                setData={(data) => setData("assets", data)}
+                                setData={(_data_) => setData("assets", _data_)}
                             />
+                            {paper?.post_assets &&
+                                paper?.post_assets.length > 0 && (
+                                    <FilePreview
+                                        className="mt-2"
+                                        dataFiles={paper?.post_assets}
+                                        deleteRoute={route("asset.delete")}
+                                    />
+                                )}
                         </div>
                         <div className="mt-6 flex justify-end">
                             <Link
                                 className="inline-flex justify-center items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150 "
-                                href={route("paper.store")}
+                                href={route("paper.index")}
                             >
                                 <i className="fas fa-arrow-left"></i> Back
                             </Link>

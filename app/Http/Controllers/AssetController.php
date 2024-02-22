@@ -8,24 +8,23 @@ class AssetController extends Controller
 {
     public function images(Request $request)
     {
-        reset($_FILES);
-        $temp = current($_FILES);
-        $imageFolder = public_path() . env('ASSET_LOCATION');
+        $file = $request->file('file');
+        $imageFolder = env('ASSET_LOCATION');
 
-        if (is_uploaded_file($temp['tmp_name'])) {
-            if (!in_array(strtolower(pathinfo($temp['name'], PATHINFO_EXTENSION)), array("gif", "jpg", "png"))) {
+        if (is_uploaded_file($file->getPathname())) {
+            if (!in_array(strtolower($file->getClientOriginalExtension()), array("gif", "jpg", "png"))) {
                 header("HTTP/1.1 400 Invalid extension.");
-                return;
+                return response()->json(["error" => "Invalid extension."], 400);
+                // return response("Invalid extension.", 400);
             }
 
-            $filetowrite = $imageFolder . $temp['name'];
-            move_uploaded_file($temp['tmp_name'], $filetowrite);
-            $location = env('ASSET_LOCATION') . $temp['name'];
+            $filename = randomFilename($file->getClientOriginalExtension());
+            move_uploaded_file($file->getPathname(), public_path($imageFolder . $filename));
 
-            return response()->json(['location' => $location]);
+            return response()->json(['location' => $imageFolder . $filename]);
         } else {
-            header("HTTP/1.1 500 Server Error");
-            return;
+            header("HTTP/1.1 500 Server Error.");
+            return response()->json(["error" => "Server Error."], 500);
         }
         // $accepted_origins = array(env('APP_URL'), "http://localhost", "http://192.168.1.1", "http://example.com");
 

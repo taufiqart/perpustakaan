@@ -92,6 +92,7 @@ module.exports = {
         "disabled",
     ],
     plugins: [
+        require("tailwind-scrollbar")({ nocompatible: true }),
         require("@tailwindcss/forms"),
         plugin(function ({ addComponents, theme }) {
             const screens = theme("screens", {});

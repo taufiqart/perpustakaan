@@ -19,5 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-Route::post('/upload_images', [AssetController::class, 'images'])->name('upload.images');
+// Route::middleware("auth")->group(function () {
+//     Route::post('/upload_images', [AssetController::class, 'images'])->name('upload.images');
+//     Route::delete('/asset/delete', [\App\Http\Controllers\Helper\AssetController::class, 'destroy'])->name('asset.delete');
+// });

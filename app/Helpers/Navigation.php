@@ -78,6 +78,28 @@ class Navigation
                 "roles" => ["admin"],
                 "child" => []
             ],
+            [
+                "type" => "divider",
+                "roles"=>[]
+            ],
+            [
+                "title" => "Profile",
+                "slug" => route('profile'),
+                "icon" => '<i class="fas fa-fingerprint text-blueGray-300 mr-2 text-sm"></i>',
+                "roles" => [],
+                "child" => []
+            ],
+            [
+                "title" => "Logout",
+                "slug" => route('logout'),
+                "props"=>[
+                    "method"=>"post",
+                    "as"=>"button",
+                ],
+                "icon" => '<i class="fas fa-fingerprint text-blueGray-300 mr-2 text-sm"></i>',
+                "roles" => [],
+                "child" => []
+            ],
         ];
     }
 
@@ -88,7 +110,7 @@ class Navigation
     {
         $_navigations = array();
         foreach ($this->navigations as $navigation) {
-            if (in_array($role, $navigation["roles"])) {
+            if (in_array($role, $navigation["roles"]) || count($navigation["roles"]) == 0) {
                 array_push($_navigations, $navigation);
             }
         }

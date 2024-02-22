@@ -63,6 +63,7 @@ const SideMenu = ({ data }) => {
                             <li key={nav.slug+key} className="items-center">
                                 <Link
                                     href={nav.slug}
+                                    {...nav?.props}
                                     className={`text-xs uppercase py-3 font-bold block ${
                                         getActivePage(nav.slug)
                                             ? "text-pink-500 hover:text-pink-600"
@@ -83,6 +84,7 @@ const SideMenu = ({ data }) => {
         <li className="items-center">
             <Link
                 href={data.slug}
+                {...data?.props}
                 className={`text-xs uppercase py-3 font-bold block ${
                     getActivePage(data.slug)
                         ? "text-pink-500 hover:text-pink-600"
@@ -171,25 +173,11 @@ export default function AdminSidebar() {
                     <ul className="md:flex-col md:min-w-full flex flex-col list-none">
                         {navigation &&
                             navigation.map((nav,key) => {
+                                if(nav?.type == "divider"){
+                                    return <hr className="my-4 md:min-w-full" />
+                                }
                                 return <SideMenu data={nav} key={nav.slug+key} />;
                             })}
-                    </ul>
-
-                    {/* <!-- Divider --> */}
-                    <hr className="my-4 md:min-w-full" />
-                    {/* <!-- Heading --> */}
-                    <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
-                        <li className="items-center">
-                            <Link
-                                method="post"
-                                href={route("logout")}
-                                as="button"
-                                className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
-                            >
-                                <i className="fas fa-fingerprint text-blueGray-300 mr-2 text-sm"></i>
-                                Logout
-                            </Link>
-                        </li>
                     </ul>
                 </div>
             </div>

@@ -13,14 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('post_assets', function (Blueprint $table) {
+        Schema::create('class_rooms', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("post_id");
-            $table->foreign("post_id")->references("id")->on("posts")->onDelete("cascade")->onUpdate("cascade");
-            $table->string("title");
-            $table->string("url");
-            $table->string("mime_type");
-            $table->string("size");
+            $table->string('class');
             $table->timestamps();
         });
     }
@@ -32,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('post_assets');
+        Schema::dropIfExists('class_rooms');
     }
 };

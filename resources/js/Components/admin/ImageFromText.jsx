@@ -233,7 +233,7 @@ export default function ImageFromText({ text, setData }) {
                 <div className="flex gap-x-4 justify-start items-center">
                     <Select
                         id="fontFamilyInput"
-                        className="basic-single z-10"
+                        className="basic-single z-3"
                         defaultValue={font}
                         isSearchable={true}
                         options={fontLists}
