@@ -1,30 +1,68 @@
-import Aktifitas from "@/Components/landingpage/Aktifitas";
-import Alamat from "@/Components/landingpage/Alamat";
-import Tanggal from "@/Components/landingpage/Date";
-import Footer from "@/Components/landingpage/Footer";
-import Isi from "@/Components/landingpage/Isi";
-import Kontak from "@/Components/landingpage/Kontak";
-import Operasional from "@/Components/landingpage/Operasional";
-import { Link, Head } from "@inertiajs/react";
-import Carousel from "@/Components/landingpage/Carousel";
 import Navbar from "@/Components/landingpage/Navbar";
-import Nav from "@/Components/Nav";
-import Modal from "../Components/Modal";
-import { useState } from "react";
+import Footer from "@/Components/landingpage/Footer";
+import Carousel from "@/Components/landingpage/Carousel";
+import Modal from "@/Components/Modal";
+import { Link, Head } from "@inertiajs/react";
+import Cookies from "universal-cookie";
+import { usePage } from "@inertiajs/react";
+import React from "react";
 
-export default function Index(props) {
-    const [show, setShow] = useState(true)
+export default function SitusibaLayout({ children }) {
+    const [show, setShow] = React.useState(false);
+    const props = usePage().props;
+    const cookies = new Cookies();
+    React.useEffect(() => {
+        let show_popup = cookies.get("show_popup");
+
+        if (show_popup == null || show_popup == undefined) {
+            let expires = new Date();
+            expires.setTime(expires.getTime() + 5000 * 1000);
+            console.log(expires);
+            cookies.set("show_popup", true, {
+                path: "/",
+                expires,
+                secure: true,
+            });
+            setShow(true);
+        }
+    }, []);
     return (
         <>
-            <Head
-                title={
-                    props?.article?.title == "/"
-                        ? "Selamat Datang"
-                        : props?.article?.title
-                }
-            />
-            
+            <Head title={"Situ Siba"} />
+            {/* <ModalWelcome/> */}
+            <Modal show={show} onClose={() => setShow(!show)}>
+                <div className="max-h-full w-full overflow-y-auto sm:rounded-2xl bg-white">
+                    <div className="w-full">
+                        <div className="m-8 my-20 max-w-[400px] md:max-w-[450px] mx-auto text-center">
+                            <div className="mb-8 p-4">
+                                <h1 className="mb-4 text-xl md:text-3xl font-extrabold">
+                                    SELAMAT DATANG DI
+                                    <br /> SITU SIBA
+                                </h1>
+                                <p className="text-base mx-2 md:mx-0 md:text-xl text-gray-600">
+                                    Silahkan Tulis dan Baca kami menyediakan
+                                    platform bagi siswa siswi SMKN 1 Pasuruan
+                                </p>
+                            </div>
+                            <div className="space-y-4">
+                                <button
+                                    onClick={() => setShow(!show)}
+                                    className="p-3 w-2/3 md:w-full  relative inline-flex items-center justify-center overflow-hidden font-medium transition duration-300 ease-out rounded-full hover:shadow-xl group hover:ring-1 hover:ring-green-500"
+                                >
+                                    <span className="absolute inset-0 w-full h-full group-hover:bg-gradient-to-br from-blue-400 to-green-400"></span>
+                                    <span className="absolute bottom-0 right-0 hidden md:block w-64 h-64 mb-32 mr-4 transition duration-700 origin-bottom-left transform rotate-90 translate-x-24 group-hover:bg-green-500 rounded-full opacity-80 group-hover:rotate-45 ease"></span>
+                                    <span className="text-base md:text-lg relative text-black group-hover:text-white ">
+                                        LANJUT
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </Modal>
+
             <div className="flex max-h-[50%] overflow-hidden ">
+                {/* <img src="coba.svg" alt="" className="object-cover" /> */}
                 <svg
                     className="object-cover opacity-0 md:opacity-100"
                     width="100%"
@@ -65,7 +103,7 @@ export default function Index(props) {
                                 ))}
                         </Carousel>
                     </div>
-                    {/* kotak - kotak ga jelas */}
+                    {/* kotak - kotak ga jelas bangsat */}
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="absolute right-0 -z-50 lg:z-10 lg:h-full opacity-0 md:opacity-100"
@@ -127,85 +165,7 @@ export default function Index(props) {
             />
 
             {/* content bang start */}
-            <section className="mt-[50vh] md:mt-0 pt-20 md:pt-36">
-                <div className="w-[90%] xl:w-[85%] mx-auto ">
-                    <div className="grid grid-flow-row  gap-10 grid-cols-1 lg:grid-cols-3 xl:grid-cols-4">
-                        {/* isi start */}
-                        <Isi
-                            article={props.article}
-                            className="lg:col-span-2 xl:col-span-3"
-                        />
-                        {/* isi end */}
-
-                        {/* kanan start */}
-                        <div className="flex flex-col col-span-1 backdrop-blur-sm mb-20">
-                            {/* Tanggal guys start*/}
-                            <Tanggal />
-                            {/* Tanggal guys end*/}
-
-                            {/* waktu operasional start */}
-                            <Operasional />
-                            {/* waktu operasional start */}
-
-                            {/* Aktifitas start */}
-                            <Aktifitas data={props.other} />
-                            {/* Aktifitas start */}
-
-                            {/* Alamat start */}
-                            <Alamat />
-                            {/* Alamat start */}
-
-                            {/* Kontak start */}
-                            <Kontak />
-                            {/* Kontak start */}
-
-                            {/* Developer start */}
-                            <div className="w-full md:w-2/3 mx-auto lg:w-full  my-1 bg-opacity-50 bg-white rounded-lg shadow-md p-5">
-                                <div className="mx-auto bg-gradient-to-r from-green-400 to-blue-400 py-3 rounded-lg">
-                                    <h1 className="text-white text-center text-lg font-bold">
-                                        Developer
-                                    </h1>
-                                </div>
-                                <div className="flex flex-col justify-between mx-5 mt-5 mb-5">
-                                    <div className="items-center ">
-                                        <h1 className="text-black font-bold text-center text-lg">
-                                            RPLPOJOK
-                                        </h1>
-                                    </div>
-                                </div>
-                            </div>
-                            {/* Developer start */}
-                        </div>
-                        {/* kanan end */}
-                    </div>
-                </div>
-                <div className="flex max-h-[50%] bg-bottom">
-                    <svg
-                        className="w-full h-full fill-gradient-to-r"
-                        viewBox="0 0 1440 191"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            d="M418 126.513C343.734 98.4664 106 56.1799 0 191H1440C1440 191 1387.88 46.4432 1316.94 56.1799C1279.57 61.3094 1271.73 95.7941 1236.55 109.321C1126.84 151.509 1072.28 -14.7933 955.7 1.07092C868.73 12.9055 835.54 152.298 759.201 109.321C720.448 87.5042 700.5 56.1799 652 56.1799C557.223 56.1799 492.266 154.559 418 126.513Z"
-                            fill="url(#paint0_linear_318_424)"
-                        />
-                        <defs>
-                            <linearGradient
-                                id="paint0_linear_318_424"
-                                x1="0%"
-                                y1="100%"
-                                x2="100%"
-                                y2="0%"
-                                gradientUnits="userSpaceOnUse"
-                            >
-                                <stop stopColor="#4ade80" />
-                                <stop offset="1" stopColor="#60a5fa" />
-                            </linearGradient>
-                        </defs>
-                    </svg>
-                </div>
-            </section>
+            {children}
             {/* content bang end */}
 
             {/* footer start */}

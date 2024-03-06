@@ -1,7 +1,7 @@
 import { ChevronLeft, ChevronRight } from "feather-icons-react/build/IconComponents";
 import BookCard from "../BookCard";
 
-function BookSlider() {
+function BookSlider({data}) {
     // const contentRef = useRef();
     const scrollLeft = () => {
         contentRef.current.scrollLeft -=
@@ -37,11 +37,16 @@ function BookSlider() {
                     return (
                          <div key={idx}> */}
                         <div className="flex flex-row items-center justify-center gap-16 my-20">
-                            <BookCard/>
-                            <BookCard/>
-                            <BookCard/>
-                            <BookCard/>
-                            <BookCard/>
+                        {data.map((paper) => {
+                        return (
+                            <BookCard
+                                key={paper.slug}
+                                image={paper.poster}
+                                title={paper.title}
+                                url={route("situsiba.paper.show", paper.slug)}
+                            />
+                        );
+                    })}
                         </div>
                     {/* );
                 })} */}

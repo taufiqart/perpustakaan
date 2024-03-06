@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Situsiba;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\PostType;
 use App\Models\Slider;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -18,15 +19,12 @@ class Situsiba extends Controller
      */
     public function index()
     {
-        $category = Category::where('parent_id', null)->get();
-            $other = Article::latest()->whereHas('category', function ($q) {
-                return $q->where('slug', '!=', '/');
-            })->limit(5)->get();
+        $postType = PostType::where('slug', 'paper')->first();
+        $papers = (clone $postType)->posts()->inRandomOrder()->limit(9)->get();
+        $paper_latests = (clone $postType)->posts()->latest('created_at')->limit(5)->get();
+        $paper_mostreads = (clone $postType)->posts()->orderBy('created_at', 'desc')->limit(5)->get();
 
-        $sliders = Slider::latest()->get();
-        $sliders = count($sliders) > 0 ? $sliders : json_decode(json_encode([['image' => '/assets/images/1.jpeg'], ['image' => '/assets/images/2.jpeg'], ['image' => '/assets/images/3.jpeg'], ['image' => '/assets/images/4.jpeg']]));
-
-        return Inertia::render('situsiba/Index', compact('category','other', 'sliders'));
+        return Inertia::render('situsiba/Index', compact('papers','paper_latests','paper_mostreads'));
     }
 
     /**

@@ -174,7 +174,7 @@ export default function AdminSidebar() {
                         {navigation &&
                             navigation.map((nav,key) => {
                                 if(nav?.type == "divider"){
-                                    return <hr className="my-4 md:min-w-full" />
+                                    return <hr key={key} className="my-4 md:min-w-full" />
                                 }
                                 return <SideMenu data={nav} key={nav.slug+key} />;
                             })}

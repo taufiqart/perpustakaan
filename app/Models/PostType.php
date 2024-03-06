@@ -10,6 +10,7 @@ class PostType extends Model
 {
     use HasFactory;
     use Sluggable;
+    protected $guarded = ['id'];
 
     public function sluggable(): array
     {

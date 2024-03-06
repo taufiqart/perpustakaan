@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('majors', function (Blueprint $table) {
             $table->id();
+            $table->string('short');
             $table->string('major');
             $table->timestamps();
         });

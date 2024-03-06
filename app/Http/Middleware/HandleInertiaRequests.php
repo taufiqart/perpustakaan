@@ -3,6 +3,8 @@
 namespace App\Http\Middleware;
 
 use App\Helpers\Navigation;
+use App\Models\Category;
+use App\Models\Slider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Inertia\Middleware;
@@ -32,9 +34,21 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+
         $navigation = [];
-        if ($request->user()) {
+        if ($request->is('dashboard*') && $request->user()) {
             $navigation = (new Navigation)->get_navigations($request->user()->role);
+        }
+        $sliders = [];
+        if (!$request->is("dashboard*")) {
+            $sliders = Slider::latest()->get();
+            $sliders = count($sliders) > 0 ? $sliders : json_decode(json_encode([['image' => '/assets/images/1.jpeg'], ['image' => '/assets/images/2.jpeg'], ['image' => '/assets/images/3.jpeg'], ['image' => '/assets/images/4.jpeg']]));
+        }
+
+        $category = [];
+        if (!$request->is('dashboard*')) {
+            $category = Category::where('parent_id', null)->get()->toArray();
+            array_push($category, json_decode(json_encode(["title" => "SITU SIBA", "slug" => "situsiba", "child" => []])));
         }
 
         return array_merge(parent::share($request), [
@@ -42,7 +56,9 @@ class HandleInertiaRequests extends Middleware
                 'error' => fn() => $request->session()->get('error'),
                 'success' => fn() => $request->session()->get('success')
             ],
-            'navigation' => $request->is('dashboard*') ? $navigation : [],
+            'navigation' => $navigation,
+            'category' => $category,
+            'sliders' => $sliders,
             'auth' => [
                 'user' => $request->user(),
             ],
