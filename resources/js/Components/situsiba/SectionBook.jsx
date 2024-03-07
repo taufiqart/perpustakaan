@@ -11,7 +11,7 @@ export default function SectionBook({title,link,data}) {
                 <Link href={link.href} className="text-lg font-bold hover:text-blue-500 hover:underline">{link.label}</Link>
             </div>
             <div className="my-2">
-                <div className="flex flex-col justify-center items-center ">
+                <div className="flex flex-col">
                     <BookSlider data={data}/>
                 </div>
             </div>
