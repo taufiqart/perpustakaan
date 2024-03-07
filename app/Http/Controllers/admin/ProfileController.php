@@ -16,7 +16,8 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        return Inertia::render('admin/Profile/Index');
+        $user = auth()->user();
+        return Inertia::render('admin/Profile/Index', compact('user'));
     }
 
     /**
@@ -49,7 +50,7 @@ class ProfileController extends Controller
     public function show(User $user)
     {
         // return dd($user);
-        return Inertia::render('admin/Profile/Index',compact('user'));
+        return Inertia::render('admin/Profile/Index', compact('user'));
     }
 
     /**

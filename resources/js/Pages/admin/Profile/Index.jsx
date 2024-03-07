@@ -3,7 +3,7 @@ import AdminLayout from "@/Layouts/admin/AdminLayout";
 import React, { useState } from "react";
 import Edit from "./Edit";
 
-export default function ProfileIndex({user}) {
+export default function ProfileIndex({ user }) {
     const [show, setShow] = React.useState(false);
 
     const [userDetail, setUserDetail] = useState({});
@@ -18,11 +18,13 @@ export default function ProfileIndex({user}) {
                 {/* <BookLoader loader={processing} /> */}
                 <div className="flex gap-4 items-start flex-wrap justify-center">
                     <div className="relative max-w-lg mx-auto my-10 bg-white rounded-lg shadow-md p-5 min-w-[30%]">
-                        <div className="absolute right-5">
+                        {/* Disable Sementara */}
+                        {/* <div className="absolute right-5">
                             <button onClick={() => setShow(!show)}>
                                 <i className="far fa-edit text-blueGray-500 mr-2 text-lg hover:text-blueGray-900"></i>
                             </button>
-                        </div>
+                        </div> */}
+                        {/* Disable Sementara End */}
                         <img
                             className="w-32 h-32 rounded-full mx-auto"
                             src={userDetail?.avatar}
@@ -56,9 +58,7 @@ export default function ProfileIndex({user}) {
                         </div>
                     </div>
                 </div>
-                {show && (
-                    <Edit _show={false} profile={{ user }}></Edit>
-                )}
+                {show && <Edit _show={false} profile={{ user }}></Edit>}
             </AdminLayout>
         </>
     );

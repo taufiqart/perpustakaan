@@ -40,7 +40,9 @@ export default function Index(props) {
                         {/* waktu operasional start */}
 
                         {/* Aktifitas start */}
-                        <Aktifitas data={props.other} />
+                        {props.other && props.other.length > 0 && (
+                            <Aktifitas data={props.other} />
+                        )}
                         {/* Aktifitas start */}
 
                         {/* Alamat start */}

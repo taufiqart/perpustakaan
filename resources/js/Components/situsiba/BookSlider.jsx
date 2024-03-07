@@ -39,7 +39,7 @@ function BookSlider({ data }) {
             >
                 <div className="flex flex-row items-center justify-center gap-16 my-20">
                     {(data &&
-                        data.length > 0) ?
+                        data.length > 0) &&
                         data.map((paper) => {
                             return (
                                 <BookCard
@@ -52,7 +52,7 @@ function BookSlider({ data }) {
                                     )}
                                 />
                             );
-                        }): <h1>Belum ada Karya</h1>  }
+                        })  }
                 </div>
             </div>
         </div>
