@@ -29,8 +29,10 @@ return new class extends Migration
             $table->foreign("member_type_id")->references("id")->on("member_types")->onDelete('SET NULL')->onUpdate('cascade');
             $table->date("date_of_birth");
             $table->string("place_of_birth");
-            $table->unsignedBigInteger("major_class_id")->nullable();
-            $table->foreign("major_class_id")->references("id")->on("major_v_classes")->onDelete('SET NULL')->onUpdate('cascade');
+            $table->unsignedBigInteger("major_id")->nullable();
+            $table->foreign("major_id")->references("id")->on("majors")->onDelete('SET NULL')->onUpdate('cascade');
+            $table->unsignedBigInteger("class_room_id")->nullable();
+            $table->foreign("class_room_id")->references("id")->on("class_rooms")->onDelete('SET NULL')->onUpdate('cascade');
             $table->timestamps();
         });
     }

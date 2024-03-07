@@ -53,7 +53,7 @@ class RouteServiceProvider extends ServiceProvider
     }
 
     protected function checkOrCreateDirectory(){
-        $env_list = ["ASSET_LOCATION","POST_LOCATION","SLIDER_LOCATION"];
+        $env_list = ["ASSET_LOCATION","USER_LOCATION","POST_LOCATION","SLIDER_LOCATION"];
 
         foreach($env_list as $dir){
             if(!is_dir(public_path(env($dir)))){

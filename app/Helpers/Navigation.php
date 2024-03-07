@@ -36,20 +36,20 @@ class Navigation
                         "slug" => "/dashboard/papers",
                         "roles" => ["admin", "user"],
                     ],
-                    [
-                        "title" => "Video",
-                        "slug" => "/dashboard/video",
-                        "roles" => ["user"],
-                    ],
+                    // [
+                    //     "title" => "Video",
+                    //     "slug" => "/dashboard/video",
+                    //     "roles" => ["user"],
+                    // ],
                 ]
             ],
-            [
-                "title" => "Bookmarks",
-                "slug" => "/dashboard/bookmarks",
-                "icon" => $this->icons['bookmark'],
-                "roles" => ["user"],
-                "child" => []
-            ],
+            // [
+            //     "title" => "Bookmarks",
+            //     "slug" => "/dashboard/bookmarks",
+            //     "icon" => $this->icons['bookmark'],
+            //     "roles" => ["user"],
+            //     "child" => []
+            // ],
             [
                 "title" => "Navigation",
                 "slug" => "/dashboard/navigation",
@@ -83,15 +83,22 @@ class Navigation
                 "roles"=>[]
             ],
             [
+                "title" => "Users",
+                "slug" => route('user.index',[],false),
+                "icon" => '<i class="fas fa-fingerprint text-blueGray-300 mr-2 text-sm"></i>',
+                "roles" => ["admin"],
+                "child" => []
+            ],
+            [
                 "title" => "Profile",
-                "slug" => route('profile'),
+                "slug" => route('profile',[],false),
                 "icon" => '<i class="fas fa-fingerprint text-blueGray-300 mr-2 text-sm"></i>',
                 "roles" => [],
                 "child" => []
             ],
             [
                 "title" => "Logout",
-                "slug" => route('logout'),
+                "slug" => route('logout',[],false),
                 "props"=>[
                     "method"=>"post",
                     "as"=>"button",

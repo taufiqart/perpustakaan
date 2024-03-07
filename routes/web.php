@@ -4,6 +4,7 @@ use App\Http\Controllers\admin\AdminDashboardController;
 use App\Http\Controllers\admin\AdminSliderController;
 use App\Http\Controllers\admin\AdminNavigationController;
 use App\Http\Controllers\admin\AdminPagesController;
+use App\Http\Controllers\admin\AdminUserController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AssetsController;
 use Illuminate\Support\Facades\Route;
@@ -37,7 +38,12 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
         Route::post('/file-manager', [AssetsController::class, 'store'])->name('file.store');
         Route::delete('/file-manager/delete', [AssetsController::class, 'destroy'])->name('file.delete');
         Route::get('/file-manager', [AssetsController::class, 'index'])->name('file.index');
-
+        
+        Route::get('/users', [AdminUserController::class, 'index'])->name('user.index');
+        Route::get('/users/create', [AdminUserController::class, 'create'])->name('user.create');
+        Route::post('/users/create', [AdminUserController::class, 'store'])->name('user.store');
+        
+        Route::get('profile/{user:email}',[\App\Http\Controllers\admin\ProfileController::class,'show'])->name('profile.show');
     });
 
     Route::middleware(["roles:user"])->group(function () {

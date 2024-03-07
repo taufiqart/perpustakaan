@@ -6,6 +6,8 @@ export default function FileUploadPreview({
     setData,
     maxFileSize = 2048,
     imgClassName = "w-[180px] h-[255px] overflow-hidden rounded-lg",
+    containerImgClassName = "",
+    className = "",
     ...props
 }) {
     let imagePreview = useRef(null);
@@ -26,7 +28,7 @@ export default function FileUploadPreview({
     return (
         <div className="flex flex-col mt-3 gap-y-3">
             {files && (
-                <div className={"relative " + imgClassName}>
+                <div className={"relative " + className ?? imgClassName}>
                     <button
                         className="absolute top-0 right-0 z-50 p-1 bg-white rounded-bl focus:outline-none"
                         type="button"
@@ -47,11 +49,15 @@ export default function FileUploadPreview({
                             />
                         </svg>
                     </button>
-                    <img
-                        className={imgClassName}
-                        ref={(e) => (imagePreview = e)}
-                        onLoad={(e) => URL.revokeObjectURL(imagePreview.src)}
-                    />
+                    <div className={containerImgClassName}>
+                        <img
+                            className={imgClassName}
+                            ref={(e) => (imagePreview = e)}
+                            onLoad={(e) =>
+                                URL.revokeObjectURL(imagePreview.src)
+                            }
+                        />
+                    </div>
                 </div>
             )}
             <TextInput

@@ -43,8 +43,16 @@ class User extends Authenticatable
     ];
 
     protected $with = ['user_detail'];
-    
-    public function user_detail(){
-        return $this->hasOne(UserDetail::class,'user_id');
+
+    public function user_detail()
+    {
+        return $this->hasOne(UserDetail::class, 'user_id');
+    }
+
+    public function scopeSearch($query, $search)
+    {
+        $query->where('email', 'like', "%{$search}%")->orWhereHas('user_detail', function ($q) use ($search) {
+            $q->where('full_name', 'like', "%{$search}%");
+        });
     }
 }

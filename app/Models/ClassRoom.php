@@ -11,7 +11,7 @@ class ClassRoom extends Model
 
     protected $guarded = ['id'];
 
-    public function major(){
-        return $this->belongsToMany(Major::class,'major_v_classes','class_id','major_id');
+    public function user_details(){
+        return $this->hasMany(ClassRoom::class,'class_room_id');
     }
 }

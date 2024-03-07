@@ -10,7 +10,9 @@ export default function AdminNavbar() {
                     className="text-white text-sm uppercase hidden lg:inline-block font-semibold"
                     href={pathname}
                 >
-                    {pathname.split("/")[pathname.split("/").length - 1]}
+                    {decodeURIComponent(
+                        pathname.split("/")[pathname.split("/").length - 1]
+                    )}
                 </Link>
                 {/* <form className="md:flex hidden flex-row flex-wrap items-center lg:ml-auto w-full lg:max-w-xl ">
                     <div className="relative flex w-full flex-wrap items-stretch">

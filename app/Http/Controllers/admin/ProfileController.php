@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -43,11 +44,12 @@ class ProfileController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response| \Inertia\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        // return dd($user);
+        return Inertia::render('admin/Profile/Index',compact('user'));
     }
 
     /**
