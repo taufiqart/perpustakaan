@@ -7,7 +7,7 @@ export default function Show({ paper }) {
         <>
             <SitusibaLayout situsiba={true}>
                 <Head title={"Situ Siba"} />
-                <div className="min-h-screen flex justify-center items-center">
+                <div className="min-h-screen flex justify-center items-center mx-2">
                     <BookView paper={paper} />
                 </div>
             </SitusibaLayout>
