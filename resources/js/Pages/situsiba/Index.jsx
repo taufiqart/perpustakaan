@@ -3,6 +3,7 @@ import SectionBook from "@/Components/situsiba/SectionBook";
 
 import { Head, usePage } from "@inertiajs/react";
 import ClientLayout from "@/Layouts/ClientLayout";
+import CardBox from "@/Components/CardBox";
 
 export default function Index() {
     const props = usePage().props;
@@ -11,17 +12,16 @@ export default function Index() {
             <Head title={"Situ Siba"} />
 
             {/* content bang start */}
-            <div className="w-[90%] xl:w-[85%] mx-auto mb-20">
+            <CardBox className="w-[90%] xl:w-[85%] mx-auto mb-20">
                 {/* isi start */}
                 <SituSiba
                     papers={props.papers}
                     className="lg:col-span-2 xl:col-span-3"
                 />
-                {/* isi end */}
-            </div>
 
-            {/* kanan start */}
-            <div className="w-[90%] xl:w-[85%] mx-auto my-10 backdrop-blur-sm mb-20">
+                {/* isi end */}
+            </CardBox>
+            <CardBox className="w-[90%] xl:w-[85%] mx-auto  my-10">
                 {/* Terbaru start */}
                 <SectionBook
                     data={props.paper_latests}
@@ -29,7 +29,9 @@ export default function Index() {
                     link={{ label: "Lainnya", href: "/situsiba/latest" }}
                 />
                 {/* Terbaru end */}
+            </CardBox>
 
+            <CardBox className="w-[90%] xl:w-[85%] mx-auto  my-10">
                 {/* Terbanyak start */}
                 <SectionBook
                     data={props.paper_latests}
@@ -37,7 +39,7 @@ export default function Index() {
                     link={{ label: "Lainnya", href: "/situsiba/mostreads" }}
                 />
                 {/* Terbanyak end */}
-            </div>
+            </CardBox>
         </ClientLayout>
     );
 }

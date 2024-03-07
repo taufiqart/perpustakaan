@@ -7,25 +7,28 @@ import Cookies from "universal-cookie";
 import { usePage } from "@inertiajs/react";
 import React from "react";
 
-export default function ClientLayout({ children,situsiba=false }) {
+export default function ClientLayout({ children, situsiba = false }) {
     const [show, setShow] = React.useState(false);
     const props = usePage().props;
     const cookies = new Cookies();
-    React.useEffect(() => {
-        let show_popup = cookies.get("show_popup");
+    if (situsiba) {
+        React.useEffect(() => {
+            let show_popup = cookies.get("show_popup");
 
-        if (show_popup == null || show_popup == undefined) {
-            let expires = new Date();
-            expires.setTime(expires.getTime() + 5000 * 1000);
-            console.log(expires);
-            cookies.set("show_popup", true, {
-                path: "/",
-                expires,
-                secure: true,
-            });
-            setShow(true);
-        }
-    }, []);
+            if (show_popup == null || show_popup == undefined) {
+                let expires = new Date();
+                expires.setTime(expires.getTime() + 5000 * 1000);
+                console.log(expires);
+                cookies.set("show_popup", true, {
+                    path: "/",
+                    expires,
+                    secure: true,
+                });
+                setShow(true);
+            }
+        }, []);
+    }
+
     return (
         <>
             {situsiba && (

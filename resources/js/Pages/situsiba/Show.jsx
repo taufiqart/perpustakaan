@@ -1,12 +1,16 @@
-import ClientLayout from "@/Layouts/ClientLayout";
-import { Head } from '@inertiajs/react';
+import SitusibaLayout from "@/Layouts/SitusibaLayout";
+import { Head } from "@inertiajs/react";
+import BookView from "@/Components/BookView";
 
-export default function Show() {
+export default function Show({ paper }) {
     return (
-        <ClientLayout situsiba={true}>
-            <Head title={"Situ Siba"} />
-
-            <h1>Show</h1>
-        </ClientLayout>
+        <>
+            <SitusibaLayout situsiba={true}>
+                <Head title={"Situ Siba"} />
+                <div className="min-h-screen flex justify-center items-center">
+                    <BookView paper={paper} />
+                </div>
+            </SitusibaLayout>
+        </>
     );
 }
