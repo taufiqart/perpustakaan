@@ -23,7 +23,7 @@ export default function AdminSidebar() {
             <div className="absolute pt-[10vh] z-10">
                 <button
                 onClick={showFilter}
-                className="bg-rose-400 px-1 py-1 md:px-10 md:py-3 cursor-pointer w-full text-white  leading-none bg-transparent rounded-tr-md rounded-br-md border-l-0 opacity-65 border-2 border-solid"
+                className="bg-rose-400 px-4 py-1 md:px-10 md:py-3 cursor-pointer w-full text-white  leading-none bg-transparent rounded-tr-md rounded-br-md border-l-0 opacity-65 border-2 border-solid"
                 type="button"
                 >
                     <Search className="text-white w-5"/><p>Cari</p>
@@ -50,9 +50,9 @@ export default function AdminSidebar() {
                 <div className="flex flex-row items-center justify-center pt-10">
                     {/* Search start */}
                     <div className="flex w-full items-center">
-                        <input type="text" name="" id="" placeholder="cari buku" className="w-[90%] rounded-full text-center text-blueGray-500 text-sm border-blueGray-400 hover:border-blue-400 active:border-blue-700 transition delay-150 duration-300 ease-in-out" />
+                        <input type="text" name="" id="" placeholder="cari buku" className="w-[85%] rounded-full text-center text-blueGray-500 text-sm border-blueGray-400 hover:border-blue-400 active:border-blue-700 transition delay-150 duration-300 ease-in-out" />
                         <button
-                        className="pl-5 w-[10%] cursor-pointer rounded-full text-center text-blueGray-500 text-sm border-blueGray-400 hover:border-blue-400 active:border-blue-700 transition delay-150 duration-300 ease-in-out"
+                        className="pl-5 w-[15%] cursor-pointer rounded-full text-center text-blueGray-500 text-sm border-blueGray-400 hover:border-blue-400 active:border-blue-700 transition delay-150 duration-300 ease-in-out"
                         type="button"
                         >
                                 <Search/>
