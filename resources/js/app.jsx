@@ -16,6 +16,7 @@ createInertiaApp({
             import.meta.glob("./Pages/**/*.jsx")
         ),
     setup({ el, App, props }) {
+        el.className += "flex flex-col min-h-screen"
         const root = createRoot(el);
         delete el.dataset.page
         root.render(<App {...props} />);

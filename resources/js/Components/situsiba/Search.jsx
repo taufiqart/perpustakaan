@@ -19,13 +19,13 @@ export default function Search() {
 
             {/* Filter start */}
             <Dropdown/>
-            <div className="">
+            {/* <div className="">
                 <select name="" id="" className="w-28 rounded-lg text-blueGray-500 text-sm border-green-400 hover:border-blue-400 active:border-blue-700 ring-green-400 transition delay-150 duration-300 ease-in-out">
                     <option value="" className="text-black">Terbaru</option>
                     <option value="" className="text-black">Terlama</option>
                     <option value="" className="text-black">Terbanyak Dilihat</option>
                 </select>
-            </div>
+            </div> */}
             {/* Filter end */}
 
             <div className="">

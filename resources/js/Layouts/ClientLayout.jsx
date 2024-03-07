@@ -7,7 +7,7 @@ import Cookies from "universal-cookie";
 import { usePage } from "@inertiajs/react";
 import React from "react";
 
-export default function SitusibaLayout({ children }) {
+export default function ClientLayout({ children,situsiba=false }) {
     const [show, setShow] = React.useState(false);
     const props = usePage().props;
     const cookies = new Cookies();
@@ -28,38 +28,39 @@ export default function SitusibaLayout({ children }) {
     }, []);
     return (
         <>
-            <Head title={"Situ Siba"} />
-            {/* <ModalWelcome/> */}
-            <Modal show={show} onClose={() => setShow(!show)}>
-                <div className="max-h-full w-full overflow-y-auto sm:rounded-2xl bg-white">
-                    <div className="w-full">
-                        <div className="m-8 my-20 max-w-[400px] md:max-w-[450px] mx-auto text-center">
-                            <div className="mb-8 p-4">
-                                <h1 className="mb-4 text-xl md:text-3xl font-extrabold">
-                                    SELAMAT DATANG DI
-                                    <br /> SITU SIBA
-                                </h1>
-                                <p className="text-base mx-2 md:mx-0 md:text-xl text-gray-600">
-                                    Silahkan Tulis dan Baca kami menyediakan
-                                    platform bagi siswa siswi SMKN 1 Pasuruan
-                                </p>
-                            </div>
-                            <div className="space-y-4">
-                                <button
-                                    onClick={() => setShow(!show)}
-                                    className="p-3 w-2/3 md:w-full  relative inline-flex items-center justify-center overflow-hidden font-medium transition duration-300 ease-out rounded-full hover:shadow-xl group hover:ring-1 hover:ring-green-500"
-                                >
-                                    <span className="absolute inset-0 w-full h-full group-hover:bg-gradient-to-br from-blue-400 to-green-400"></span>
-                                    <span className="absolute bottom-0 right-0 hidden md:block w-64 h-64 mb-32 mr-4 transition duration-700 origin-bottom-left transform rotate-90 translate-x-24 group-hover:bg-green-500 rounded-full opacity-80 group-hover:rotate-45 ease"></span>
-                                    <span className="text-base md:text-lg relative text-black group-hover:text-white ">
-                                        LANJUT
-                                    </span>
-                                </button>
+            {situsiba && (
+                <Modal show={show} onClose={() => setShow(!show)}>
+                    <div className="max-h-full w-full overflow-y-auto sm:rounded-2xl bg-white">
+                        <div className="w-full">
+                            <div className="m-8 my-20 max-w-[400px] md:max-w-[450px] mx-auto text-center">
+                                <div className="mb-8 p-4">
+                                    <h1 className="mb-4 text-xl md:text-3xl font-extrabold">
+                                        SELAMAT DATANG DI
+                                        <br /> SITU SIBA
+                                    </h1>
+                                    <p className="text-base mx-2 md:mx-0 md:text-xl text-gray-600">
+                                        Silahkan Tulis dan Baca kami menyediakan
+                                        platform bagi siswa siswi SMKN 1
+                                        Pasuruan
+                                    </p>
+                                </div>
+                                <div className="space-y-4">
+                                    <button
+                                        onClick={() => setShow(!show)}
+                                        className="p-3 w-2/3 md:w-full  relative inline-flex items-center justify-center overflow-hidden font-medium transition duration-300 ease-out rounded-full hover:shadow-xl group hover:ring-1 hover:ring-green-500"
+                                    >
+                                        <span className="absolute inset-0 w-full h-full group-hover:bg-gradient-to-br from-blue-400 to-green-400"></span>
+                                        <span className="absolute bottom-0 right-0 hidden md:block w-64 h-64 mb-32 mr-4 transition duration-700 origin-bottom-left transform rotate-90 translate-x-24 group-hover:bg-green-500 rounded-full opacity-80 group-hover:rotate-45 ease"></span>
+                                        <span className="text-base md:text-lg relative text-black group-hover:text-white ">
+                                            LANJUT
+                                        </span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </Modal>
+                </Modal>
+            )}
 
             <div className="flex max-h-[50%] overflow-hidden ">
                 {/* <img src="coba.svg" alt="" className="object-cover" /> */}
@@ -163,11 +164,10 @@ export default function SitusibaLayout({ children }) {
                 data={props.category}
                 className="-mt-[calc(50%+3.5rem)] md:mt-7 md:mb-0 lg:-mt-[15.6%]"
             />
-
             {/* content bang start */}
-            {children}
-            {/* content bang end */}
-
+            <section className="mt-[50vh] md:mt-0 pt-20 md:pt-36 min-h-96">
+                {children}
+            </section>
             {/* footer start */}
             <Footer />
             {/* footer end */}

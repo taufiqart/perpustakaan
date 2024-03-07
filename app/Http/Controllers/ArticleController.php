@@ -21,7 +21,6 @@ class ArticleController extends Controller
         if ($any != '/') {
             $menu = explode('/', $any);
         }
-        $category = Category::where('parent_id', null)->get();
         if ($any != '/') {
             $other = Article::latest()->whereHas('category', function ($q) use ($menu) {
                 return $q->where('slug', '!=', $menu[count($menu) - 1])->where('slug', '!=', '/');
@@ -32,26 +31,23 @@ class ArticleController extends Controller
             })->limit(5)->get();
         }
 
-        $sliders = Slider::latest()->get();
-        $sliders = count($sliders) > 0 ? $sliders : json_decode(json_encode([['image' => '/assets/images/1.jpeg'], ['image' => '/assets/images/2.jpeg'], ['image' => '/assets/images/3.jpeg'], ['image' => '/assets/images/4.jpeg']]));
-
         if ($menu[0] && isset($menu[1])) {
             $article = Category::where('slug', $menu[1])->first()?->article;
             if ($article) {
-                return Inertia::render('Index', compact('category', 'article', 'other', 'sliders'));
+                return Inertia::render('Index', compact('article', 'other'));
             }
             $article = Article::where('slug', $menu[1])->first();
-            return Inertia::render('Index', compact('category', 'article', 'other', 'sliders'));
+            return Inertia::render('Index', compact('article', 'other'));
         }
 
         if ($menu[0]) {
             $article = Category::where('slug', $menu[0])->first()?->article;
             if ($article) {
-                return Inertia::render('Index', compact('category', 'article', 'other', 'sliders'));
+                return Inertia::render('Index', compact('article', 'other'));
             }
             $article = Article::where('slug', $menu[0])->first();
 
-            return Inertia::render('Index', compact('category', 'article', 'other', 'sliders'));
+            return Inertia::render('Index', compact('article', 'other'));
         }
         return abort(404);
     }

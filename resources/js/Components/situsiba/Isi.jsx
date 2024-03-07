@@ -34,16 +34,23 @@ export default function SituSiba({ papers, className = "" }) {
 
                 {/* BookCard start */}
                 <div className="flex flex-wrap justify-center gap-10 py-20">
-                    {papers.map((paper) => {
-                        return (
-                            <BookCard
-                                key={paper.slug}
-                                image={paper.poster}
-                                title={paper.title}
-                                url={route("situsiba.paper.show", paper.slug)}
-                            />
-                        );
-                    })}
+                    {papers && papers.length > 0 ? (
+                        papers.map((paper) => {
+                            return (
+                                <BookCard
+                                    key={paper.slug}
+                                    image={paper.poster}
+                                    title={paper.title}
+                                    url={route(
+                                        "situsiba.paper.show",
+                                        paper.slug
+                                    )}
+                                />
+                            );
+                        })
+                    ) : (
+                        <h1>Belum ada Karya</h1>
+                    )}
                 </div>
                 {/* BookCard end */}
             </div>

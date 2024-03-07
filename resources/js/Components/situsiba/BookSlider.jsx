@@ -1,7 +1,10 @@
-import { ChevronLeft, ChevronRight } from "feather-icons-react/build/IconComponents";
+import {
+    ChevronLeft,
+    ChevronRight,
+} from "feather-icons-react/build/IconComponents";
 import BookCard from "../BookCard";
 
-function BookSlider({data}) {
+function BookSlider({ data }) {
     // const contentRef = useRef();
     const scrollLeft = () => {
         contentRef.current.scrollLeft -=
@@ -30,26 +33,25 @@ function BookSlider({data}) {
             </div>
             <div
                 id="content"
-                // ref={contentRef}
                 className="flex overflow-auto scroll-smooth scrollbar-hide snap-mandatory snap-x py-2"
             >
-                {/* {data.map((title,idx) => {
-                    return (
-                         <div key={idx}> */}
-                        <div className="flex flex-row items-center justify-center gap-16 my-20">
-                        {data.map((paper) => {
-                        return (
-                            <BookCard
-                                key={paper.slug}
-                                image={paper.poster}
-                                title={paper.title}
-                                url={route("situsiba.paper.show", paper.slug)}
-                            />
-                        );
-                    })}
-                        </div>
-                    {/* );
-                })} */}
+                <div className="flex flex-row items-center justify-center gap-16 my-20">
+                    {(data &&
+                        data.length > 0) ?
+                        data.map((paper) => {
+                            return (
+                                <BookCard
+                                    key={paper.slug}
+                                    image={paper.poster}
+                                    title={paper.title}
+                                    url={route(
+                                        "situsiba.paper.show",
+                                        paper.slug
+                                    )}
+                                />
+                            );
+                        }): <h1>Belum ada Karya</h1>  }
+                </div>
             </div>
         </div>
     );

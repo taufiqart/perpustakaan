@@ -52,11 +52,13 @@ class Situsiba extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response | null
+     * @return \Illuminate\Http\Response | \Inertia\Response | null
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $postType = PostType::where('slug', 'paper')->first();
+        $paper = (clone $postType)->posts()->where('slug',$slug)->first();
+        return Inertia::render('situsiba/Show', compact('paper'));
     }
 
     /**
