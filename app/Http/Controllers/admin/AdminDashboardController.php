@@ -5,17 +5,58 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Category;
+use Illuminate\Support\Facades\Request;
 use Inertia\Inertia;
 
 class AdminDashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response | \Inertia\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $month = $request->month ?? date('m');
+
+        $reads = (new \App\Models\Post)->getReportView($month);
+        $total_post = (new \App\Models\Post)->getReportCreate($month);
+        $reads = array_map(function ($e) {
+            $e->major_class_short = $e->major_class_short ?? "No Login";
+            $e->major_class = $e->major_class ?? "No Login";
+            return $e;
+        }, $reads);
+
+        $total_post = array_map(function ($e) {
+            $e->major_class_short = $e->major_class_short ?? "No Login";
+            $e->major_class = $e->major_class ?? "No Login";
+            return $e;
+        }, $total_post);
+
+
+
+        if (auth()->user()->role == "user") {
+            $postType = \App\Models\PostType::where('slug', 'paper')->first();
+            $_paper = (clone $postType)->posts()->where('user_id', auth()->user()->id)->count();
+            $_paper_new = (clone $postType)->posts()->where('user_id', auth()->user()->id)->whereDate('created_at', date('Y-m-d'))->count();
+
+            $paper = array(
+                "pages_count" => $_paper,
+                "pages_new" => $_paper_new,
+            );
+
+            return Inertia::render('admin/Dashboard', compact('total_post', 'reads', 'paper'));
+        }
+
+        $postType = \App\Models\PostType::where('slug', 'paper')->first();
+        $_paper = (clone $postType)->posts()->count();
+        $_paper_new = (clone $postType)->posts()->whereDate('created_at', date('Y-m-d'))->count();
+
+        $paper = array(
+            "pages_count" => $_paper,
+            "pages_new" => $_paper_new,
+        );
+
         $folder = public_path() . env('ASSET_LOCATION');
         $folder = str_replace('//', '/', $folder);
         $navigations_count = Category::all()->count();
@@ -55,6 +96,6 @@ class AdminDashboardController extends Controller
             "pages_new" => $pages_new,
         );
 
-        return Inertia::render('admin/Dashboard', compact('navigations', 'pages', 'files'));
+        return Inertia::render('admin/Dashboard', compact('navigations', 'pages', 'files', 'total_post', 'reads', 'paper'));
     }
 }

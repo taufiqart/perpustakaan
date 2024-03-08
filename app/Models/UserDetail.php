@@ -17,7 +17,7 @@ class UserDetail extends Model
     }
     public function identity_type()
     {
-        return $this->belongsTo(IdentityType::class, 'indentity_type_id');
+        return $this->belongsTo(IdentityType::class, 'identity_type_id');
     }
     public function member_type()
     {

@@ -9,6 +9,7 @@ use App\Models\PostType;
 use App\Models\Slider;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Closure;
 
 class Situsiba extends Controller
 {
@@ -54,10 +55,17 @@ class Situsiba extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response | \Inertia\Response | null
      */
-    public function show($slug)
+    public function show(Request $request, $slug)
     {
         $postType = PostType::where('slug', 'paper')->first();
-        $paper = (clone $postType)->posts()->with('user')->where('slug', $slug)->first();
+        $paper = (clone $postType)->posts()->with([
+            'user',
+        ])->where('slug', $slug)->first();
+        $paper->{"total_view"} = $paper->total_view == 0 ? 0 : $paper->total_view - 1;
+        if (!$paper) {
+            return abort(404);
+        }
+
         return Inertia::render('situsiba/Show', compact('paper'));
     }
 

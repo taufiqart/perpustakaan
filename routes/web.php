@@ -38,12 +38,12 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
         Route::post('/file-manager', [AssetsController::class, 'store'])->name('file.store');
         Route::delete('/file-manager/delete', [AssetsController::class, 'destroy'])->name('file.delete');
         Route::get('/file-manager', [AssetsController::class, 'index'])->name('file.index');
-        
+
         Route::get('/users', [AdminUserController::class, 'index'])->name('user.index');
         Route::get('/users/create', [AdminUserController::class, 'create'])->name('user.create');
         Route::post('/users/create', [AdminUserController::class, 'store'])->name('user.store');
-        
-        Route::get('profile/{user:email}',[\App\Http\Controllers\admin\ProfileController::class,'show'])->name('profile.show');
+
+        Route::get('profile/{user:email}', [\App\Http\Controllers\admin\ProfileController::class, 'show'])->name('profile.show');
     });
 
     Route::middleware(["roles:user"])->group(function () {
@@ -61,7 +61,7 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     Route::post('/upload_images', [\App\Http\Controllers\AssetController::class, 'images'])->name('upload.images');
     Route::delete('/asset/delete', [\App\Http\Controllers\Helper\AssetController::class, 'destroy'])->name('asset.delete');
 
-    Route::get('profile',[\App\Http\Controllers\admin\ProfileController::class,'index'])->name('profile');
+    Route::get('profile', [\App\Http\Controllers\admin\ProfileController::class, 'index'])->name('profile');
 });
 
 
@@ -69,8 +69,8 @@ require __DIR__ . '/auth.php';
 
 Route::prefix('situsiba')->group(function () {
     Route::get('/', [\App\Http\Controllers\Situsiba\Situsiba::class, 'index'])->name('situsiba.index');
-    Route::get('papers/{slug}', [\App\Http\Controllers\Situsiba\Situsiba::class, 'show'])->name('situsiba.paper.show');
-    Route::get('{any}', function(){
+    Route::middleware('read_handler')->get('papers/{slug}', [\App\Http\Controllers\Situsiba\Situsiba::class, 'show'])->name('situsiba.paper.show');
+    Route::get('{any}', function () {
         return redirect(route('situsiba.index'));
     })->where('any', '.*');
 });

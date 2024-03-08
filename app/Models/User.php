@@ -55,4 +55,6 @@ class User extends Authenticatable
             $q->where('full_name', 'like', "%{$search}%");
         });
     }
+
+    
 }
