@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Situsiba;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\PostCategory;
+use App\Models\PostGenre;
 use App\Models\PostType;
 use App\Models\Slider;
 use Illuminate\Http\Request;
@@ -65,8 +67,10 @@ class Situsiba extends Controller
         if (!$paper) {
             return abort(404);
         }
+        $categories = PostCategory::orderBy('category', 'asc')->get();
+        $genres = PostGenre::orderBy('genre', 'asc')->get();
 
-        return Inertia::render('situsiba/Show', compact('paper'));
+        return Inertia::render('situsiba/Show', compact('paper','categories','genres'));
     }
 
     /**

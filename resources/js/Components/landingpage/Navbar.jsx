@@ -6,12 +6,12 @@ export default function Navbar({ data, className }) {
     const navRef = useRef();
 
     const showNavbar = () => {
-        navRef.current.classList.toggle("translate-y-[200vh]");
+        navRef.current?.classList.toggle("translate-y-[200vh]");
     };
 
     window.addEventListener("resize", (e) => {
         if (window.innerWidth >= 768) {
-            navRef.current.classList.remove("translate-y-[200vh]");
+            navRef.current?.classList.remove("translate-y-[200vh]");
         }
     });
 
@@ -38,7 +38,9 @@ export default function Navbar({ data, className }) {
                 >
                     <FaTimes className="h-8 w-8 fill-white" />
                 </button>
-                <h1 className="text-slate-100 font-bold text-xl md:hidden bottom-0">PERPUSTAKAAN SKENSA</h1>
+                <h1 className="text-slate-100 font-bold text-xl md:hidden bottom-0">
+                    PERPUSTAKAAN SKENSA
+                </h1>
             </nav>
             <button className="md:hidden" onClick={showNavbar}>
                 <FaBars className="h-5 w-5" />

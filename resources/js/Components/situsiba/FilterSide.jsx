@@ -1,12 +1,12 @@
-import { Link } from "@inertiajs/react";
-import React, { useEffect, useState } from "react";
+import { Link, usePage } from "@inertiajs/react";
+import React, { useEffect, useState, useRef } from "react";
 import {
     ChevronsLeft,
     Filter,
     Search,
 } from "feather-icons-react/build/IconComponents";
 import Checkbox from "../Checkbox";
-import { useRef } from "react";
+import InputLabel from "../InputLabel";
 
 export default function FilterSidebar() {
     const [show, setShow] = useState(false);
@@ -15,7 +15,8 @@ export default function FilterSidebar() {
     const [translateX, setTranslateX] = useState(0);
     let navRef = useRef();
     const [windowResizing, setWindowResizing] = useState(false);
-
+    const props = usePage().props;
+    console.log(props);
     useEffect(() => {
         let timeout;
         const handleResize = () => {
@@ -60,7 +61,7 @@ export default function FilterSidebar() {
                     onClick={() => handleToggle(true)}
                     className={`bg-rose-400 ${
                         show ? "opacity-0" : "opacity-65"
-                    } transition-opacity duration-300 px-4 py-1 md:px-10 md:py-3 cursor-pointer w-full text-white  leading-none bg-transparent rounded-tr-md rounded-br-md border-l-0 border-2 border-solid`}
+                    } transition-opacity duration-300 px-4 py-1 md:px-10 md:py-3 cursor-pointer w-full text-white  leading-none rounded-tr-md rounded-br-md border-l-0 border-2 border-solid`}
                     type="button"
                 >
                     <Search className="text-white w-5" />
@@ -125,13 +126,24 @@ export default function FilterSidebar() {
                                 Kategori
                             </Link>
                             <div className="flex flex-wrap p-0">
-                                <div className="flex items-center p-2 w-auto">
-                                    <Checkbox />{" "}
-                                    <p className="pl-2 text-blueGray-600 mr-0 whitespace-nowrap text-xs md:text-base uppercase font-bold">
-                                        {" "}
-                                        KEPESENG{" "}
-                                    </p>
-                                </div>
+                                {props.categories &&
+                                    props.categories.map((e, key) => {
+                                        return (
+                                            <div
+                                                className="flex items-center p-2 w-auto gap-2"
+                                                key={e.slug}
+                                            >
+                                                <Checkbox
+                                                    name="category[]"
+                                                    id={e.slug + key}
+                                                />
+                                                <InputLabel
+                                                    htmlFor={e.slug + key}
+                                                    value={e.category}
+                                                />
+                                            </div>
+                                        );
+                                    })}
                             </div>
                             <hr className="w-full" />
                         </div>
@@ -140,13 +152,24 @@ export default function FilterSidebar() {
                                 Jenis Karya
                             </Link>
                             <div className="flex flex-wrap p-0">
-                                <div className="flex items-center p-2 w-auto">
-                                    <Checkbox />{" "}
-                                    <p className="pl-2 text-blueGray-600 mr-0 whitespace-nowrap text-xs md:text-base uppercase font-bold">
-                                        {" "}
-                                        KEPESENG
-                                    </p>
-                                </div>
+                                {props.genres &&
+                                    props.genres.map((e, key) => {
+                                        return (
+                                            <div
+                                                className="flex items-center p-2 w-auto gap-2"
+                                                key={e.slug}
+                                            >
+                                                <Checkbox
+                                                    name="genres[]"
+                                                    id={e.slug + key}
+                                                />
+                                                <InputLabel
+                                                    htmlFor={e.slug + key}
+                                                    value={e.genre}
+                                                />
+                                            </div>
+                                        );
+                                    })}
                             </div>
                             <hr className="w-full" />
                         </div>
