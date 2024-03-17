@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Situsiba;
 
 use App\Http\Controllers\Controller;
+use App\Meta;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\PostCategory;
@@ -25,7 +26,14 @@ class Situsiba extends Controller
         $postType = PostType::where('slug', 'paper')->first();
         $papers = (clone $postType)->posts()->inRandomOrder()->limit(9)->get();
         $paper_latests = (clone $postType)->posts()->latest('created_at')->limit(5)->get();
-        $paper_mostreads = (clone $postType)->posts()->orderBy('created_at', 'desc')->limit(5)->get();
+        $paper_mostreads = (clone $postType)->posts()->withCount('pivotView')->orderBy('pivot_view_count','desc')->limit(5)->get();
+        // return dd($paper_mostreads);
+
+        Meta::addMeta('title', 'SITU SIBA');
+        Meta::addMeta('description', 'Selamat datang di SITU SIBA disini kami menyediakan platform bagi siswa siswi SMKN 1 Pasuruan agar Karya Tulis seperti Cerpen, Novel ataupun karya ilmiah agar dapat dipublish dan dibaca oleh umum.');
+        Meta::addMeta('keywords', 'membaca,baca,tulis,menulis,karya,cerpen');
+        Meta::addProperty('og:title', 'SITU SIBA');
+        Meta::addProperty('og:description', 'SITU SIBA');
 
         return Inertia::render('situsiba/Index', compact('papers', 'paper_latests', 'paper_mostreads'));
     }
@@ -62,6 +70,7 @@ class Situsiba extends Controller
         $postType = PostType::where('slug', 'paper')->first();
         $paper = (clone $postType)->posts()->with([
             'user',
+            'post_assets',
         ])->where('slug', $slug)->first();
         $paper->{"total_view"} = $paper->total_view == 0 ? 0 : $paper->total_view - 1;
         if (!$paper) {
@@ -70,7 +79,7 @@ class Situsiba extends Controller
         $categories = PostCategory::orderBy('category', 'asc')->get();
         $genres = PostGenre::orderBy('genre', 'asc')->get();
 
-        return Inertia::render('situsiba/Show', compact('paper','categories','genres'));
+        return Inertia::render('situsiba/Show', compact('paper', 'categories', 'genres'));
     }
 
     /**

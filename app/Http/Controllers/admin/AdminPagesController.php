@@ -30,7 +30,9 @@ class AdminPagesController extends Controller
      */
     public function create()
     {
-        $categories = Category::where('parent_id', '!=', null)->get();
+        $articles = Article::select('id')->where('deleted_at', null)->pluck('id');
+        $parent = Category::select('parent_id')->where('parent_id', '!=', null)->where('deleted_at', null)->pluck('parent_id');
+        $categories = Category::whereNotIn('id', [...$articles, ...$parent])->where('deleted_at', null)->get();
         return Inertia::render('admin/Pages/Create', compact('categories'));
     }
 
@@ -82,7 +84,10 @@ class AdminPagesController extends Controller
     {
         $article = $page;
         $article->content = clean_directive($article->content);
-        $categories = Category::all();
+
+        $articles = Article::select('id')->where('deleted_at', null)->pluck('id');
+        $parent = Category::select('parent_id')->where('parent_id', '!=', null)->where('deleted_at', null)->pluck('parent_id');
+        $categories = Category::whereNotIn('id', [...$articles, ...$parent])->where('deleted_at', null)->get();
         return Inertia::render('admin/Pages/Create', compact('article', 'categories'));
     }
 

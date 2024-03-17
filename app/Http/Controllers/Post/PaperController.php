@@ -225,7 +225,7 @@ class PaperController extends Controller
                 $updateData["poster"] = $coverFilename;
             }
 
-            $post = $paper->update($updateData);
+            $post = tap($paper)->update($updateData);
             $categories = [];
 
             if ($request->categories) {
@@ -262,8 +262,7 @@ class PaperController extends Controller
 
             \DB::commit();
 
-            return back()->with(['success' => 'Success updated']);
-            // return dd($request);
+            return redirect(route("paper.edit",$post->slug))->with(['success' => 'Success updated']);
         } catch (\Exception $e) {
             \DB::rollback();
             foreach ($filenames as $file) {
@@ -277,15 +276,20 @@ class PaperController extends Controller
             return back()->with(['error' => 'Error updated']);
         }
     }
-
+    
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Post  $id
-     * @return \Illuminate\Http\Response | \Inertia\Response | null
+     * @param  \App\Models\Post  $paper
+     * @return \Illuminate\Http\Response | \Illuminate\Http\RedirectResponse | null
      */
-    public function destroy($id)
+    public function destroy(Post $paper)
     {
-        //
+        $delete = $paper->delete();
+        if($delete){
+            return redirect(route("paper.index"))->with(['success' => 'Success deleted']);
+        }
+        return back()->with(['error' => 'Error deleted']);
+
     }
 }
