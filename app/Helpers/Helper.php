@@ -1,6 +1,7 @@
 <?php
 
 include "Upload.php";
+include "Metadata.php";
 
 
 function clean_directive($data)
