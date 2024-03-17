@@ -76,4 +76,22 @@ const tinymceInit = {
         "Andale Mono=andale mono,times;Poppins; Arial=arial,helvetica,sans-serif; Arial Black=arial black,avant garde; Book Antiqua=book antiqua,palatino; Comic Sans MS=comic sans ms,sans-serif; Courier New=courier new,courier; Georgia=georgia,palatino; Helvetica=helvetica; Impact=impact,chicago; Symbol=symbol; Tahoma=tahoma,arial,helvetica,sans-serif; Terminal=terminal,monaco; Times New Roman=times new roman,times; Trebuchet MS=trebuchet ms,geneva; Verdana=verdana,geneva; Webdings=webdings; Wingdings=wingdings,zapf dingbats",
 };
 
-export { tinymceInit, tiny_image_upload_handler };
+const _tinymceInitPaper = () => {
+    let config = {
+        ...tinymceInit,
+    };
+    delete config.images_upload_credentials;
+    delete config.images_upload_handler;
+    config.toolbar =
+        "undo redo | bold italic underline strikethrough | pagebreak | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist checklist | forecolor backcolor casechange permanentpen formatpainter removeformat | charmap emoticons | fullscreen preview | link anchor codesample | ltr rtl";
+    config.plugins = [
+        "advlist autolink lists link charmap preview anchor",
+        "searchreplace visualblocks fullscreen",
+        "insertdatetime table paste help wordcount",
+        "preview importcss searchreplace autolink autosave save directionality visualblocks visualchars fullscreen link table charmap hr toc insertdatetime advlist lists wordcount textpattern noneditable help charmap emoticons",
+    ];
+    return config;
+};
+
+const tinymceInitPaper = _tinymceInitPaper();
+export { tinymceInit, tiny_image_upload_handler, tinymceInitPaper };
