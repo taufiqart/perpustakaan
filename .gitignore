@@ -1,8 +1,11 @@
 /node_modules
-/public/build
+/public/build/
 /public/hot
 /public/storage
-public/assets/posts/*
+/public/uploads/posts/*
+/public/uploads/assets/*
+/public/uploads/users/*
+/public/uploads/slider/*
 /storage/*.key
 /vendor
 .env
