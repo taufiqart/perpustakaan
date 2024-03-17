@@ -6,11 +6,12 @@ export default function BookCard({
     title,
     creator = undefined,
     textClassName = "text-md",
+    className = "",
 }) {
     return (
         <Link
             href={url}
-            className="flex justify-center items-center flex-col m-2"
+            className={`flex justify-center items-center flex-col m-2 ${className}`}
         >
             <div className="book" style={{ "--bg-image": `url(${image})` }}>
                 <div></div>

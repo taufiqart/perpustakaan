@@ -6,7 +6,9 @@ import Select from "react-select";
 export default function ImageFromText({ text, setData }) {
     let canvas = useRef(null);
 
-    const [bgColor, setBgColor] = useState(`#${Math.floor(Math.random()*16777215).toString(16)}`);
+    const [bgColor, setBgColor] = useState(
+        `#${Math.floor(Math.random() * 16777215).toString(16)}`
+    );
     const [textColor, setTextColor] = useState("#ffffff");
     const [textSize, setTextSize] = useState(80);
     const [font, setFont] = useState("Monospace");
@@ -100,9 +102,15 @@ export default function ImageFromText({ text, setData }) {
             canvas.toBlob(
                 (image) =>
                     setData(
-                        new File([image], `Cover-${text.replaceAll(" ","-")}.png`, {
-                            type: "image/png",
-                        })
+                        new File(
+                            [image],
+                            `cover-${text
+                                .replace(/[^A-Z0-9]+/gi, "-")
+                                .toLowerCase()}.png`,
+                            {
+                                type: "image/png",
+                            }
+                        )
                     ),
                 "image/png"
             );

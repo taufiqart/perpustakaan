@@ -57,7 +57,7 @@ export default function BookView({ paper }) {
                     />
                 </div>
             </div>
-            <div className="bg-white transition-[var(--transition)] p-[50px] relative z-20">
+            <div className="bg-white transition-[var(--transition)] p-[50px] relative z-20 w-full">
                 <div className="flex flex-col w-full h-full">
                     <div className="flex items-center">
                         <div className="font-[Quicksand] text-[26px] mb-[10px]">

@@ -21,7 +21,7 @@ export default function FilePreview({ dataFiles, deleteRoute, ...props }) {
 
     let styleRef = useRef(null);
     const [files, setFiles] = useState(
-        dataFiles.map((file) => {
+        dataFiles?.map((file) => {
             file["type"] = file.mime_type;
             file["name"] = file.title;
             return file;
@@ -90,7 +90,6 @@ export default function FilePreview({ dataFiles, deleteRoute, ...props }) {
         loadFile(file) {
             const preview = document.querySelectorAll(".preview");
             const blobUrl = URL.createObjectURL(file);
-
             preview.forEach((elem) => {
                 elem.onload = () => {
                     URL.revokeObjectURL(elem.src); // free memory
@@ -115,7 +114,7 @@ export default function FilePreview({ dataFiles, deleteRoute, ...props }) {
             }
         },
     };
-    if (files.length == 0) {
+    if (files == undefined || files?.length == 0) {
         return <></>;
     }
     return (
@@ -148,7 +147,7 @@ export default function FilePreview({ dataFiles, deleteRoute, ...props }) {
             </Modal>
             <div className={`bg-white rounded mx-auto ${props.className}`}>
                 <div className="relative flex flex-col p-4 text-gray-400 border border-gray-200 rounded">
-                    {files.length > 0 && (
+                    {files?.length > 0 && (
                         <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
                             {Array.from({
                                 length: files.length,
@@ -212,29 +211,29 @@ export default function FilePreview({ dataFiles, deleteRoute, ...props }) {
                                                 "application/"
                                             ) ||
                                                 files[index].type === "") && (
-                                                <svg
-                                                    className="absolute w-12 h-12 text-gray-400 transform top-1/2 -translate-y-2/3"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    fill="none"
-                                                    viewBox="0 0 24 24"
-                                                    stroke="currentColor"
-                                                >
-                                                    <path
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                        strokeWidth="2"
-                                                        d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"
-                                                    />
-                                                </svg>
+                                                <div className="w-full h-full flex flex-col justify-center items-center">
+                                                    <svg
+                                                        className="absolute w-12 h-12 text-gray-400 transform top-1/2 -translate-y-2/3"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        fill="none"
+                                                        viewBox="0 0 24 24"
+                                                        stroke="currentColor"
+                                                    >
+                                                        <path
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
+                                                            strokeWidth="2"
+                                                            d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+                                                        />
+                                                    </svg>
+                                                </div>
                                             )}
                                             {files[index].type.includes(
                                                 "image/"
                                             ) && (
                                                 <img
                                                     className="absolute inset-0 z-0 object-cover w-full h-full border-4 border-white preview"
-                                                    src={dataFileDnD.loadFile(
-                                                        files[index]
-                                                    )}
+                                                    src={files[index].url}
                                                 />
                                             )}
                                             {files[index].type.includes(
@@ -242,9 +241,7 @@ export default function FilePreview({ dataFiles, deleteRoute, ...props }) {
                                             ) && (
                                                 <video className="absolute inset-0 object-cover w-full h-full border-4 border-white pointer-events-none preview">
                                                     <source
-                                                        src={dataFileDnD.loadFile(
-                                                            files[index]
-                                                        )}
+                                                        src={files[index].url}
                                                         type="video/mp4"
                                                     />
                                                 </video>

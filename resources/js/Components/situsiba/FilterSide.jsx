@@ -5,8 +5,7 @@ import {
     Filter,
     Search,
 } from "feather-icons-react/build/IconComponents";
-import Checkbox from "../Checkbox";
-import InputLabel from "../InputLabel";
+import CustomCheckbox from "@/Components/CustomCheckbox";
 
 export default function FilterSidebar() {
     const [show, setShow] = useState(false);
@@ -54,33 +53,36 @@ export default function FilterSidebar() {
         param ? setTranslateX(0) : setTranslateX(0 - (width + 500));
     };
 
+    const handleMode = () => {
+        document.querySelector("html").classList.toggle("dark");
+    };
     return (
         <>
             <div className="sticky top-0 pt-[10vh] z-10 max-w-fit">
                 <button
                     onClick={() => handleToggle(true)}
-                    className={`bg-rose-400 ${
-                        show ? "opacity-0" : "opacity-65"
-                    } transition-opacity duration-300 px-4 py-1 md:px-10 md:py-3 cursor-pointer w-full text-white  leading-none rounded-tr-md rounded-br-md border-l-0 border-2 border-solid`}
+                    className={` ${
+                        show ? "opacity-0" : "dark:opacity-100 opacity-65"
+                    } bg-rose-400 transition-opacity duration-300 px-4 py-1 md:px-5 md:py-3 flex items-center gap-2 min-h-16 cursor-pointer w-full text-white  leading-none rounded-tr-md rounded-br-md border-l-0 border-2 border-solid border-gray-200 dark:border-white`}
                     type="button"
                 >
                     <Search className="text-white w-5" />
-                    <p>Cari</p>
+                    <p className="text-white">Cari</p>
                 </button>
             </div>
 
-            <div className={load || windowResizing ? "opacity-0" : ""}>
+            <div className={`${load || windowResizing ? "opacity-0" : ""} `}>
                 <nav
                     ref={navRef}
                     style={{
                         transform: `translate(${translateX}px,0)`,
                     }}
-                    className={`left-0 fixed z-20 top-0 bottom-0 bg-white/85 overflow-y-auto flex-row flex-nowrap overflow-hidden shadow-2xl backdrop-blur-sm rounded-lg items-center justify-between w-10/12 md:w-2/6 lg:w-2/6 py-4 px-6 duration-1000`}
+                    className={`dark:bg-gray-900 dark:text-white text-blueGray-600 left-0 fixed z-20 top-0 bottom-0 bg-white/85 overflow-y-auto flex-row flex-nowrap overflow-hidden shadow-2xl backdrop-blur-sm rounded-lg items-center justify-between w-10/12 md:w-2/6 lg:w-2/6 py-4 px-6 duration-1000`}
                 >
                     <div className="flex flex-row items-center justify-between ">
                         <div className="">
                             <Link
-                                className="text-left-0 text-blueGray-600 mr-0 whitespace-nowrap text-xs md:text-base uppercase font-bold p-4 px-0 "
+                                className="text-left-0  mr-0 whitespace-nowrap text-xs md:text-base uppercase font-bold p-4 px-0 "
                                 href="/"
                             >
                                 Perpustakaan Skensa
@@ -103,10 +105,12 @@ export default function FilterSidebar() {
                                 name=""
                                 id=""
                                 placeholder="cari buku"
-                                className="w-[85%] rounded-full text-center text-blueGray-500 text-sm border-blueGray-400 hover:border-blue-400 active:border-blue-700 transition delay-150 duration-300 ease-in-out"
+                                className="w-full rounded-full text-center p-2 dark:placeholder:text-white text-sm dark:bg-gray-600 border-gray-400  hover:border-blue-400 active:border-blue-700 transition duration-300 ease-in-out"
                             />
+
                             <button
-                                className="pl-5 w-[15%] cursor-pointer rounded-full text-center text-blueGray-500 text-sm border-blueGray-400 hover:border-blue-400 active:border-blue-700 transition delay-150 duration-300 ease-in-out"
+                                className="ml-3 w-fit rounded-full text-center p-2 border border-gray-400 bg-white dark:bg-gray-600  text-sm  
+                                hover:border-blue-400 transition-all duration-300 active:border-blue-700"
                                 type="button"
                             >
                                 <Search />
@@ -116,62 +120,77 @@ export default function FilterSidebar() {
                     </div>
                     <div className="flex flex-col pt-10">
                         <div className="flex items-center justify-between md:justify-start">
-                            <Filter className="text-blueGray-600 w-5" />
-                            <Link className="text-left-0 md:pl-10 text-blueGray-600 mr-0 whitespace-nowrap text-base  uppercase font-bold p-4 px-0">
+                            <Filter className=" w-5" />
+                            <Link className="text-left-0 md:pl-10  mr-0 whitespace-nowrap text-base  uppercase font-bold p-4 px-0">
                                 Filter
                             </Link>
                         </div>
                         <div className="flex flex-col justify-between">
-                            <Link className="text-left-0 text-blueGray-600 mr-0 whitespace-nowrap text-base  uppercase font-bold pt-4 px-0">
+                            <Link className="text-left-0  mr-0 whitespace-nowrap text-base  uppercase font-bold pt-4 px-0">
                                 Kategori
                             </Link>
                             <div className="flex flex-wrap p-0">
                                 {props.categories &&
                                     props.categories.map((e, key) => {
                                         return (
-                                            <div
-                                                className="flex items-center p-2 w-auto gap-2"
-                                                key={e.slug}
-                                            >
-                                                <Checkbox
-                                                    name="category[]"
-                                                    id={e.slug + key}
-                                                />
-                                                <InputLabel
-                                                    htmlFor={e.slug + key}
-                                                    value={e.category}
-                                                />
-                                            </div>
+                                            <CustomCheckbox
+                                                key={key}
+                                                label={e.category}
+                                                name="genres[]"
+                                            />
                                         );
                                     })}
                             </div>
-                            <hr className="w-full" />
+                            <hr className="w-full mt-2" />
                         </div>
                         <div className="flex flex-col justify-between">
-                            <Link className="text-left-0 text-blueGray-600 mr-0 whitespace-nowrap text-base  uppercase font-bold pt-4 px-0">
+                            <Link className="text-left-0  mr-0 whitespace-nowrap text-base  uppercase font-bold pt-4 px-0">
                                 Jenis Karya
                             </Link>
                             <div className="flex flex-wrap p-0">
                                 {props.genres &&
                                     props.genres.map((e, key) => {
                                         return (
-                                            <div
-                                                className="flex items-center p-2 w-auto gap-2"
-                                                key={e.slug}
-                                            >
-                                                <Checkbox
-                                                    name="genres[]"
-                                                    id={e.slug + key}
-                                                />
-                                                <InputLabel
-                                                    htmlFor={e.slug + key}
-                                                    value={e.genre}
-                                                />
-                                            </div>
+                                            <CustomCheckbox
+                                                key={key}
+                                                label={e.genre}
+                                                name="genres[]"
+                                            />
                                         );
                                     })}
                             </div>
-                            <hr className="w-full" />
+                            <hr className="w-full mt-2" />
+                        </div>
+                    </div>
+                    <div className="mt-8">
+                        <div className="flex justify-start gap-10 items-center">
+                            <i className="fas fa-cog"></i>
+                            <h1 className=" text-left-0  mr-0 whitespace-nowrap text-base  uppercase font-bold px-0">
+                                Setting
+                            </h1>
+                        </div>
+                        <div className="mt-4">
+                            <div className="flex flex-row justify-between toggle">
+                                <label
+                                    htmlFor="dark-toggle"
+                                    className="flex items-center cursor-pointer"
+                                >
+                                    <div className="relative">
+                                        <input
+                                            onClick={handleMode}
+                                            type="checkbox"
+                                            name="dark-mode"
+                                            id="dark-toggle"
+                                            className="peer checkbox hidden"
+                                        />
+                                        <div className="block border-[1px] dark:border-white border-gray-400 w-14 h-8 rounded-full"></div>
+                                        <div className="peer-checked:translate-x-[100%] absolute left-1 top-1 dark:bg-white bg-gray-600 w-6 h-6 rounded-full transition"></div>
+                                    </div>
+                                    <div className="ml-3 dark:text-white text-gray-600 font-medium">
+                                        Dark Mode
+                                    </div>
+                                </label>
+                            </div>
                         </div>
                     </div>
                 </nav>

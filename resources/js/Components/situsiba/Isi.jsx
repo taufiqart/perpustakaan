@@ -30,7 +30,7 @@ export default function SituSiba({ papers, className = "" }) {
             <Search />
             {/* Input Search end */}
             {/* BookCard start */}
-            <div className="flex flex-wrap justify-center gap-10 py-20">
+            <div className="flex flex-wrap justify-center md:gap-10 py-20">
                 {papers && papers.length > 0 ? (
                     papers.map((paper) => {
                         return (
