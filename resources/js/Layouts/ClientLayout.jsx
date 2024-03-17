@@ -18,7 +18,6 @@ export default function ClientLayout({ children, situsiba = false }) {
             if (show_popup == null || show_popup == undefined) {
                 let expires = new Date();
                 expires.setTime(expires.getTime() + 5000 * 1000);
-                console.log(expires);
                 cookies.set("show_popup", true, {
                     path: "/",
                     expires,
@@ -144,7 +143,7 @@ export default function ClientLayout({ children, situsiba = false }) {
                         <div className="flex flex-col items-center justify-center">
                             <div className="">
                                 <img
-                                    src="/Vector.svg"
+                                    src="/assets/icons/laptop-book.svg"
                                     alt=""
                                     className="w-48 xl:w-56 2xl:w-72"
                                 />
