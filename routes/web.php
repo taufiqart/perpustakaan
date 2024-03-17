@@ -1,12 +1,5 @@
 <?php
 
-use App\Http\Controllers\admin\AdminDashboardController;
-use App\Http\Controllers\admin\AdminSliderController;
-use App\Http\Controllers\admin\AdminNavigationController;
-use App\Http\Controllers\admin\AdminPagesController;
-use App\Http\Controllers\admin\AdminUserController;
-use App\Http\Controllers\ArticleController;
-use App\Http\Controllers\AssetsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,26 +15,27 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth'])->prefix('dashboard')->group(function () {
 
-    Route::get('/', [AdminDashboardController::class, 'index']);
+    Route::get('/', [App\Http\Controllers\admin\AdminDashboardController::class, 'index']);
 
     Route::middleware(["roles:admin"])->group(function () {
 
-        Route::resource('/navigation', AdminNavigationController::class);
-        Route::put('/navigation/{navigation:id}/order', [AdminNavigationController::class, 'updateOrder'])->name('navigation.updateOrder');
-        Route::resource('/pages', AdminPagesController::class);
+        Route::resource('/navigation', App\Http\Controllers\admin\AdminNavigationController::class);
+        Route::put('/navigation/{navigation:id}/order', [App\Http\Controllers\admin\AdminNavigationController::class, 'updateOrder'])
+            ->name('navigation.updateOrder');
+        Route::resource('/pages', App\Http\Controllers\admin\AdminPagesController::class);
 
-        Route::get('/slider', [AdminSliderController::class, 'index'])->name('slider.index');
-        Route::post('/slider', [AdminSliderController::class, 'store'])->name('slider.store');
-        Route::delete('/slider/{slider:id}/delete', [AdminSliderController::class, 'destroy'])->name('slider.delete');
+        Route::get('/slider', [App\Http\Controllers\admin\AdminSliderController::class, 'index'])->name('slider.index');
+        Route::post('/slider', [App\Http\Controllers\admin\AdminSliderController::class, 'store'])->name('slider.store');
+        Route::delete('/slider/{slider:id}/delete', [App\Http\Controllers\admin\AdminSliderController::class, 'destroy'])->name('slider.delete');
 
-        Route::put('/file-manager/rename', [AssetsController::class, 'update'])->name('file.rename');
-        Route::post('/file-manager', [AssetsController::class, 'store'])->name('file.store');
-        Route::delete('/file-manager/delete', [AssetsController::class, 'destroy'])->name('file.delete');
-        Route::get('/file-manager', [AssetsController::class, 'index'])->name('file.index');
+        Route::put('/file-manager/rename', [App\Http\Controllers\AssetsController::class, 'update'])->name('file.rename');
+        Route::post('/file-manager', [App\Http\Controllers\AssetsController::class, 'store'])->name('file.store');
+        Route::delete('/file-manager/delete', [App\Http\Controllers\AssetsController::class, 'destroy'])->name('file.delete');
+        Route::get('/file-manager', [App\Http\Controllers\AssetsController::class, 'index'])->name('file.index');
 
-        Route::get('/users', [AdminUserController::class, 'index'])->name('user.index');
-        Route::get('/users/create', [AdminUserController::class, 'create'])->name('user.create');
-        Route::post('/users/create', [AdminUserController::class, 'store'])->name('user.store');
+        Route::get('/users', [App\Http\Controllers\admin\AdminUserController::class, 'index'])->name('user.index');
+        Route::get('/users/create', [App\Http\Controllers\admin\AdminUserController::class, 'create'])->name('user.create');
+        Route::post('/users/create', [App\Http\Controllers\admin\AdminUserController::class, 'store'])->name('user.store');
 
         Route::get('profile/{user:email}', [\App\Http\Controllers\admin\ProfileController::class, 'show'])->name('profile.show');
     });
@@ -54,7 +48,8 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
         Route::get('/papers/{paper:slug}', [\App\Http\Controllers\Post\PaperController::class, 'show'])->name('paper.show');
         Route::get('/papers/edit/{paper:slug}', [\App\Http\Controllers\Post\PaperController::class, 'edit'])->name('paper.edit');
         Route::post('/papers/edit/{paper:slug}', [\App\Http\Controllers\Post\PaperController::class, 'update'])->name('paper.update');
-        Route::get('/bookmarks', [AssetsController::class, 'index'])->name('bookmark.index');
+        Route::delete('/papers/delete/{paper:slug}', [\App\Http\Controllers\Post\PaperController::class, 'destroy'])->name('paper.destroy');
+        Route::get('/bookmarks', [App\Http\Controllers\AssetsController::class, 'index'])->name('bookmark.index');
 
     });
 
@@ -74,4 +69,5 @@ Route::prefix('situsiba')->group(function () {
         return redirect(route('situsiba.index'));
     })->where('any', '.*');
 });
-Route::get('{any}', [ArticleController::class, 'index'])->where('any', '.*');
+
+Route::get('{any}', [App\Http\Controllers\ArticleController::class, 'index'])->where('any', '^((?!uploads)+(?!assets).)*$');
