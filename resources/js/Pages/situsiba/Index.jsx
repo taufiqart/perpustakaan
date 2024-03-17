@@ -34,7 +34,7 @@ export default function Index() {
             <CardBox className="w-[90%] xl:w-[85%] mx-auto  my-10">
                 {/* Terbanyak start */}
                 <SectionBook
-                    data={props.paper_latests}
+                    data={props.paper_mostreads}
                     title={"Terbanyak dibaca"}
                     link={{ label: "Lainnya", href: "/situsiba/mostreads" }}
                 />
