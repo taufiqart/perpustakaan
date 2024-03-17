@@ -14,7 +14,7 @@ import CreatableSelect from "react-select/creatable";
 import SimpleFileUpload from "@/Components/admin/SimpleFileUpload";
 import ImageFromText from "@/Components/admin/ImageFromText";
 import FileUploadPreview from "@/Components/admin/FileUploadPreview";
-import { tinymceInit } from "@/config/tinymce";
+import { tinymceInitPaper } from "@/config/tinymce";
 import { createOption } from "@/config/function";
 import FilePreview from "@/Components/admin/FilePreview";
 
@@ -23,7 +23,7 @@ export default function Create({ paper, categories, genres }) {
     const [cover, setCover] = useState(null);
     const [coverFile, setCoverFile] = useState(null);
     const editorRef = useRef(null);
-
+    
     const [optionCategories, setOptionCategories] = useState(
         categories.map((category) =>
             createOption(category.id, category.category)
@@ -48,6 +48,7 @@ export default function Create({ paper, categories, genres }) {
     const { data, setData, errors, processing, post, clearErrors } = useForm(
         paper
             ? {
+                  id: paper.id,
                   slug: paper.slug,
                   title: paper.title,
                   content: paper.content,
@@ -200,7 +201,7 @@ export default function Create({ paper, categories, genres }) {
                                     (editorRef.current = editor)
                                 }
                                 initialValue={data.content}
-                                init={tinymceInit}
+                                init={tinymceInitPaper}
                             />
 
                             <InputError
