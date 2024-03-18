@@ -35,7 +35,7 @@ class Situsiba extends Controller
         Meta::addProperty('og:title', 'SITU SIBA');
         Meta::addProperty('og:description', 'SITU SIBA');
 
-        return Inertia::render('situsiba/Index', compact('papers', 'paper_latests', 'paper_mostreads'));
+        return Inertia::render('situsiba/Search', compact('papers', 'paper_latests', 'paper_mostreads'));
     }
 
     /**
