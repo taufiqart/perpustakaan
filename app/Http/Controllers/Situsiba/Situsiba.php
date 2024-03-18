@@ -25,7 +25,7 @@ class Situsiba extends Controller
         $paper_latests = (clone $postType)->posts()->latest('created_at')->limit(5)->get();
         $paper_mostreads = (clone $postType)->posts()->orderBy('created_at', 'desc')->limit(5)->get();
 
-        return Inertia::render('situsiba/Index', compact('papers', 'paper_latests', 'paper_mostreads'));
+        return Inertia::render('situsiba/Search', compact('papers', 'paper_latests', 'paper_mostreads'));
     }
 
     /**
