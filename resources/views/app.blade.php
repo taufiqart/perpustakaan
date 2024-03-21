@@ -30,6 +30,6 @@
     @inertia
 
     <script src="/assets/js/script.js"></script>
-    </body>
+</body>
 
 </html>
