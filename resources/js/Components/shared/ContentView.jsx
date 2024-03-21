@@ -21,7 +21,7 @@ const options = {
 const resizeObserverOptions = {};
 
 const maxWidth = 1080;
-export default function ContentView({ content, fileList = [] }) {
+export default function ContentView({ content, fileList = [], ...props }) {
     const [file, setFile] = React.useState(fileList[0]?.url);
     const [numPages, setNumPages] = React.useState();
     const [containerRef, setContainerRef] = React.useState(null);
@@ -50,9 +50,14 @@ export default function ContentView({ content, fileList = [] }) {
     }
     return (
         <>
-            <div className="min-h-screen flex flex-col justify-center items-center px-3 md:px-14 transition-all duration-500">
-                <div className="-mt-14 md:mt-52 w-full lg:max-w-[50vw] transition-all duration-500">
-                    <BookViewCustom paper={content} height="100%" width="100%">
+            <div className="flex flex-col justify-center items-center px-3 md:px-14 transition-all duration-500">
+                <div className="w-full lg:max-w-[50vw] transition-all duration-500">
+                    <BookViewCustom
+                        paper={content}
+                        height={props.height ?? "100%"}
+                        width="100%"
+                        innerScroll={props.innerScroll}
+                    >
                         {content?.content
                             ?.replace(/<[^>]*>?|&nbsp;/gm, "")
                             .trim().length > 0 ? (
@@ -110,8 +115,6 @@ export default function ContentView({ content, fileList = [] }) {
                         </div>
                     </div>
                 )}
-
-                <div className="h-96"></div>
             </div>
         </>
     );

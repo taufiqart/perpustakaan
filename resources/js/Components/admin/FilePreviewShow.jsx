@@ -4,7 +4,7 @@ import ModalFilePreview from "@/Components/ModalFilePreview";
 import { usePage } from "@inertiajs/react";
 export default function FilePreviewShow({ dataFiles, deleteRoute, ...props }) {
     const _props = usePage().props;
-    console.log(_props);
+
     const [show, setShow] = useState(false);
     const [files, setFiles] = useState(
         dataFiles?.map((file) => {

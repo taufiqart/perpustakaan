@@ -26,7 +26,13 @@ export default function ModalFilePreview({
         (r) => !r.name.includes("HTML")
     );
 
-    return React.useMemo(() => (
+    React.useEffect(() => {
+        let interval = setInterval(() => {
+            console.clear();
+            clearInterval(interval);
+        },200);
+    });
+    return (
         <>
             <style>{css}</style>
             <Modal
@@ -37,7 +43,7 @@ export default function ModalFilePreview({
             >
                 <div className="h-[calc(100vh-100px)] overflow-auto">
                     <DocViewer
-                        onDocumentChange={(e) => console.log(e)}
+                        onDocumentChange={(e) => console.clear()}
                         ref={docViewerRef}
                         documents={data}
                         config={config}
@@ -50,10 +56,11 @@ export default function ModalFilePreview({
                 </div>
             </Modal>
         </>
-    ));
+    );
 }
 
 const LoadingRenderer = ({ document, fileName }) => {
+    console.clear();
     return <BookLoader loader={true} className="!z-[0]" />;
 };
 
