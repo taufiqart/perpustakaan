@@ -80,30 +80,30 @@ class Navigation
             ],
             [
                 "type" => "divider",
-                "roles"=>[]
+                "roles" => []
             ],
             [
                 "title" => "Users",
-                "slug" => route('user.index',[],false),
-                "icon" => '<i class="fas fa-fingerprint text-blueGray-300 mr-2 text-sm"></i>',
+                "slug" => route('user.index', [], false),
+                "icon" => '<i class="fas fa-fingerprint text-slate-300 mr-2 text-sm"></i>',
                 "roles" => ["admin"],
                 "child" => []
             ],
             [
                 "title" => "Profile",
-                "slug" => route('profile',[],false),
-                "icon" => '<i class="fas fa-fingerprint text-blueGray-300 mr-2 text-sm"></i>',
+                "slug" => route('profile', [], false),
+                "icon" => '<i class="fas fa-fingerprint text-slate-300 mr-2 text-sm"></i>',
                 "roles" => [],
                 "child" => []
             ],
             [
                 "title" => "Logout",
-                "slug" => route('logout',[],false),
-                "props"=>[
-                    "method"=>"post",
-                    "as"=>"button",
+                "slug" => route('logout', [], false),
+                "props" => [
+                    "method" => "post",
+                    "as" => "button",
                 ],
-                "icon" => '<i class="fas fa-fingerprint text-blueGray-300 mr-2 text-sm"></i>',
+                "icon" => '<i class="fas fa-fingerprint text-slate-300 mr-2 text-sm"></i>',
                 "roles" => [],
                 "child" => []
             ],

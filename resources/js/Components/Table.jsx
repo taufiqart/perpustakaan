@@ -3,7 +3,7 @@ import React from "react";
 const TableTh = ({ children, className }) => {
     return (
         <th
-            className={`px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100 ${className}`}
+            className={`px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-slate-50 text-slate-500 border-slate-100 ${className}`}
         >
             {children}
         </th>
@@ -26,7 +26,7 @@ const Table = ({ children, title }) => {
                 <div className="rounded-t mb-0 px-4 py-3 border-0">
                     <div className="flex flex-wrap items-center">
                         <div className="relative w-full px-4 max-w-full flex-grow flex-1">
-                            <h3 className="font-semibold text-lg text-blueGray-700">
+                            <h3 className="font-semibold text-lg text-slate-700">
                                 {title}
                             </h3>
                         </div>

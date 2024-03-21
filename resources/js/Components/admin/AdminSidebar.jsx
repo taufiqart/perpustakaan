@@ -32,7 +32,7 @@ const SideMenu = ({ data }) => {
                     className={`text-xs uppercase py-3 font-bold flex items-center w-full ${
                         active
                             ? "text-pink-500 hover:text-pink-600"
-                            : "text-blueGray-700 hover:text-blueGray-500"
+                            : "text-slate-700 hover:text-slate-500"
                     }`}
                 >
                     <i
@@ -57,17 +57,21 @@ const SideMenu = ({ data }) => {
                         ></path>
                     </svg>
                 </button>
-                <ul className={`opcity-100 h-auto ${!open&&'!h-0 !opacity-0'} transition-all duration-200`}>
-                    {data.child.map((nav,key) => {
+                <ul
+                    className={`opcity-100 h-auto ${
+                        !open && "!h-0 !opacity-0"
+                    } transition-all duration-200`}
+                >
+                    {data.child.map((nav, key) => {
                         return (
-                            <li key={nav.slug+key} className="items-center">
+                            <li key={nav.slug + key} className="items-center">
                                 <Link
                                     href={nav.slug}
                                     {...nav?.props}
                                     className={`text-xs uppercase py-3 font-bold block ${
                                         getActivePage(nav.slug)
                                             ? "text-pink-500 hover:text-pink-600"
-                                            : "text-blueGray-700 hover:text-blueGray-500"
+                                            : "text-slate-700 hover:text-slate-500"
                                     }`}
                                 >
                                     <i className="fas mr-2 text-sm opacity-75 w-6 align-middle"></i>
@@ -88,7 +92,7 @@ const SideMenu = ({ data }) => {
                 className={`text-xs uppercase py-3 font-bold block ${
                     getActivePage(data.slug)
                         ? "text-pink-500 hover:text-pink-600"
-                        : "text-blueGray-700 hover:text-blueGray-500"
+                        : "text-slate-700 hover:text-slate-500"
                 }`}
             >
                 <i
@@ -123,7 +127,7 @@ export default function AdminSidebar() {
                     <i className="fas fa-bars"></i>
                 </button>
                 <Link
-                    className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
+                    className="md:block text-left md:pb-2 text-slate-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
                     href="/"
                 >
                     Perpustakaan SKENSA
@@ -134,11 +138,11 @@ export default function AdminSidebar() {
                         toggleNavbar ? " bg-white m-2 py-3 px-6" : "hidden"
                     } `}
                 >
-                    <div className="md:min-w-full md:hidden block pb-4 mb-4 border-b border-solid border-blueGray-200">
+                    <div className="md:min-w-full md:hidden block pb-4 mb-4 border-b border-solid border-slate-200">
                         <div className="flex flex-wrap">
                             <div className="w-6/12">
                                 <Link
-                                    className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
+                                    className="md:block text-left md:pb-2 text-slate-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
                                     href="/"
                                 >
                                     Perpustakaan SKENSA
@@ -162,7 +166,7 @@ export default function AdminSidebar() {
                             <input
                                 type="text"
                                 placeholder="Search"
-                                className="border-0 px-3 py-2 h-12 border border-solid border-blueGray-500 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal"
+                                className="border-0 px-3 py-2 h-12 border border-solid border-slate-500 placeholder-slate-300 text-slate-600 bg-white rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal"
                             />
                         </div>
                     </form> */}
@@ -172,11 +176,18 @@ export default function AdminSidebar() {
 
                     <ul className="md:flex-col md:min-w-full flex flex-col list-none">
                         {navigation &&
-                            navigation.map((nav,key) => {
-                                if(nav?.type == "divider"){
-                                    return <hr key={key} className="my-4 md:min-w-full" />
+                            navigation.map((nav, key) => {
+                                if (nav?.type == "divider") {
+                                    return (
+                                        <hr
+                                            key={key}
+                                            className="my-4 md:min-w-full"
+                                        />
+                                    );
                                 }
-                                return <SideMenu data={nav} key={nav.slug+key} />;
+                                return (
+                                    <SideMenu data={nav} key={nav.slug + key} />
+                                );
                             })}
                     </ul>
                 </div>

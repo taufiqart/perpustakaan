@@ -37,18 +37,28 @@ export default function SearchLayout({ children }) {
                 </svg>
                 <div className="absolute w-[100vw]">
                     <div className="flex flex-col items-center justify-center pt-10">
-                        <h1 className="text-white text-xl md:text-2xl">Platfrom bagi warga</h1>
-                        <h1 className="text-white text-3xl md:text-4xl">SMKN 1 PASURUAN</h1>
-                        <h1 className="text-white text-xl md:text-2xl">Berbagi karya dan bacaan</h1>
-
+                        <h1 className="text-white text-xl md:text-2xl">
+                            Platfrom bagi warga
+                        </h1>
+                        <h1 className="text-white text-3xl md:text-4xl">
+                            SMKN 1 PASURUAN
+                        </h1>
+                        <h1 className="text-white text-xl md:text-2xl">
+                            Berbagi karya dan bacaan
+                        </h1>
                     </div>
                     <div className="w-full p-5 sticky top-0 text-center z-10">
-                        <input type="text" name="" id="" placeholder="cari judul / kategori" className=" w-full md:w-2/3 rounded-2xl text-center text-blueGray-500 text-xs md:text-base lg:text-lg border-green-400 hover:border-blue-400 active:border-blue-700 ring-green-400 transition delay-150 duration-300 ease-in-out" />
+                        <input
+                            type="text"
+                            name=""
+                            id=""
+                            placeholder="cari judul / kategori"
+                            className=" w-full md:w-2/3 rounded-2xl text-center text-slate-500 text-xs md:text-base lg:text-lg border-green-400 hover:border-blue-400 active:border-blue-700 ring-green-400 transition delay-150 duration-300 ease-in-out"
+                        />
                     </div>
 
                     <div className="flex flex-row gap-10">
-                        <FilterSearchSide/>
-
+                        <FilterSearchSide />
 
                         <div className="w-1/3">
                             <CardBox className="w-[100%] mx-auto mb-20">
@@ -62,19 +72,19 @@ export default function SearchLayout({ children }) {
                                 </div>
                                 <div className="flex flex-col -pt-6 pb-10 ml-4">
                                     <div className="flex items-center justify-start">
-                                        <Filter className="text-blueGray-600 w-5" />
-                                        <Link className="text-left-0 md:pl-10 text-blueGray-600 mr-0 whitespace-nowrap text-base  uppercase font-bold p-4 px-0">
+                                        <Filter className="text-slate-600 w-5" />
+                                        <Link className="text-left-0 md:pl-10 text-slate-600 mr-0 whitespace-nowrap text-base  uppercase font-bold p-4 px-0">
                                             Filter
                                         </Link>
                                     </div>
                                     <div className="flex flex-col justify-between">
-                                        <Link className="text-left-0 text-blueGray-600 mr-0 whitespace-nowrap text-base  uppercase font-bold pt-4 px-0">
+                                        <Link className="text-left-0 text-slate-600 mr-0 whitespace-nowrap text-base  uppercase font-bold pt-4 px-0">
                                             Kategori
                                         </Link>
                                         <div className="flex flex-wrap p-0">
                                             <div className="flex items-center p-2 w-auto">
                                                 <Checkbox />{" "}
-                                                <p className="pl-2 text-blueGray-600 mr-0 whitespace-nowrap text-xs md:text-base uppercase font-bold">
+                                                <p className="pl-2 text-slate-600 mr-0 whitespace-nowrap text-xs md:text-base uppercase font-bold">
                                                     {" "}
                                                     KEPESENG{" "}
                                                 </p>
@@ -83,13 +93,13 @@ export default function SearchLayout({ children }) {
                                         <hr className="w-full" />
                                     </div>
                                     <div className="flex flex-col justify-between">
-                                        <Link className="text-left-0 text-blueGray-600 mr-0 whitespace-nowrap text-base  uppercase font-bold pt-4 px-0">
+                                        <Link className="text-left-0 text-slate-600 mr-0 whitespace-nowrap text-base  uppercase font-bold pt-4 px-0">
                                             Jenis Karya
                                         </Link>
                                         <div className="flex flex-wrap p-0">
                                             <div className="flex items-center p-2 w-auto">
                                                 <Checkbox />{" "}
-                                                <p className="pl-2 text-blueGray-600 mr-0 whitespace-nowrap text-xs md:text-base uppercase font-bold">
+                                                <p className="pl-2 text-slate-600 mr-0 whitespace-nowrap text-xs md:text-base uppercase font-bold">
                                                     {" "}
                                                     KEPESENG
                                                 </p>
@@ -104,8 +114,6 @@ export default function SearchLayout({ children }) {
                         </div>
                         <div className="w-2/3 ">{children}</div>
                     </div>
-
-
                 </div>
             </div>
         </>

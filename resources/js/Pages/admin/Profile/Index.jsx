@@ -21,7 +21,7 @@ export default function ProfileIndex({ user }) {
                         {/* Disable Sementara */}
                         {/* <div className="absolute right-5">
                             <button onClick={() => setShow(!show)}>
-                                <i className="far fa-edit text-blueGray-500 mr-2 text-lg hover:text-blueGray-900"></i>
+                                <i className="far fa-edit text-slate-500 mr-2 text-lg hover:text-slate-900"></i>
                             </button>
                         </div> */}
                         {/* Disable Sementara End */}

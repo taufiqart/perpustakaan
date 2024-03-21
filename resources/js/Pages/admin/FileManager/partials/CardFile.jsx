@@ -280,11 +280,11 @@ export default function CardFile({ file }) {
                 </form>
             </Modal>
             {messageCopy && (
-            <Toast className="left-0 md:left-64 md:w-[calc(100%-16rem)]">
-                <h1 className="text-blueGray-600 text-md md:text-lg">
-                    {messageCopy}
-                </h1>
-            </Toast>
+                <Toast className="left-0 md:left-64 md:w-[calc(100%-16rem)]">
+                    <h1 className="text-slate-600 text-md md:text-lg">
+                        {messageCopy}
+                    </h1>
+                </Toast>
             )}
         </div>
     );

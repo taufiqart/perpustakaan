@@ -8,7 +8,7 @@ export default function Dropdown({ children, component }) {
     return (
         <>
             <a
-                className="text-blueGray-500 block relative"
+                className="text-slate-500 block relative"
                 href="#"
                 onClick={() => {
                     setOpenDropdown(!openDropdown);

@@ -13,10 +13,10 @@ export default function CardStats({ data }) {
                                 <div className="flex-auto p-4">
                                     <div className="flex flex-wrap">
                                         <div className="relative w-full pr-4 max-w-full flex-grow flex-1">
-                                            <h5 className="text-blueGray-400 uppercase font-bold text-xs">
+                                            <h5 className="text-slate-400 uppercase font-bold text-xs">
                                                 Navigations
                                             </h5>
-                                            <span className="font-semibold text-xl text-blueGray-700">
+                                            <span className="font-semibold text-xl text-slate-700">
                                                 {
                                                     data.navigations
                                                         ?.navigations_count
@@ -29,7 +29,7 @@ export default function CardStats({ data }) {
                                             </div>
                                         </div>
                                     </div>
-                                    <p className="text-sm text-blueGray-400 mt-4">
+                                    <p className="text-sm text-slate-400 mt-4">
                                         <span className="text-red-500 mr-2">
                                             <i className="fas fa-arrow-up"></i>{" "}
                                             {data.navigations?.navigations_new}
@@ -48,10 +48,10 @@ export default function CardStats({ data }) {
                                 <div className="flex-auto p-4">
                                     <div className="flex flex-wrap">
                                         <div className="relative w-full pr-4 max-w-full flex-grow flex-1">
-                                            <h5 className="text-blueGray-400 uppercase font-bold text-xs">
+                                            <h5 className="text-slate-400 uppercase font-bold text-xs">
                                                 Pages
                                             </h5>
-                                            <span className="font-semibold text-xl text-blueGray-700">
+                                            <span className="font-semibold text-xl text-slate-700">
                                                 {data.pages?.pages_count}
                                             </span>
                                         </div>
@@ -61,7 +61,7 @@ export default function CardStats({ data }) {
                                             </div>
                                         </div>
                                     </div>
-                                    <p className="text-sm text-blueGray-400 mt-4">
+                                    <p className="text-sm text-slate-400 mt-4">
                                         <span className="text-red-500 mr-2">
                                             <i className="fas fa-arrow-up"></i>{" "}
                                             {data.pages?.pages_new}
@@ -80,10 +80,10 @@ export default function CardStats({ data }) {
                                 <div className="flex-auto p-4">
                                     <div className="flex flex-wrap">
                                         <div className="relative w-full pr-4 max-w-full flex-grow flex-1">
-                                            <h5 className="text-blueGray-400 uppercase font-bold text-xs">
+                                            <h5 className="text-slate-400 uppercase font-bold text-xs">
                                                 Files
                                             </h5>
-                                            <span className="font-semibold text-xl text-blueGray-700">
+                                            <span className="font-semibold text-xl text-slate-700">
                                                 {data.files?.files_count}
                                             </span>
                                         </div>
@@ -93,7 +93,7 @@ export default function CardStats({ data }) {
                                             </div>
                                         </div>
                                     </div>
-                                    <p className="text-sm text-blueGray-400 mt-4">
+                                    <p className="text-sm text-slate-400 mt-4">
                                         <span className="text-orange-500 mr-2">
                                             <i className="fas fa-arrow-up"></i>{" "}
                                             {data.files?.files_new}
@@ -114,10 +114,10 @@ export default function CardStats({ data }) {
                             <div className="flex-auto p-4">
                                 <div className="flex flex-wrap">
                                     <div className="relative w-full pr-4 max-w-full flex-grow flex-1">
-                                        <h5 className="text-blueGray-400 uppercase font-bold text-xs">
+                                        <h5 className="text-slate-400 uppercase font-bold text-xs">
                                             Pages
                                         </h5>
-                                        <span className="font-semibold text-xl text-blueGray-700">
+                                        <span className="font-semibold text-xl text-slate-700">
                                             {data.paper?.pages_count}
                                         </span>
                                     </div>
@@ -127,7 +127,7 @@ export default function CardStats({ data }) {
                                         </div>
                                     </div>
                                 </div>
-                                <p className="text-sm text-blueGray-400 mt-4">
+                                <p className="text-sm text-slate-400 mt-4">
                                     <span className="text-red-500 mr-2">
                                         <i className="fas fa-arrow-up"></i>{" "}
                                         {data.paper?.pages_new}
@@ -147,10 +147,10 @@ export default function CardStats({ data }) {
                     <div className="flex-auto p-4">
                         <div className="flex flex-wrap">
                             <div className="relative w-full pr-4 max-w-full flex-grow flex-1">
-                                <h5 className="text-blueGray-400 uppercase font-bold text-xs">
+                                <h5 className="text-slate-400 uppercase font-bold text-xs">
                                     Performance
                                 </h5>
-                                <span className="font-semibold text-xl text-blueGray-700">
+                                <span className="font-semibold text-xl text-slate-700">
                                     49,65%
                                 </span>
                             </div>
@@ -160,7 +160,7 @@ export default function CardStats({ data }) {
                                 </div>
                             </div>
                         </div>
-                        <p className="text-sm text-blueGray-400 mt-4">
+                        <p className="text-sm text-slate-400 mt-4">
                             <span className="text-emerald-500 mr-2">
                                 <i className="fas fa-arrow-up"></i> 12%
                             </span>

@@ -83,7 +83,7 @@ export default function FilterSidebar() {
                     style={{
                         transform: `translate(${translateX}px,0)`,
                     }}
-                    className={`dark:bg-gray-900 dark:text-white text-blueGray-600 left-0 fixed z-20 top-0 bottom-0 bg-white/85 overflow-y-auto flex-row flex-nowrap overflow-hidden shadow-2xl backdrop-blur-sm rounded-lg items-center justify-between w-10/12 md:w-2/6 lg:w-2/6 py-4 px-6 duration-1000`}
+                    className={`dark:bg-gray-900 dark:text-white text-slate-600 left-0 fixed z-20 top-0 bottom-0 bg-white/85 overflow-y-auto flex-row flex-nowrap overflow-hidden shadow-2xl backdrop-blur-sm rounded-lg items-center justify-between w-10/12 md:w-2/6 lg:w-2/6 py-4 px-6 duration-1000`}
                 >
                     <div className="flex flex-row items-center justify-between ">
                         <div className="">
