@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "@/config/createFileList";
 import { ModalFilePreview } from "@/Components/ModalFilePreview";
 import { usePage } from "@inertiajs/react";
 export default function FilePreviewShow({ dataFiles, deleteRoute, ...props }) {

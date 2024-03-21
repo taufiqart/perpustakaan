@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useForm } from "@inertiajs/react";
-import "@/config/createFileList";
 import Modal from "@/Components/Modal";
 import BookLoader from "../../Components/BookLoader";
 import SecondaryButton from "@/Components/SecondaryButton";
