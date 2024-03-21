@@ -4,67 +4,12 @@ import Modal from "@/Components/Modal";
 import BookLoader from "@/Components/BookLoader";
 import PrimaryButton from "@/Components/PrimaryButton";
 
-const css = `
-    #react-doc-viewer{
-        position: relative;
-        z-index: 99999;
-        display:flex;
-        flex-direction: column-reverse;
-    }
-    #modal .react-pdf__Document{
-        overflow: auto;
-    }
-`;
-
-export default function ModalFilePreview({
-    data,
-    show = false,
-    onClose = () => {},
-}) {
-    const docViewerRef = React.useRef(null);
-    const _DocViewerRenderers = DocViewerRenderers.filter(
-        (r) => !r.name.includes("HTML")
-    );
-
-    React.useEffect(() => {
-        let interval = setInterval(() => {
-            console.clear();
-            clearInterval(interval);
-        },200);
-    });
-    return (
-        <>
-            <style>{css}</style>
-            <Modal
-                show={show}
-                maxWidth="2xl"
-                className="bg-red-300"
-                onClose={onClose}
-            >
-                <div className="h-[calc(100vh-100px)] overflow-auto">
-                    <DocViewer
-                        onDocumentChange={(e) => console.clear()}
-                        ref={docViewerRef}
-                        documents={data}
-                        config={config}
-                        pluginRenderers={_DocViewerRenderers}
-                        className="bg-white"
-                        theme={{
-                            disableThemeScrollbar: false,
-                        }}
-                    />
-                </div>
-            </Modal>
-        </>
-    );
-}
-
-const LoadingRenderer = ({ document, fileName }) => {
-    console.clear();
+export const LoadingRenderer = ({ document, fileName }) => {
+    // console.clear();
     return <BookLoader loader={true} className="!z-[0]" />;
 };
 
-const NoRenderer = ({ document, fileName }) => {
+export const NoRenderer = ({ document, fileName }) => {
     const fileText = fileName || document?.fileType || "";
     if (fileText) {
         return (
@@ -86,8 +31,7 @@ const NoRenderer = ({ document, fileName }) => {
         </div>
     );
 };
-
-const config = {
+export const config = {
     loadingRenderer: {
         overrideComponent: LoadingRenderer,
         showLoadingTimeout: false,
@@ -99,6 +43,71 @@ const config = {
         overrideComponent: NoRenderer,
     },
     pdfVerticalScrollByDefault: true,
+};
+export const css = `
+    #react-doc-viewer{
+        position: relative;
+        z-index: 99999;
+        display:flex;
+        flex-direction: column-reverse;
+    }
+    #modal .react-pdf__Document{
+        overflow: auto;
+    }
+`;
+
+const _config = config;
+const _css = css;
+
+export const FilePreview = ({ data = [], config = _config, css = _css }) => {
+    const docViewerRef = React.useRef(null);
+    const _DocViewerRenderers = DocViewerRenderers.filter(
+        (r) => !r.name.includes("HTML")
+    );
+
+    React.useEffect(() => {
+        let interval = setInterval(() => {
+            // console.clear();
+            clearInterval(interval);
+        }, 200);
+    });
+    return (
+        <>
+            <style>{css}</style>
+            <DocViewer
+                // onDocumentChange={(e) => console.clear()}
+                ref={docViewerRef}
+                documents={data}
+                config={config}
+                pluginRenderers={_DocViewerRenderers}
+                className="bg-white"
+                theme={{
+                    disableThemeScrollbar: false,
+                }}
+            />
+        </>
+    );
+};
+
+export const ModalFilePreview = ({
+    data,
+    show = false,
+    onClose = () => {},
+}) => {
+    return (
+        <>
+            <Modal
+                show={show}
+                maxWidth="2xl"
+                className="bg-red-300"
+                onClose={onClose}
+            >
+                <div className="h-[calc(100vh-100px)] overflow-auto">
+                    <FilePreview data={data} />
+                </div>
+            </Modal>
+        </>
+    );
 };
 
 // export const ModalPreviewPDF = () => {

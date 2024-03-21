@@ -2,52 +2,33 @@ import React from "react";
 
 import BookViewCustom from "@/Components/BookViewCustom";
 import FilePreviewShow from "@/Components/admin/FilePreviewShow";
+import { FilePreview, config } from "@/Components/ModalFilePreview";
 
-import { useResizeObserver } from "@wojtekmaj/react-hooks";
-import { pdfjs, Document, Page } from "react-pdf";
-import "react-pdf/dist/esm/Page/AnnotationLayer.css";
-import "react-pdf/dist/esm/Page/TextLayer.css";
-
-pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-    "/public/assets/pdfjs-dist/build/pdf.worker.js",
-    import.meta.url
-).toString();
-
-const options = {
-    cMapUrl: "/public/assets/pdfjs-dist/web/cmaps/",
-    standardFontDataUrl: "/public/assets/pdfjs-dist/web/standard_fonts/",
-};
-
-const resizeObserverOptions = {};
-
-const maxWidth = 1080;
 export default function ContentView({ content, fileList = [], ...props }) {
-    const [file, setFile] = React.useState(fileList[0]?.url);
-    const [numPages, setNumPages] = React.useState();
-    const [containerRef, setContainerRef] = React.useState(null);
-    const [containerWidth, setContainerWidth] = React.useState();
-
-    const onResize = React.useCallback((entries) => {
-        const [entry] = entries;
-
-        if (entry) {
-            setContainerWidth(entry.contentRect.width);
+    const _css = `
+      
+        #custom-file-viewer #pdf-page-info,
+        #custom-file-viewer #header-bar,
+        #custom-file-viewer #pdf-download,
+        #custom-file-viewer #pdf-toggle-pagination{
+            display:none;
         }
+
+        #custom-file-viewer #react-doc-viewer #image-renderer,
+        #custom-file-viewer #react-doc-viewer:has(#image-renderer) {
+            background-image: none;
+            background-color: transparent;
+        }
+
+    `;
+
+    const [file, setFile] = React.useState(fileList[0]);
+
+    React.useEffect(() => {
+        file.uri = file.url;
     }, []);
 
-    useResizeObserver(containerRef, resizeObserverOptions, onResize);
-
-    function onFileChange(event) {
-        const { files } = event.target;
-
-        if (files && files[0]) {
-            setFile(files[0] || null);
-        }
-    }
-
-    function onDocumentLoadSuccess({ numPages: nextNumPages }) {
-        setNumPages(nextNumPages);
-    }
+    console.log(file);
     return (
         <>
             <div className="flex flex-col justify-center items-center px-3 md:px-14 transition-all duration-500">
@@ -71,38 +52,14 @@ export default function ContentView({ content, fileList = [], ...props }) {
                             fileList &&
                             fileList.length > 0 && (
                                 <div
-                                    className="-mx-5 sm:-mx-10 md:-mx-[25px]"
-                                    ref={setContainerRef}
+                                    className="-mx-5 sm:-mx-10 md:-mx-[25px] mt-5"
+                                    id="custom-file-viewer"
                                 >
-                                    <Document
-                                        file={file}
-                                        onLoadSuccess={onDocumentLoadSuccess}
-                                        options={options}
-                                        className={
-                                            "w-full h-full flex flex-col items-center"
-                                        }
-                                    >
-                                        {Array.from(
-                                            new Array(numPages),
-                                            (el, index) => (
-                                                <Page
-                                                    className={
-                                                        "!w-full !object-contain !min-w-full !max-w-full"
-                                                    }
-                                                    key={`page_${index + 1}`}
-                                                    pageNumber={index + 1}
-                                                    width={
-                                                        containerWidth
-                                                            ? Math.min(
-                                                                  containerWidth,
-                                                                  maxWidth
-                                                              )
-                                                            : maxWidth
-                                                    }
-                                                />
-                                            )
-                                        )}
-                                    </Document>
+                                    <FilePreview
+                                        data={[file]}
+                                        config={config}
+                                        css={_css}
+                                    />
                                 </div>
                             )
                         )}
