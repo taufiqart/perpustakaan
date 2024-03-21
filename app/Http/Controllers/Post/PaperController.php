@@ -148,9 +148,11 @@ class PaperController extends Controller
      */
     public function show(Post $paper)
     {
-        $paper->load(['user', 'user.user_detail']);
+        $paper->load(['user', 'user.user_detail','post_assets']);
         $categories = PostCategory::orderBy('category', 'asc')->get();
         $genres = PostGenre::orderBy('genre', 'asc')->get();
+        $paper->{"total_view"} = $paper->total_view == 0 ? 0 : $paper->total_view - 1;
+
         return \Inertia\Inertia::render("admin/Paper/View", compact("paper", "categories", "genres"));
     }
 
