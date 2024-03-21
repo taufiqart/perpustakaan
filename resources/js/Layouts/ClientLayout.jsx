@@ -27,6 +27,11 @@ export default function ClientLayout({ children, situsiba = false }) {
             }
         }, []);
     }
+    React.useEffect(() => {
+        document
+            .querySelector("#app")
+            .classList.remove("transition-all", "duration-300");
+    }, []);
 
     return (
         <>
