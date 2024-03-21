@@ -1,43 +1,57 @@
-import Alert from "@/Components/Alert";
-import BookLoader from "@/Components/BookLoader";
-import InputError from "@/Components/InputError";
-import InputLabel from "@/Components/InputLabel";
-import PrimaryButton from "@/Components/PrimaryButton";
-import TextInput from "@/Components/TextInput";
-import AdminLayout from "@/Layouts/admin/AdminLayout";
+// FROM NODE-MODULES
+import CreatableSelect from "react-select/creatable";
 import { Head, Link, useForm, usePage } from "@inertiajs/react";
 import { Editor } from "@tinymce/tinymce-react";
-import React, { useEffect, useRef, useState } from "react";
-import FileUpload from "@/Components/admin/FileUpload";
+import React from "react";
 
-import CreatableSelect from "react-select/creatable";
-import SimpleFileUpload from "@/Components/admin/SimpleFileUpload";
-import ImageFromText from "@/Components/admin/ImageFromText";
-import FileUploadPreview from "@/Components/admin/FileUploadPreview";
+// LOCAL COMPONENT
+import {
+    Alert,
+    DangerButton,
+    Dropdown,
+    Toast,
+    TextInput,
+    InputError,
+    InputLabel,
+    Modal,
+    PrimaryButton,
+    SecondaryButton,
+} from "@/Components/default";
+
+import {
+    BookLoader,
+    FileUpload,
+    FileUploadPreview,
+    FilePreview,
+    ImageFromText,
+} from "@/Components/shared";
+
+import AdminLayout from "@/Layouts/admin/AdminLayout";
+
+// FROM CONFIG
 import { tinymceInitPaper } from "@/config/tinymce";
 import { createOption } from "@/config/function";
-import FilePreview from "@/Components/admin/FilePreview";
 
 export default function Create({ paper, categories, genres }) {
-    const [flash, setFlash] = useState();
-    const [cover, setCover] = useState(null);
-    const [coverFile, setCoverFile] = useState(null);
-    const editorRef = useRef(null);
-    
-    const [optionCategories, setOptionCategories] = useState(
+    const [flash, setFlash] = React.useState();
+    const [cover, setCover] = React.useState(null);
+    const [coverFile, setCoverFile] = React.useState(null);
+    const editorRef = React.useRef(null);
+
+    const [optionCategories, setOptionCategories] = React.useState(
         categories.map((category) =>
             createOption(category.id, category.category)
         )
     );
 
-    const [optionGenres, setOptionGenres] = useState(
+    const [optionGenres, setOptionGenres] = React.useState(
         genres.map((genre) => createOption(genre.id, genre.genre))
     );
 
-    const [valueCategories, setValueCategories] = useState(
+    const [valueCategories, setValueCategories] = React.useState(
         paper?.categories.map((e) => createOption(e.id, e.category))
     );
-    const [valueGenres, setValueGenres] = useState(
+    const [valueGenres, setValueGenres] = React.useState(
         paper?.genres.map((e) => createOption(e.id, e.genre))
     );
 
@@ -61,7 +75,7 @@ export default function Create({ paper, categories, genres }) {
 
     const props = usePage().props;
 
-    useEffect(() => {
+    React.useEffect(() => {
         setFlash(props.flash);
     }, [processing]);
 

@@ -1,10 +1,4 @@
-import React, { useEffect } from "react";
-import AdminLayout from "@/Layouts/admin/AdminLayout";
-import CardStats from "@/Components/admin/Card/CardStats";
-import CardLineChart from "@/Components/admin/Card/CardLineChart";
-import CardBarChart from "@/Components/admin/Card/CardBarChart";
-import TableTrafik from "@/Components/admin/Table/TableTrafik";
-import TableVisitor from "@/Components/admin/Table/TableVisitor";
+import React from "react";
 import { Head } from "@inertiajs/react";
 import {
     Chart as ChartJS,
@@ -15,8 +9,14 @@ import {
     Tooltip,
     Legend,
 } from "chart.js";
+
 import { Bar } from "react-chartjs-2";
-import CardBox from "../../Components/CardBox";
+
+import AdminLayout from "@/Layouts/admin/AdminLayout";
+import CardStats from "@/Components/admin/Card/CardStats";
+
+import { CardBox } from "@/Components/default";
+
 ChartJS.register(
     CategoryScale,
     LinearScale,

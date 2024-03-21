@@ -1,18 +1,21 @@
-import Table from "@/Components/Table";
-import AdminLayout from "@/Layouts/admin/AdminLayout";
-import React, { useEffect, useState } from "react";
-import Dropdown from "@/Components/Dropdown";
+import React from "react";
 import { Head, Link, useForm, usePage } from "@inertiajs/react";
-import Modal from "@/Components/Modal";
-import BookLoader from "@/Components/BookLoader";
-import SecondaryButton from "@/Components/SecondaryButton";
-import DangerButton from "@/Components/DangerButton";
-import Alert from "@/Components/Alert";
-import PrimaryButton from "@/Components/PrimaryButton";
+
+import AdminLayout from "@/Layouts/admin/AdminLayout";
+
+import {
+    Alert,
+    Dropdown,
+    Modal,
+    DangerButton,
+    SecondaryButton,
+    Table,
+} from "@/Components/default";
+import { BookLoader } from "@/Components/shared";
 
 export default function Pages({ articles }) {
-    const [confirmDelete, setConfirmDelete] = useState(false);
-    const [flash, setFlash] = useState();
+    const [confirmDelete, setConfirmDelete] = React.useState(false);
+    const [flash, setFlash] = React.useState();
 
     const onCloseModalDelete = () => {
         setConfirmDelete(false);
@@ -39,7 +42,7 @@ export default function Pages({ articles }) {
     } = useForm();
 
     const props = usePage().props;
-    useEffect(() => {
+    React.useEffect(() => {
         setFlash(props.flash);
     }, [processing]);
 

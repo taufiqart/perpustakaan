@@ -1,8 +1,8 @@
 import React from "react";
 import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
-import Modal from "@/Components/Modal";
-import BookLoader from "@/Components/BookLoader";
-import PrimaryButton from "@/Components/PrimaryButton";
+
+import { Modal, PrimaryButton } from "@/Components/default";
+import { BookLoader } from "@/Components/shared";
 
 export const LoadingRenderer = ({ document, fileName }) => {
     // console.clear();
@@ -59,11 +59,42 @@ export const css = `
 const _config = config;
 const _css = css;
 
-export const FilePreview = ({ data = [], config = _config, css = _css }) => {
+const MKVRender = ({ mainState: { currentDocument } }) => {
+    if (!currentDocument) return null;
+
+    return (
+        <div className="h-full w-full flex flex-col items-center justify-center">
+            <video id="mkv-renderer" controls className="w-full h-fit">
+                <source
+                    id="mkv-source"
+                    src={currentDocument.uri}
+                    type={"video/mp4"}
+                />
+            </video>
+        </div>
+    );
+};
+MKVRender.fileTypes = [
+    "mkv",
+    "3gp",
+    "mp4",
+    "flv",
+    "video/x-matroska",
+    "video/mp4",
+    "video/3gpp",
+    "video/x-flv",
+];
+MKVRender.weight = 1;
+MKVRender.fileLoader = ({ documentURI, signal, fileLoaderComplete }) => {
+    fileLoaderComplete();
+};
+
+export const DocPreview = ({ data = [], config = _config, css = _css }) => {
     const docViewerRef = React.useRef(null);
     const _DocViewerRenderers = DocViewerRenderers.filter(
         (r) => !r.name.includes("HTML")
     );
+    _DocViewerRenderers.push(MKVRender);
 
     React.useEffect(() => {
         let interval = setInterval(() => {
@@ -75,6 +106,7 @@ export const FilePreview = ({ data = [], config = _config, css = _css }) => {
         <>
             <style>{css}</style>
             <DocViewer
+                prefetchMethod="GET"
                 // onDocumentChange={(e) => console.clear()}
                 ref={docViewerRef}
                 documents={data}
@@ -103,7 +135,7 @@ export const ModalFilePreview = ({
                 onClose={onClose}
             >
                 <div className="h-[calc(100vh-100px)] overflow-auto">
-                    <FilePreview data={data} />
+                    <DocPreview data={data} />
                 </div>
             </Modal>
         </>

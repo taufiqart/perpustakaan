@@ -1,8 +1,8 @@
-import { Filter } from "feather-icons-react/build/IconComponents";
-import CardBox from "../Components/CardBox";
-import FilterSearchSide from "../Components/situsiba/FilterSearchSide";
 import { Link } from "@inertiajs/react";
-import Checkbox from "../Components/Checkbox";
+import { Filter } from "feather-icons-react/build/IconComponents";
+
+import FilterSearchSide from "@/Components/situsiba/FilterSearchSide";
+import { CardBox, Checkbox } from "@/Components/default";
 
 export default function SearchLayout({ children }) {
     return (

@@ -1,21 +1,18 @@
-import { useState, useEffect } from "react";
-import ChevronLeft from "feather-icons-react/build/IconComponents/ChevronLeft";
-import ChevronRight from "feather-icons-react/build/IconComponents/ChevronRight";
-import Navbar from "./Navbar";
+import React from "react";
 
 export default function Carousel({
     children: slides,
     autoSlide = false,
     autoSlideInterval = 5000,
 }) {
-    const [curr, setCurr] = useState(0);
+    const [curr, setCurr] = React.useState(0);
 
     const prev = () =>
         setCurr((curr) => (curr === 0 ? slides.length - 1 : curr - 1));
     const next = () =>
         setCurr((curr) => (curr === slides.length - 1 ? 0 : curr + 1));
 
-    useEffect(() => {
+    React.useEffect(() => {
         if (!autoSlide) return;
         const slideInterval = setInterval(next, autoSlideInterval);
         return () => clearInterval(slideInterval);

@@ -1,4 +1,4 @@
-import Dropdown from "./landingpage/Dropdown";
+import Dropdown from "../landingpage/Dropdown";
 
 const Nav = ({ data }) => {
     return (

@@ -1,23 +1,26 @@
-import Alert from "@/Components/Alert";
-import BookLoader from "@/Components/BookLoader";
-import DangerButton from "@/Components/DangerButton";
-import Dropdown from "@/Components/Dropdown";
-import InputError from "@/Components/InputError";
-import InputLabel from "@/Components/InputLabel";
-import Modal from "@/Components/Modal";
-import PrimaryButton from "@/Components/PrimaryButton";
-import SecondaryButton from "@/Components/SecondaryButton";
-import TextInput from "@/Components/TextInput";
-import { Transition } from "@headlessui/react";
+import React from "react";
 import { useForm, usePage } from "@inertiajs/react";
-import React, { Fragment, useEffect, useRef, useState } from "react";
-import Toast from "@/Components/Toast";
+
+import {
+    Alert,
+    DangerButton,
+    Dropdown,
+    Toast,
+    TextInput,
+    InputError,
+    InputLabel,
+    Modal,
+    PrimaryButton,
+    SecondaryButton,
+} from "@/Components/default";
+
+import { BookLoader } from "@/Components/shared";
 
 export default function CardFile({ file }) {
-    const fileRef = useRef();
+    const fileRef = React.useRef();
     const props = usePage().props;
-    const [open, setOpen] = useState(false);
-    const [messageCopy, setMessageCopy] = useState();
+    const [open, setOpen] = React.useState(false);
+    const [messageCopy, setMessageCopy] = React.useState();
     const {
         data,
         setData,
@@ -29,10 +32,10 @@ export default function CardFile({ file }) {
         reset,
     } = useForm();
 
-    const [confirmDelete, setConfirmDelete] = useState(false);
+    const [confirmDelete, setConfirmDelete] = React.useState(false);
 
-    const [formRename, setFormRename] = useState(false);
-    const [flash, setFlash] = useState();
+    const [formRename, setFormRename] = React.useState(false);
+    const [flash, setFlash] = React.useState();
 
     const onCloseModalDelete = () => {
         setConfirmDelete(false);
@@ -53,7 +56,7 @@ export default function CardFile({ file }) {
     const onFormRenameOpen = () => {
         setFormRename(true);
     };
-    useEffect(() => {
+    React.useEffect(() => {
         setFlash(props.flash);
     }, [processing]);
 

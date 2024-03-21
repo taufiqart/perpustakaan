@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 
 export default function Dropdown({ children, component }) {
-    const [openDropdown, setOpenDropdown] = useState(false);
+    const [openDropdown, setOpenDropdown] = React.useState(false);
     window.addEventListener("click", () => {
         setOpenDropdown(!openDropdown);
     });

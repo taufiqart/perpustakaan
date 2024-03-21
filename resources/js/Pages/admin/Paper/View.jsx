@@ -1,25 +1,27 @@
+import React from "react";
 import { Head, Link, useForm, usePage } from "@inertiajs/react";
+
 import AdminLayout from "@/Layouts/admin/AdminLayout";
-import Modal from "@/Components/Modal";
-import BookLoader from "@/Components/BookLoader";
-import Alert from "@/Components/Alert";
-import SecondaryButton from "@/Components/SecondaryButton";
-import DangerButton from "@/Components/DangerButton";
 
-import { useCallback, useState, useEffect } from "react";
+import {
+    Modal,
+    Alert,
+    SecondaryButton,
+    DangerButton,
+} from "@/Components/default";
 
-import ContentView from "@/Components/shared/ContentView";
+import { BookLoader, ContentView } from "@/Components/shared";
 
 export default function View({ paper }) {
-    const [confirmDelete, setConfirmDelete] = useState(false);
-    const [flash, setFlash] = useState();
+    const [confirmDelete, setConfirmDelete] = React.useState(false);
+    const [flash, setFlash] = React.useState();
 
-    const [file, setFile] = useState(null);
-    const [numPages, setNumPages] = useState();
-    const [containerRef, setContainerRef] = useState(null);
-    const [containerWidth, setContainerWidth] = useState();
+    const [file, setFile] = React.useState(null);
+    const [numPages, setNumPages] = React.useState();
+    const [containerRef, setContainerRef] = React.useState(null);
+    const [containerWidth, setContainerWidth] = React.useState();
 
-    useEffect(() => {
+    React.useEffect(() => {
         paper?.post_assets &&
             paper?.post_assets.length > 0 &&
             setFile(paper?.post_assets[0]?.url);
@@ -47,7 +49,7 @@ export default function View({ paper }) {
     } = useForm();
 
     const props = usePage().props;
-    useEffect(() => {
+    React.useEffect(() => {
         setFlash(props.flash);
     }, [processing]);
 

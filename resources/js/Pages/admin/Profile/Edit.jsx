@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "@inertiajs/react";
-import Input from '@/Components/Input';
+import { Input } from "@/Components/default";
 
 export default function Edit({ profile }) {
     const { data, setData, errors, processing, post, clearErrors } =

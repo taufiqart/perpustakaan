@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from "react";
-import Modal from "@/Components/Modal";
-import InputError from "@/Components/InputError";
+import React, { useEffect, useRef, useState } from "react";
+
+import { Modal, InputError } from "@/Components/default";
+
 export default function SimpleFileUpload({
     accept = "*",
     multiple = true,
@@ -8,11 +9,11 @@ export default function SimpleFileUpload({
     maxFileSize = 2048,
     ...props
 }) {
-    let styleRef = useRef(null);
-    const [files, setFiles] = useState([]);
-    const [fileDragging, setFileDragging] = useState(null);
-    const [fileDropping, setFileDropping] = useState(null);
-    const [errorFiles, setErrorFiles] = useState([]);
+    let styleRef = React.useRef(null);
+    const [files, setFiles] = React.useState([]);
+    const [fileDragging, setFileDragging] = React.useState(null);
+    const [fileDropping, setFileDropping] = React.useState(null);
+    const [errorFiles, setErrorFiles] = React.useState([]);
 
     const dataFileDnD = {
         humanFileSize(size) {
@@ -80,7 +81,7 @@ export default function SimpleFileUpload({
             }
         },
     };
-    useEffect(() => {
+    React.useEffect(() => {
         setData(files);
     }, [files]);
     return (

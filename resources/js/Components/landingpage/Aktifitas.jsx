@@ -1,4 +1,3 @@
-import Card from "@/Components/landingpage/Card";
 import CardSlider from "./SliderCard";
 
 export default function Aktifitas({data}) {

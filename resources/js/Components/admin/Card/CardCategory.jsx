@@ -1,5 +1,6 @@
-import Dropdown from "@/Components/Dropdown";
 import React from "react";
+
+import { Dropdown } from "@/Components/default";
 
 export default function CardCategory({
     category,

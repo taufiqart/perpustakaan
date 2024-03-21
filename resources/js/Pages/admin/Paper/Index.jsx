@@ -1,14 +1,16 @@
-import BookCard from "@/Components/BookCard";
-
+import React from "react";
 import { Head, Link, usePage } from "@inertiajs/react";
+
+import { Alert } from "@/Components/default";
+
+import { BookCard } from "@/Components/shared";
+
 import AdminLayout from "@/Layouts/admin/AdminLayout";
-import { useState, useEffect } from "react";
-import Alert from '@/Components/Alert';
 
 export default function PaperIndex({ papers }) {
-    const [flash, setFlash] = useState();
+    const [flash, setFlash] = React.useState();
     const props = usePage().props;
-    useEffect(() => {
+    React.useEffect(() => {
         setFlash(props.flash);
     }, []);
     return (

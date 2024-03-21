@@ -1,12 +1,14 @@
+import React from "react";
+
 import {
     ChevronLeft,
     ChevronRight,
 } from "feather-icons-react/build/IconComponents";
-import BookCard from "../BookCard";
-import { useRef } from "react";
+
+import { BookCard } from "@/Components/shared";
 
 function BookSlider({ data }) {
-    const contentRef = useRef();
+    const contentRef = React.useRef();
     const scrollLeft = () => {
         contentRef.current.scrollLeft -=
             contentRef.current.firstChild.getBoundingClientRect().width;
@@ -38,8 +40,8 @@ function BookSlider({ data }) {
                 className="transition-all flex overflow-auto scroll-smooth scrollbar-hide snap-mandatory snap-x py-2 duration-1000"
             >
                 <div className="flex flex-row items-center justify-center gap-16 my-20">
-                    {(data &&
-                        data.length > 0) &&
+                    {data &&
+                        data.length > 0 &&
                         data.map((paper) => {
                             return (
                                 <BookCard
@@ -52,7 +54,7 @@ function BookSlider({ data }) {
                                     )}
                                 />
                             );
-                        })  }
+                        })}
                 </div>
             </div>
         </div>
@@ -60,4 +62,3 @@ function BookSlider({ data }) {
 }
 
 export default BookSlider;
-

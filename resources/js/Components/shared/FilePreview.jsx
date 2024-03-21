@@ -1,9 +1,8 @@
-import { useEffect, useRef, useState } from "react";
-import { Link, useForm } from "@inertiajs/react";
-import Modal from "@/Components/Modal";
-import BookLoader from "../../Components/BookLoader";
-import SecondaryButton from "@/Components/SecondaryButton";
-import DangerButton from "@/Components/DangerButton";
+import React from "react";
+import { useForm } from "@inertiajs/react";
+
+import { Modal, SecondaryButton, DangerButton } from "@/Components/default";
+import { RenderFileIcon, BookLoader } from "@/Components/shared";
 
 export default function FilePreview({ dataFiles, deleteRoute, ...props }) {
     const {
@@ -18,8 +17,8 @@ export default function FilePreview({ dataFiles, deleteRoute, ...props }) {
         clearErrors,
     } = useForm();
 
-    let styleRef = useRef(null);
-    const [files, setFiles] = useState(
+    let styleRef = React.useRef(null);
+    const [files, setFiles] = React.useState(
         dataFiles?.map((file) => {
             file["type"] = file.mime_type;
             file["name"] = file.title;
@@ -27,11 +26,11 @@ export default function FilePreview({ dataFiles, deleteRoute, ...props }) {
         })
     );
 
-    const [fileDragging, setFileDragging] = useState(null);
-    const [fileDropping, setFileDropping] = useState(null);
-    const [errorFiles, setErrorFiles] = useState([]);
+    const [fileDragging, setFileDragging] = React.useState(null);
+    const [fileDropping, setFileDropping] = React.useState(null);
+    const [errorFiles, setErrorFiles] = React.useState([]);
 
-    const [deleteModal, setDeleteModal] = useState(false);
+    const [deleteModal, setDeleteModal] = React.useState(false);
 
     const onDeleteForm = (e) => {
         e.preventDefault();
@@ -188,63 +187,9 @@ export default function FilePreview({ dataFiles, deleteRoute, ...props }) {
                                             href={files[index].url}
                                             download={files[index].title}
                                         >
-                                            {files[index].type.includes(
-                                                "audio/"
-                                            ) && (
-                                                <svg
-                                                    className="absolute w-12 h-12 text-gray-400 transform top-1/2 -translate-y-2/3"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    fill="none"
-                                                    viewBox="0 0 24 24"
-                                                    stroke="currentColor"
-                                                >
-                                                    <path
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                        strokeWidth="2"
-                                                        d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"
-                                                    />
-                                                </svg>
-                                            )}
-                                            {(files[index].type.includes(
-                                                "application/"
-                                            ) ||
-                                                files[index].type === "") && (
-                                                <div className="w-full h-full flex flex-col justify-center items-center">
-                                                    <svg
-                                                        className="absolute w-12 h-12 text-gray-400 transform top-1/2 -translate-y-2/3"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        fill="none"
-                                                        viewBox="0 0 24 24"
-                                                        stroke="currentColor"
-                                                    >
-                                                        <path
-                                                            strokeLinecap="round"
-                                                            strokeLinejoin="round"
-                                                            strokeWidth="2"
-                                                            d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"
-                                                        />
-                                                    </svg>
-                                                </div>
-                                            )}
-                                            {files[index].type.includes(
-                                                "image/"
-                                            ) && (
-                                                <img
-                                                    className="absolute inset-0 z-0 object-cover w-full h-full border-4 border-white preview"
-                                                    src={files[index].url}
-                                                />
-                                            )}
-                                            {files[index].type.includes(
-                                                "video/"
-                                            ) && (
-                                                <video className="absolute inset-0 object-cover w-full h-full border-4 border-white pointer-events-none preview">
-                                                    <source
-                                                        src={files[index].url}
-                                                        type="video/mp4"
-                                                    />
-                                                </video>
-                                            )}
+                                            <RenderFileIcon
+                                                file={files[index]}
+                                            />
                                             <div className="absolute bottom-0 left-0 right-0 flex flex-col p-2 text-xs bg-white bg-opacity-50">
                                                 <span className="w-full font-bold text-gray-900 truncate">
                                                     {files[index].name ??

@@ -1,4 +1,4 @@
-import BookCard from "../BookCard";
+import { BookCard } from "@/Components/shared";
 import Search from "./Search";
 
 export default function SituSiba({ papers, className = "" }) {

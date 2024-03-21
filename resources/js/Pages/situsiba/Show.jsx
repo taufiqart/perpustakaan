@@ -1,8 +1,8 @@
 import React from "react";
-
 import { Head } from "@inertiajs/react";
+
 import SitusibaLayout from "@/Layouts/SitusibaLayout";
-import ContentView from "@/Components/shared/ContentView";
+import { ContentView } from "@/Components/shared";
 
 export default function Show({ paper }) {
     return (

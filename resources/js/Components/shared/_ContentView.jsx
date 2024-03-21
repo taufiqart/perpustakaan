@@ -1,7 +1,6 @@
 import React from "react";
 
-import BookViewCustom from "@/Components/BookViewCustom";
-import FilePreviewShow from "@/Components/admin/FilePreviewShow";
+import { BookViewCustom, FilePreviewShow } from "@/Components/shared";
 
 import { useResizeObserver } from "@wojtekmaj/react-hooks";
 import { pdfjs, Document, Page } from "react-pdf";

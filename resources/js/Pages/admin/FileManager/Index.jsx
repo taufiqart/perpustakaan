@@ -1,19 +1,23 @@
-import AdminLayout from "@/Layouts/admin/AdminLayout";
-import React, { useEffect, useState } from "react";
-import CardFile from "./partials/CardFile";
-import SecondaryButton from "@/Components/SecondaryButton";
-import PrimaryButton from "@/Components/PrimaryButton";
-import TextInput from "@/Components/TextInput";
-import InputError from "@/Components/InputError";
-import BookLoader from "@/Components/BookLoader";
-import Modal from "@/Components/Modal";
-import InputLabel from "@/Components/InputLabel";
+import React from "react";
 import { Head, useForm, usePage } from "@inertiajs/react";
-import Alert from "@/Components/Alert";
+
+import AdminLayout from "@/Layouts/admin/AdminLayout";
+
+import CardFile from "./partials/CardFile";
+
+import {
+    Modal,
+    Alert,
+    InputLabel,
+    SecondaryButton,
+    PrimaryButton,
+    InputError,
+} from "@/Components/default";
+import { BookLoader } from "@/Components/shared";
 
 export default function Index({ files }) {
-    const [formAdd, setFormAdd] = useState(false);
-    const [flash, setFlash] = useState();
+    const [formAdd, setFormAdd] = React.useState(false);
+    const [flash, setFlash] = React.useState();
 
     const onFormAddClose = () => {
         setFormAdd(false);
@@ -41,7 +45,7 @@ export default function Index({ files }) {
     });
 
     const props = usePage().props;
-    useEffect(() => {
+    React.useEffect(() => {
         setFlash(props.flash);
         if (props.flash?.success) {
             setTimeout(() => {

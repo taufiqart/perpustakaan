@@ -1,15 +1,17 @@
+import React from "react";
+import { Head } from "@inertiajs/react";
+
 import Aktifitas from "@/Components/landingpage/Aktifitas";
 import Alamat from "@/Components/landingpage/Alamat";
 import Tanggal from "@/Components/landingpage/Date";
 import Isi from "@/Components/landingpage/Isi";
 import Kontak from "@/Components/landingpage/Kontak";
 import Operasional from "@/Components/landingpage/Operasional";
-import { Head } from "@inertiajs/react";
-import { useState } from "react";
+
 import ClientLayout from "@/Layouts/ClientLayout";
 
 export default function Index(props) {
-    const [show, setShow] = useState(true);
+    const [show, setShow] = React.useState(true);
     return (
         <ClientLayout>
             <Head

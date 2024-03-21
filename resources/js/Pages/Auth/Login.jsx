@@ -1,9 +1,12 @@
-import { useEffect } from "react";
-import Checkbox from "@/Components/Checkbox";
-import InputError from "@/Components/InputError";
-import InputLabel from "@/Components/InputLabel";
-import TextInput from "@/Components/TextInput";
+import React from "react";
 import { Head, Link, useForm } from "@inertiajs/react";
+
+import {
+    TextInput,
+    Checkbox,
+    InputError,
+    InputLabel,
+} from "@/Components/default";
 
 export default function Login({ status, cantResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -12,7 +15,7 @@ export default function Login({ status, cantResetPassword }) {
         remember: "",
     });
 
-    useEffect(() => {
+    React.useEffect(() => {
         return () => {
             reset("password");
         };

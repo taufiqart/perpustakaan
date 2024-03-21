@@ -1,9 +1,9 @@
-import { AiOutlineCaretDown, AiOutlineCaretUp } from "react-icons/ai";
-import { useState } from "react";
+import React from "react";
 import { Link } from "@inertiajs/react";
+import { AiOutlineCaretDown, AiOutlineCaretUp } from "react-icons/ai";
 
-function Dropdown({ data }) {
-    const [isOpen, setIsOpen] = useState(false);
+export default function Dropdown({ data }) {
+    const [isOpen, setIsOpen] = React.useState(false);
     return (
         <>
             {isOpen && (
@@ -99,5 +99,3 @@ function Dropdown({ data }) {
         </>
     );
 }
-
-export default Dropdown;

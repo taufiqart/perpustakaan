@@ -1,22 +1,24 @@
+import React from "react";
 import { Link, usePage } from "@inertiajs/react";
-import React, { useEffect, useState, useRef } from "react";
+
 import {
     ChevronsLeft,
     Filter,
     Search,
 } from "feather-icons-react/build/IconComponents";
-import CustomCheckbox from "@/Components/CustomCheckbox";
+
+import { CustomCheckbox } from "@/Components/default";
 
 export default function FilterSidebar() {
-    const [show, setShow] = useState(false);
-    const [load, setLoad] = useState(true);
-    const [resize, setResize] = useState(false);
-    const [translateX, setTranslateX] = useState(0);
-    let navRef = useRef();
-    const [windowResizing, setWindowResizing] = useState(false);
+    const [show, setShow] = React.useState(false);
+    const [load, setLoad] = React.useState(true);
+    const [resize, setResize] = React.useState(false);
+    const [translateX, setTranslateX] = React.useState(0);
+    let navRef = React.useRef();
+    const [windowResizing, setWindowResizing] = React.useState(false);
     const props = usePage().props;
 
-    useEffect(() => {
+    React.useEffect(() => {
         let timeout;
         const handleResize = () => {
             handleToggle(false);
@@ -35,14 +37,14 @@ export default function FilterSidebar() {
 
     let width = 0;
 
-    useEffect(() => {
+    React.useEffect(() => {
         let ___ = setTimeout(() => {
             setLoad(false);
             clearTimeout(___);
         }, 1000);
     }, []);
 
-    useEffect(() => {
+    React.useEffect(() => {
         width = Math.ceil(navRef?.current?.getBoundingClientRect().width ?? 0);
         setTranslateX(0 - (width + 500));
     }, [navRef, windowResizing]);
@@ -52,7 +54,7 @@ export default function FilterSidebar() {
         setShow(param);
         param ? setTranslateX(0) : setTranslateX(0 - (width + 500));
     };
-    useEffect(() => {
+    React.useEffect(() => {
         const dark = window.localStorage.getItem("dark");
         if (dark != null && dark != undefined && dark == "true") {
             document.querySelector("#dark-toggle").checked = true;

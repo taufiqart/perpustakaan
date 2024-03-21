@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState } from "react";
-import TextInput from "@/Components/TextInput";
+import React from "react";
+
+import { TextInput } from "@/Components/default";
 
 export default function FileUploadPreview({
     accept = "*",
@@ -10,9 +11,9 @@ export default function FileUploadPreview({
     className = "",
     ...props
 }) {
-    let imagePreview = useRef(null);
-    let inputFile = useRef(null);
-    const [files, setFiles] = useState(null);
+    let imagePreview = React.useRef(null);
+    let inputFile = React.useRef(null);
+    const [files, setFiles] = React.useState(null);
 
     const remove = () => {
         setFiles(null);
@@ -21,7 +22,7 @@ export default function FileUploadPreview({
         inputFile.value = "";
     };
 
-    useEffect(() => {
+    React.useEffect(() => {
         files && (imagePreview.src = URL.createObjectURL(files));
         setData(files);
     }, [files]);

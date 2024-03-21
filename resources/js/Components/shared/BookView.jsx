@@ -1,5 +1,5 @@
 import { useState } from "react";
-import BookBottom from "../Image/BookBottom";
+import BookBottom from "@/Image/BookBottom";
 
 export default function BookView({ paper }) {
     const [scrollTransform, setScrollTransform] = useState("");

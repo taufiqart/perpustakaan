@@ -1,16 +1,21 @@
-import Alert from "@/Components/Alert";
-import BookLoader from "@/Components/BookLoader";
-import PrimaryButton from "@/Components/PrimaryButton";
-import AdminLayout from "@/Layouts/admin/AdminLayout";
+import React from "react";
 import { Head, Link, useForm, usePage, router } from "@inertiajs/react";
-import Input from "@/Components/Input";
-import React, { useEffect, useRef, useState } from "react";
-import InputLabel from "@/Components/InputLabel";
 import CreatableSelect from "react-select/creatable";
-import InputError from "@/Components/InputError";
+
+import AdminLayout from "@/Layouts/admin/AdminLayout";
+
+// LOCAL COMPONENT
+import {
+    Alert,
+    Input,
+    InputError,
+    InputLabel,
+    PrimaryButton,
+} from "@/Components/default";
+
+import { BookLoader, FileUploadPreview } from "@/Components/shared";
+
 import { createOption } from "@/config/function";
-import FileUploadPreview from "@/Components/admin/FileUploadPreview";
-import TextInput from "@/Components/TextInput";
 
 export default function Create({
     user,
@@ -20,7 +25,7 @@ export default function Create({
     class_rooms,
     gender,
 }) {
-    const [UserDetail, setUserDetail] = useState(
+    const [UserDetail, setUserDetail] = React.useState(
         user?.user_detail ?? {
             avatar: null,
             address: "",
@@ -36,13 +41,13 @@ export default function Create({
             phone_number: "",
         }
     );
-    const [flash, setFlash] = useState();
+    const [flash, setFlash] = React.useState();
     const props = usePage().props;
 
     const optionMajor = majors.map((major) =>
         createOption(major.id, major.major)
     );
-    const [valueMajor, setValueMajor] = useState(
+    const [valueMajor, setValueMajor] = React.useState(
         user?.major && createOption(user?.major.id, user?.major.major)
     );
 
@@ -50,12 +55,12 @@ export default function Create({
         createOption(class_room.id, class_room.class)
     );
 
-    const [valueClassRoom, setValueClassRoom] = useState(
+    const [valueClassRoom, setValueClassRoom] = React.useState(
         user?.class_room &&
             createOption(user?.class_room.id, user?.class_room.major)
     );
 
-    const [valueIidentityType, setValueIidentityType] = useState(
+    const [valueIidentityType, setValueIidentityType] = React.useState(
         user?.user_detail?.identity_type &&
             createOption(
                 user?.user_detail.identity_type.id,
@@ -63,7 +68,7 @@ export default function Create({
             )
     );
 
-    const [valueMemberType, setValueMemberType] = useState(
+    const [valueMemberType, setValueMemberType] = React.useState(
         user?.user_detail?.member_type &&
             createOption(
                 user?.user_detail.member_type.id,
@@ -71,8 +76,8 @@ export default function Create({
             )
     );
 
-    const [valueGender, setValueGender] = useState();
-    useEffect(() => {
+    const [valueGender, setValueGender] = React.useState();
+    React.useEffect(() => {
         if (user?.user_detail) {
             let _gender = gender.filter(
                 (__) => __.value == user?.user_detail.gender
@@ -89,11 +94,11 @@ export default function Create({
         }
     );
 
-    useEffect(() => {
+    React.useEffect(() => {
         setData("user_detail", UserDetail);
     }, [UserDetail]);
 
-    useEffect(() => {
+    React.useEffect(() => {
         setFlash(props.flash);
     }, [processing]);
 

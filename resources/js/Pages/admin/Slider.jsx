@@ -1,22 +1,26 @@
-import AdminLayout from "@/Layouts/admin/AdminLayout";
-import React, { useEffect, useState } from "react";
-import SecondaryButton from "@/Components/SecondaryButton";
-import PrimaryButton from "@/Components/PrimaryButton";
-import TextInput from "@/Components/TextInput";
-import InputError from "@/Components/InputError";
-import BookLoader from "@/Components/BookLoader";
-import Modal from "@/Components/Modal";
-import InputLabel from "@/Components/InputLabel";
+import React from "react";
 import { Head, useForm, usePage } from "@inertiajs/react";
-import Alert from "@/Components/Alert";
-import Table from "@/Components/Table";
-import DangerButton from "@/Components/DangerButton";
-import Dropdown from "@/Components/Dropdown";
+
+import AdminLayout from "@/Layouts/admin/AdminLayout";
+
+import {
+    Alert,
+    Dropdown,
+    Modal,
+    DangerButton,
+    SecondaryButton,
+    PrimaryButton,
+    InputError,
+    InputLabel,
+    Table,
+} from "@/Components/default";
+
+import { BookLoader } from "@/Components/shared";
 
 export default function Slider({ sliders }) {
-    const [formAdd, setFormAdd] = useState(false);
-    const [flash, setFlash] = useState();
-    const [confirmDelete, setConfirmDelete] = useState(false);
+    const [formAdd, setFormAdd] = React.useState(false);
+    const [flash, setFlash] = React.useState();
+    const [confirmDelete, setConfirmDelete] = React.useState(false);
 
     const onCloseModalDelete = () => {
         setConfirmDelete(false);
@@ -54,7 +58,7 @@ export default function Slider({ sliders }) {
     });
 
     const props = usePage().props;
-    useEffect(() => {
+    React.useEffect(() => {
         setFlash(props.flash);
         if (props.flash?.success) {
             setTimeout(() => {

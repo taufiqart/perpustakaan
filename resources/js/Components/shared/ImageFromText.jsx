@@ -1,18 +1,18 @@
-import { useEffect, useRef, useState } from "react";
-import TextInput from "@/Components/TextInput";
-import InputLabel from "@/Components/InputLabel";
+import React from "react";
 import Select from "react-select";
 
-export default function ImageFromText({ text, setData }) {
-    let canvas = useRef(null);
+import { TextInput, InputLabel } from "@/Components/default";
 
-    const [bgColor, setBgColor] = useState(
+export default function ImageFromText({ text, setData }) {
+    let canvas = React.useRef(null);
+
+    const [bgColor, setBgColor] = React.useState(
         `#${Math.floor(Math.random() * 16777215).toString(16)}`
     );
-    const [textColor, setTextColor] = useState("#ffffff");
-    const [textSize, setTextSize] = useState(80);
-    const [font, setFont] = useState("Monospace");
-    const [margin, setMargin] = useState({
+    const [textColor, setTextColor] = React.useState("#ffffff");
+    const [textSize, setTextSize] = React.useState(80);
+    const [font, setFont] = React.useState("Monospace");
+    const [margin, setMargin] = React.useState({
         top: 50,
         right: 50,
         bottom: 50,
@@ -89,13 +89,13 @@ export default function ImageFromText({ text, setData }) {
         });
     };
 
-    useEffect(() => {
+    React.useEffect(() => {
         canvas.width = canvas.clientWidth * 4;
         canvas.height = canvas.clientHeight * 4;
         ctx = canvas.getContext("2d");
     }, []);
 
-    useEffect(() => {
+    React.useEffect(() => {
         ctx = canvas.getContext("2d");
         if (ctx != undefined) {
             draw(ctx);

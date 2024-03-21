@@ -1,18 +1,25 @@
-import Alert from "@/Components/Alert";
-import BookLoader from "@/Components/BookLoader";
-import InputError from "@/Components/InputError";
-import InputLabel from "@/Components/InputLabel";
-import PrimaryButton from "@/Components/PrimaryButton";
-import TextInput from "@/Components/TextInput";
-import AdminLayout from "@/Layouts/admin/AdminLayout";
-import { tinymceInit } from "@/config/tinymce";
+import React from "react";
 import { Head, Link, useForm, usePage } from "@inertiajs/react";
 import { Editor } from "@tinymce/tinymce-react";
-import React, { useEffect, useRef, useState } from "react";
+
+import AdminLayout from "@/Layouts/admin/AdminLayout";
+
+// LOCAL COMPONENT
+import {
+    Alert,
+    TextInput,
+    InputError,
+    InputLabel,
+    PrimaryButton,
+} from "@/Components/default";
+
+import { BookLoader } from "@/Components/shared";
+
+import { tinymceInit } from "@/config/tinymce";
 
 export default function Create({ article, categories }) {
-    const [flash, setFlash] = useState();
-    const editorRef = useRef(null);
+    const [flash, setFlash] = React.useState();
+    const editorRef = React.useRef(null);
 
     if (article?.content) {
         article["content"] = article.content.replaceAll('src="../..', 'src="');
@@ -32,7 +39,7 @@ export default function Create({ article, categories }) {
 
     const props = usePage().props;
 
-    useEffect(() => {
+    React.useEffect(() => {
         setFlash(props.flash);
     }, [processing]);
 

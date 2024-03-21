@@ -1,8 +1,12 @@
 import React from "react";
 
-import BookViewCustom from "@/Components/BookViewCustom";
-import FilePreviewShow from "@/Components/admin/FilePreviewShow";
-import { FilePreview, config } from "@/Components/ModalFilePreview";
+import {
+    BookViewCustom,
+    FilePreviewShow,
+    DocPreview,
+} from "@/Components/shared";
+
+import { config } from "@/Components/shared/ModalFilePreview";
 
 export default function ContentView({ content, fileList = [], ...props }) {
     const _css = `
@@ -19,6 +23,9 @@ export default function ContentView({ content, fileList = [], ...props }) {
             background-image: none;
             background-color: transparent;
         }
+        #custom-file-viewer #msdoc-iframe {
+            min-height: 100vh;
+        }
 
     `;
 
@@ -27,6 +34,8 @@ export default function ContentView({ content, fileList = [], ...props }) {
     React.useEffect(() => {
         file.uri = file.url;
     }, []);
+
+    const _DocPreview = React.useMemo(() => DocPreview);
 
     console.log(file);
     return (
@@ -49,13 +58,12 @@ export default function ContentView({ content, fileList = [], ...props }) {
                                 }}
                             ></div>
                         ) : (
-                            fileList &&
-                            fileList.length > 0 && (
+                            file && (
                                 <div
                                     className="-mx-5 sm:-mx-10 md:-mx-[25px] mt-5"
                                     id="custom-file-viewer"
                                 >
-                                    <FilePreview
+                                    <_DocPreview
                                         data={[file]}
                                         config={config}
                                         css={_css}

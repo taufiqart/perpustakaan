@@ -1,9 +1,11 @@
-import { useRef } from "react";
+import React from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
+
 import CButton from "./CButton";
 import Dropdown from "./Dropdown";
+
 export default function Navbar({ data, className }) {
-    const navRef = useRef();
+    const navRef = React.useRef();
 
     const showNavbar = () => {
         navRef.current?.classList.toggle("translate-y-[200vh]");

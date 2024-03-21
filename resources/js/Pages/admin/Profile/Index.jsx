@@ -1,16 +1,19 @@
-import { Head, Link, useForm, usePage } from "@inertiajs/react";
+import React from "react";
+import { Head, usePage } from "@inertiajs/react";
+
 import AdminLayout from "@/Layouts/admin/AdminLayout";
-import React, { useState } from "react";
 import Edit from "./Edit";
 
 export default function ProfileIndex({ user }) {
     const [show, setShow] = React.useState(false);
 
-    const [userDetail, setUserDetail] = useState({});
+    const [userDetail, setUserDetail] = React.useState({});
     const props = usePage().props;
-    useState(() => {
+    
+    React.useEffect(() => {
         setUserDetail(user?.user_detail);
     }, [props]);
+
     return (
         <>
             <Head title={`Profile`} />

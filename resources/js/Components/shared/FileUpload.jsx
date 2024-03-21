@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from "react";
-import Modal from "@/Components/Modal";
-import InputError from "@/Components/InputError";
+import React from "react";
+
+import { Modal, InputError } from "@/Components/default";
+import { RenderFileIcon } from "@/Components/shared";
 
 export default function FileUpload({
     accept = "*",
@@ -9,11 +10,11 @@ export default function FileUpload({
     maxFileSize = 2048,
     ...props
 }) {
-    let styleRef = useRef(null);
-    const [files, setFiles] = useState([]);
-    const [fileDragging, setFileDragging] = useState(null);
-    const [fileDropping, setFileDropping] = useState(null);
-    const [errorFiles, setErrorFiles] = useState([]);
+    let styleRef = React.useRef(null);
+    const [files, setFiles] = React.useState([]);
+    const [fileDragging, setFileDragging] = React.useState(null);
+    const [fileDropping, setFileDropping] = React.useState(null);
+    const [errorFiles, setErrorFiles] = React.useState([]);
 
     const dataFileDnD = {
         humanFileSize(size) {
@@ -82,7 +83,7 @@ export default function FileUpload({
         },
     };
 
-    useEffect(() => {
+    React.useEffect(() => {
         setData(files);
     }, [files]);
 
@@ -205,65 +206,7 @@ export default function FileUpload({
                                                 />
                                             </svg>
                                         </button>
-                                        {files[index].type.includes(
-                                            "audio/"
-                                        ) && (
-                                            <svg
-                                                className="absolute w-12 h-12 text-gray-400 transform top-1/2 -translate-y-2/3"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                fill="none"
-                                                viewBox="0 0 24 24"
-                                                stroke="currentColor"
-                                            >
-                                                <path
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                    strokeWidth="2"
-                                                    d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"
-                                                />
-                                            </svg>
-                                        )}
-                                        {(files[index].type.includes(
-                                            "application/"
-                                        ) ||
-                                            files[index].type === "") && (
-                                            <svg
-                                                className="absolute w-12 h-12 text-gray-400 transform top-1/2 -translate-y-2/3"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                fill="none"
-                                                viewBox="0 0 24 24"
-                                                stroke="currentColor"
-                                            >
-                                                <path
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                    strokeWidth="2"
-                                                    d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"
-                                                />
-                                            </svg>
-                                        )}
-                                        {files[index].type.includes(
-                                            "image/"
-                                        ) && (
-                                            <img
-                                                className="absolute inset-0 z-0 object-cover w-full h-full border-4 border-white preview"
-                                                src={dataFileDnD.loadFile(
-                                                    files[index]
-                                                )}
-                                            />
-                                        )}
-                                        {files[index].type.includes(
-                                            "video/"
-                                        ) && (
-                                            <video className="absolute inset-0 object-cover w-full h-full border-4 border-white pointer-events-none preview">
-                                                <source
-                                                    src={dataFileDnD.loadFile(
-                                                        files[index]
-                                                    )}
-                                                    type="video/mp4"
-                                                />
-                                            </video>
-                                        )}
+                                        <RenderFileIcon file={files[index]} loadFile={dataFileDnD.loadFile} />
                                         <div className="absolute bottom-0 left-0 right-0 flex flex-col p-2 text-xs bg-white bg-opacity-50">
                                             <span className="w-full font-bold text-gray-900 truncate">
                                                 {files[index].name ?? "Loading"}

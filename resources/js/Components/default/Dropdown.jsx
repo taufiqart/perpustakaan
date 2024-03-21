@@ -1,11 +1,11 @@
-import { useState, createContext, useContext, Fragment } from "react";
+import React from "react";
 import { Link } from "@inertiajs/react";
 import { Transition } from "@headlessui/react";
 
-const DropDownContext = createContext();
+const DropDownContext = React.createContext();
 
 const Dropdown = ({ children }) => {
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = React.useState(false);
 
     const toggleOpen = () => {
         setOpen((previousState) => !previousState);
@@ -19,7 +19,7 @@ const Dropdown = ({ children }) => {
 };
 
 const Trigger = ({ children }) => {
-    const { open, setOpen, toggleOpen } = useContext(DropDownContext);
+    const { open, setOpen, toggleOpen } = React.useContext(DropDownContext);
 
     return (
         <>
@@ -41,7 +41,7 @@ const Content = ({
     contentClasses = "py-1 bg-white",
     children,
 }) => {
-    const { open, setOpen } = useContext(DropDownContext);
+    const { open, setOpen } = React.useContext(DropDownContext);
 
     let alignmentClasses = "origin-top";
 
@@ -60,7 +60,7 @@ const Content = ({
     return (
         <>
             <Transition
-                as={Fragment}
+                as={React.Fragment}
                 show={open}
                 enter="transition ease-out duration-200"
                 enterFrom="transform opacity-0 scale-95"

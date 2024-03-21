@@ -1,10 +1,12 @@
-import Card from "./Card";
+import React from "react";
+
 import ChevronLeft from "feather-icons-react/build/IconComponents/ChevronLeft";
 import ChevronRight from "feather-icons-react/build/IconComponents/ChevronRight";
-import { useRef } from "react";
 
-function CardSlider({data}) {
-    const contentRef = useRef();
+import Card from "./Card";
+
+export default function CardSlider({ data }) {
+    const contentRef = React.useRef();
     const scrollLeft = () => {
         contentRef.current.scrollLeft -=
             contentRef.current.firstChild.getBoundingClientRect().width;
@@ -35,10 +37,10 @@ function CardSlider({data}) {
                 ref={contentRef}
                 className="flex overflow-auto scroll-smooth scrollbar-hide snap-mandatory snap-x py-2"
             >
-                {data.map((article,idx) => {
+                {data.map((article, idx) => {
                     return (
                         <div key={idx}>
-                            <Card article={article}/>
+                            <Card article={article} />
                         </div>
                     );
                 })}
@@ -46,5 +48,3 @@ function CardSlider({data}) {
         </div>
     );
 }
-
-export default CardSlider;

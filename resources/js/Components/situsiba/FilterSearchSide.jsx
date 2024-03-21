@@ -1,22 +1,23 @@
+import React from "react";
 import { Link } from "@inertiajs/react";
-import React, { useEffect, useState } from "react";
+
 import {
     ChevronsLeft,
     Filter,
     Search,
 } from "feather-icons-react/build/IconComponents";
-import Checkbox from "../Checkbox";
-import { useRef } from "react";
+
+import { Checkbox } from "@/Components/default";
 
 export default function FilterSearchSide() {
-    const [show, setShow] = useState(false);
-    const [load, setLoad] = useState(true);
-    const [resize, setResize] = useState(false);
-    const [translateX, setTranslateX] = useState(0);
-    let navRef = useRef();
-    const [windowResizing, setWindowResizing] = useState(false);
+    const [show, setShow] = React.useState(false);
+    const [load, setLoad] = React.useState(true);
+    const [resize, setResize] = React.useState(false);
+    const [translateX, setTranslateX] = React.useState(0);
+    let navRef = React.useRef();
+    const [windowResizing, setWindowResizing] = React.useState(false);
 
-    useEffect(() => {
+    React.useEffect(() => {
         let timeout;
         const handleResize = () => {
             handleToggle(false);
@@ -35,14 +36,14 @@ export default function FilterSearchSide() {
 
     let width = 0;
 
-    useEffect(() => {
+    React.useEffect(() => {
         let ___ = setTimeout(() => {
             setLoad(false);
             clearTimeout(___);
         }, 1000);
     }, []);
 
-    useEffect(() => {
+    React.useEffect(() => {
         width = Math.ceil(navRef?.current?.getBoundingClientRect().width ?? 0);
         setTranslateX(0 - (width + 500));
     }, [navRef, windowResizing]);

@@ -1,9 +1,11 @@
+import { Head, usePage } from "@inertiajs/react";
+
+import ClientLayout from "@/Layouts/ClientLayout";
+
 import SituSiba from "@/Components/situsiba/Isi";
 import SectionBook from "@/Components/situsiba/SectionBook";
 
-import { Head, usePage } from "@inertiajs/react";
-import ClientLayout from "@/Layouts/ClientLayout";
-import CardBox from "@/Components/CardBox";
+import { CardBox } from "@/Components/default";
 
 export default function Index() {
     const props = usePage().props;

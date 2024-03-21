@@ -1,25 +1,30 @@
-import Table from "@/Components/Table";
-import AdminLayout from "@/Layouts/admin/AdminLayout";
-import React, { useEffect, useState } from "react";
-import Dropdown from "@/Components/Dropdown";
+import React from "react";
 import { Head, Link, useForm, usePage, router } from "@inertiajs/react";
-import Modal from "@/Components/Modal";
-import BookLoader from "@/Components/BookLoader";
-import SecondaryButton from "@/Components/SecondaryButton";
-import DangerButton from "@/Components/DangerButton";
-import Alert from "@/Components/Alert";
-import PrimaryButton from "@/Components/PrimaryButton";
-import Pagination from "@/Components/Pagination";
-import Badge from "@/Components/Badge";
-import TextInput from "@/Components/TextInput";
+
+import AdminLayout from "@/Layouts/admin/AdminLayout";
+
+// LOCAL COMPONENT
+import {
+    Alert,
+    Dropdown,
+    Modal,
+    DangerButton,
+    SecondaryButton,
+    Pagination,
+    Badge,
+    TextInput,
+    Table,
+} from "@/Components/default";
+
+import { BookLoader } from "@/Components/shared";
 
 export default function UserIndex({ users }) {
     console.log(users);
-    const [confirmDelete, setConfirmDelete] = useState(false);
-    const [flash, setFlash] = useState();
+    const [confirmDelete, setConfirmDelete] = React.useState(false);
+    const [flash, setFlash] = React.useState();
 
     const props = usePage().props;
-    const [search, setSearch] = useState(
+    const [search, setSearch] = React.useState(
         new URLSearchParams(window.location.search).get("search") ?? ""
     );
 
@@ -55,7 +60,7 @@ export default function UserIndex({ users }) {
         clearErrors,
     } = useForm();
 
-    useEffect(() => {
+    React.useEffect(() => {
         setFlash(props.flash);
     }, [processing]);
 
@@ -109,11 +114,9 @@ export default function UserIndex({ users }) {
                                             <div
                                                 className={`h-16 w-16 rounded-sm overflow-hidden bg-cover bg-center`}
                                                 style={{
-                                                    backgroundImage:
-                                                        `url(${user_detail?.avatar})`,
+                                                    backgroundImage: `url(${user_detail?.avatar})`,
                                                 }}
-                                            >
-                                            </div>
+                                            ></div>
                                         </Table.Td>
                                         <Table.Td>
                                             {user_detail?.full_name}

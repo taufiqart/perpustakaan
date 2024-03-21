@@ -2,7 +2,7 @@ import SituSiba from "@/Components/situsiba/Isi";
 
 import { Head, usePage } from "@inertiajs/react";
 import SearchLayout from "../../Layouts/SearchLayout";
-import CardBox from "../../Components/CardBox";
+import CardBox from "../../Components/default/CardBox";
 
 export default function Search() {
     const props = usePage().props;
@@ -19,8 +19,6 @@ export default function Search() {
 
                 {/* isi end */}
             </CardBox>
-
-
         </SearchLayout>
     );
 }

@@ -1,7 +1,7 @@
-import { useState } from "react";
+import React from "react";
 
 export default function Search() {
-    const [search, setSearch] = useState("");
+    const [search, setSearch] = React.useState("");
 
     const handleSearch = () => {
         console.log(search);

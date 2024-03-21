@@ -1,6 +1,4 @@
-import { useEffect } from "react";
-import AdminSidebar from "../Components/admin/AdminSidebar";
-import FilterSide from "../Components/situsiba/FilterSide";
+import FilterSide from "@/Components/situsiba/FilterSide";
 
 const dark = window.localStorage.getItem("dark");
 if (dark != null && dark != undefined && dark == "true") {

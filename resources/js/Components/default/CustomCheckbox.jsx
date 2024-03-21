@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import React from "react";
 
 export default function CustomCheckbox({
     label,
@@ -6,7 +6,7 @@ export default function CustomCheckbox({
     className,
     ...props
 }) {
-    const [_checked, setChecked] = useState(checked);
+    const [_checked, setChecked] = React.useState(checked);
     return (
         <div className={`relative flex items-start m-1`}>
             <input

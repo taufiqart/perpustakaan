@@ -1,11 +1,12 @@
+import React from "react";
+import { usePage } from "@inertiajs/react";
+import Cookies from "universal-cookie";
+
 import Navbar from "@/Components/landingpage/Navbar";
 import Footer from "@/Components/landingpage/Footer";
 import Carousel from "@/Components/landingpage/Carousel";
-import Modal from "@/Components/Modal";
-import { Link, Head } from "@inertiajs/react";
-import Cookies from "universal-cookie";
-import { usePage } from "@inertiajs/react";
-import React from "react";
+
+import { Modal } from "@/Components/default";
 
 export default function ClientLayout({ children, situsiba = false }) {
     const [show, setShow] = React.useState(false);

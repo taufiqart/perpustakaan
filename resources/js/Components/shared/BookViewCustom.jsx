@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import BookBottom from "../Image/BookBottom";
+import BookBottom from "@/Image/BookBottom";
 
 export default function BookViewCustom({
     paper,

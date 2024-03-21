@@ -1,7 +1,8 @@
+import React from "react";
+
 import InputLabel from "./InputLabel";
 import TextInput from "./TextInput";
 import InputError from "./InputError";
-import React from "react";
 
 export default function Input({
     label,

@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import React from "react";
 
-function Tanggal() {
-    const [date, setDate] = useState(new Date());
-    useEffect(() => {
+export default function Tanggal() {
+    const [date, setDate] = React.useState(new Date());
+    React.useEffect(() => {
         const timer = setInterval(() => {
             setDate(new Date());
         }, 1000);
@@ -55,5 +55,3 @@ function Tanggal() {
         </div>
     );
 }
-
-export default Tanggal;

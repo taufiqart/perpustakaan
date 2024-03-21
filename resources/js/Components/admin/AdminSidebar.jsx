@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
-import Dropdown from "@/Components/admin/Dropdown/Dropdown";
+import React from "react";
+
 import { Link, usePage } from "@inertiajs/react";
+
 const getActivePage = (slug) => {
     return (
         (slug.split("/").length == 2 && window.location.pathname == slug) ||
@@ -8,12 +9,13 @@ const getActivePage = (slug) => {
             window.location.pathname.startsWith(slug))
     );
 };
+
 const SideMenu = ({ data }) => {
-    const [open, setOpen] = useState(false);
-    const [active, setActive] = useState(false);
+    const [open, setOpen] = React.useState(false);
+    const [active, setActive] = React.useState(false);
 
     if (data.child.length > 0) {
-        useEffect(() => {
+        React.useEffect(() => {
             data.child.map((e) => {
                 if (active) return;
                 if (getActivePage(e.slug)) {
@@ -106,11 +108,12 @@ const SideMenu = ({ data }) => {
         </li>
     );
 };
+
 export default function AdminSidebar() {
-    const [toggleNavbar, setToggleNavbar] = useState(false);
-    const [navigation, setNavigation] = useState();
+    const [toggleNavbar, setToggleNavbar] = React.useState(false);
+    const [navigation, setNavigation] = React.useState();
     const { props } = usePage();
-    useEffect(() => {
+    React.useEffect(() => {
         setNavigation(props.navigation);
     }, []);
 
