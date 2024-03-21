@@ -53,49 +53,53 @@ export default function ContentView({ content, fileList = [] }) {
             <div className="min-h-screen flex flex-col justify-center items-center px-3 md:px-14 transition-all duration-500">
                 <div className="-mt-14 md:mt-52 w-full lg:max-w-[50vw] transition-all duration-500">
                     <BookViewCustom paper={content} height="100%" width="100%">
-                        {
+                        {content?.content
+                            ?.replace(/<[^>]*>?|&nbsp;/gm, "")
+                            .trim().length > 0 ? (
                             <div
                                 className="w-full h-full"
                                 dangerouslySetInnerHTML={{
                                     __html: content?.content,
                                 }}
                             ></div>
-                        }
-                        {fileList && fileList.length > 0 && (
-                            <div
-                                className="-mx-5 sm:-mx-10 md:-mx-[25px]"
-                                ref={setContainerRef}
-                            >
-                                <Document
-                                    file={file}
-                                    onLoadSuccess={onDocumentLoadSuccess}
-                                    options={options}
-                                    className={
-                                        "w-full h-full flex flex-col items-center"
-                                    }
+                        ) : (
+                            fileList &&
+                            fileList.length > 0 && (
+                                <div
+                                    className="-mx-5 sm:-mx-10 md:-mx-[25px]"
+                                    ref={setContainerRef}
                                 >
-                                    {Array.from(
-                                        new Array(numPages),
-                                        (el, index) => (
-                                            <Page
-                                                className={
-                                                    "!w-full !object-contain !min-w-full !max-w-full"
-                                                }
-                                                key={`page_${index + 1}`}
-                                                pageNumber={index + 1}
-                                                width={
-                                                    containerWidth
-                                                        ? Math.min(
-                                                              containerWidth,
-                                                              maxWidth
-                                                          )
-                                                        : maxWidth
-                                                }
-                                            />
-                                        )
-                                    )}
-                                </Document>
-                            </div>
+                                    <Document
+                                        file={file}
+                                        onLoadSuccess={onDocumentLoadSuccess}
+                                        options={options}
+                                        className={
+                                            "w-full h-full flex flex-col items-center"
+                                        }
+                                    >
+                                        {Array.from(
+                                            new Array(numPages),
+                                            (el, index) => (
+                                                <Page
+                                                    className={
+                                                        "!w-full !object-contain !min-w-full !max-w-full"
+                                                    }
+                                                    key={`page_${index + 1}`}
+                                                    pageNumber={index + 1}
+                                                    width={
+                                                        containerWidth
+                                                            ? Math.min(
+                                                                  containerWidth,
+                                                                  maxWidth
+                                                              )
+                                                            : maxWidth
+                                                    }
+                                                />
+                                            )
+                                        )}
+                                    </Document>
+                                </div>
+                            )
                         )}
                     </BookViewCustom>
                 </div>
