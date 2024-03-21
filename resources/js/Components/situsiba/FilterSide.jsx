@@ -15,7 +15,7 @@ export default function FilterSidebar() {
     let navRef = useRef();
     const [windowResizing, setWindowResizing] = useState(false);
     const props = usePage().props;
-    console.log(props);
+
     useEffect(() => {
         let timeout;
         const handleResize = () => {
@@ -52,9 +52,15 @@ export default function FilterSidebar() {
         setShow(param);
         param ? setTranslateX(0) : setTranslateX(0 - (width + 500));
     };
-
+    useEffect(() => {
+        const dark = window.localStorage.getItem("dark");
+        if (dark != null && dark != undefined && dark == "true") {
+            document.querySelector("#dark-toggle").checked = true;
+        }
+    }, []);
     const handleMode = () => {
-        document.querySelector("html").classList.toggle("dark");
+        const dark = document.querySelector("html").classList.toggle("dark");
+        window.localStorage.setItem("dark", dark);
     };
     return (
         <>

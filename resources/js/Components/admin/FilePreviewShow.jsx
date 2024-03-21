@@ -1,8 +1,11 @@
 import { useState } from "react";
 import "@/config/createFileList";
-
+import ModalFilePreview from "@/Components/ModalFilePreview";
+import { usePage } from "@inertiajs/react";
 export default function FilePreviewShow({ dataFiles, deleteRoute, ...props }) {
-   
+    const _props = usePage().props;
+    console.log(_props);
+    const [show, setShow] = useState(false);
     const [files, setFiles] = useState(
         dataFiles?.map((file) => {
             file["type"] = file.mime_type;
@@ -20,7 +23,7 @@ export default function FilePreviewShow({ dataFiles, deleteRoute, ...props }) {
                 ["B", "kB", "MB", "GB", "TB"][i]
             );
         },
-       
+
         loadFile(file) {
             const preview = document.querySelectorAll(".preview");
             const blobUrl = URL.createObjectURL(file);
@@ -38,8 +41,10 @@ export default function FilePreviewShow({ dataFiles, deleteRoute, ...props }) {
     }
     return (
         <>
-            <div className={`bg-white rounded mx-auto ${props.className}`}>
-                <div className="relative flex flex-col p-4 text-gray-400 border border-gray-200 rounded">
+            <div
+                className={`bg-white dark:bg-gray-600 rounded mx-auto ${props.className}`}
+            >
+                <div className="relative flex flex-col p-4 text-gray-400 border border-gray-200 rounded dark:border-gray-400">
                     {files?.length > 0 && (
                         <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
                             {Array.from({
@@ -51,9 +56,9 @@ export default function FilePreviewShow({ dataFiles, deleteRoute, ...props }) {
                                         className={`relative flex flex-col items-center overflow-hidden text-center bg-gray-100 border rounded hover:border hover:border-blue-500 select-none`}
                                         style={{ paddingTop: "100%" }}
                                     >
-                                        <a
-                                            href={files[index].url}
-                                            download={files[index].title}
+                                        <div
+                                            onClick={() => setShow(true)}
+                                            className="cursor-pointer"
                                         >
                                             {files[index].type.includes(
                                                 "audio/"
@@ -127,7 +132,7 @@ export default function FilePreviewShow({ dataFiles, deleteRoute, ...props }) {
                                             <div
                                                 className={`absolute inset-0 z-40 transition-colors duration-300`}
                                             ></div>
-                                        </a>
+                                        </div>
                                     </div>
                                 );
                             })}
@@ -135,6 +140,15 @@ export default function FilePreviewShow({ dataFiles, deleteRoute, ...props }) {
                     )}
                 </div>
             </div>
+            <ModalFilePreview
+                show={show}
+                onClose={() => setShow(!show)}
+                data={files.map((file) => {
+                    file.fileName = file.title;
+                    file.uri = `${_props.ziggy.url}${file.url}`;
+                    return file;
+                })}
+            />
         </>
     );
 }

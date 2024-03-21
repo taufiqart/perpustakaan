@@ -7,13 +7,14 @@ export default function BookViewCustom({
     height = "670px",
     radius = "25px",
     children,
+    innerScroll = false,
 }) {
     const [loading, setLoading] = useState(true);
     const [scrollTransform, setScrollTransform] = useState("");
     const [perspective, setPerspective] = useState(1080 / 2);
     let containerRef = useRef();
     const changeperspective = () => {
-        let container = containerRef?.current?.getBoundingClientRect();
+        let container = containerRef?.current?.getBoundingClientRect() ?? {};
         if (container.width >= 1080) {
             setPerspective(500);
         } else if (container.width >= 720) {
@@ -34,20 +35,40 @@ export default function BookViewCustom({
         changeperspective();
     });
 
-    window.addEventListener("scroll", (e) => {
-        let container = containerRef?.current?.getBoundingClientRect();
-        let transform =
-            container.y * -1 <= 90 ? Math.max(0, container.y * -1) : 90;
+    if (!innerScroll) {
+        window.addEventListener("scroll", (e) => {
+            let container =
+                containerRef?.current?.getBoundingClientRect() ?? {};
+            let transform =
+                container?.y * -1 <= 90 ? Math.max(0, container?.y * -1) : 90;
 
-        transform == 0
-            ? setScrollTransform(``)
-            : setScrollTransform(
-                  `rotateX(${transform}deg) translateZ(3px) scale(0.75)`
-              );
-        changeperspective();
-    });
+            transform == 0
+                ? setScrollTransform(``)
+                : setScrollTransform(
+                      `rotateX(${transform}deg) translateZ(3px) scale(0.75)`
+                  );
+            changeperspective();
+        });
+    }
     return (
         <div
+            onScroll={
+                innerScroll
+                    ? (e) => {
+                          let transform =
+                              e.target.scrollTop / 5 <= 90
+                                  ? e.target.scrollTop / 5
+                                  : 90;
+                          e.target.scrollTop == 0
+                              ? setScrollTransform(``)
+                              : setScrollTransform(
+                                    `rotateX(${transform}deg) translateZ(3px) scale(0.75)`
+                                );
+
+                          changeperspective();
+                      }
+                    : () => {}
+            }
             ref={containerRef}
             style={{
                 "--scroll-transform": scrollTransform,

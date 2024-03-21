@@ -1,12 +1,12 @@
 import React from "react";
 import { Player } from "@lottiefiles/react-lottie-player";
 
-export default function BookLoader({ loader }) {
+export default function BookLoader({ loader,className="" }) {
     return (
         <div
             className={`${
                 loader ? "flex" : "hidden"
-            } absolute w-full h-full bg-white/80  justify-center items-center z-[9999]`}
+            } absolute w-full h-full bg-white/80  justify-center items-center z-[9999] ${className}`}
         >
             <Player
                 src="/assets/animations/book-loader.json"
