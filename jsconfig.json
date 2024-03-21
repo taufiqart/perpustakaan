@@ -8,6 +8,7 @@
     },
     "include": ["**/*.jsx", "**/*.js"],
     "exclude": [
-        "node_modules/**/*"
+        "node_modules/**/*",
+        "resources/js/lib/pdfjs-dist/**/*"
     ]
 }
