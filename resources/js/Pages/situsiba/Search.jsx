@@ -1,8 +1,8 @@
 import SituSiba from "@/Components/situsiba/Isi";
 
 import { Head, usePage } from "@inertiajs/react";
-import SearchLayout from "../../Layouts/SearchLayout";
-import CardBox from "../../Components/default/CardBox";
+import SearchLayout from "@/Layouts/SearchLayout";
+import CardBox from "@/Components/default/CardBox";
 
 export default function Search() {
     const props = usePage().props;

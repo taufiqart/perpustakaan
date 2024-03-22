@@ -80,7 +80,9 @@ export default function FilterSearchSide() {
                     <div className="flex flex-row items-center justify-between ">
                         <div className="">
                             <Link
+
                                 className="text-left-0 text-slate-600 mr-0 whitespace-nowrap text-xs md:text-base uppercase font-bold p-4 px-0 "
+
                                 href="/"
                             >
                                 Perpustakaan Skensa
@@ -97,19 +99,24 @@ export default function FilterSearchSide() {
                     </div>
                     <div className="flex flex-col pt-10">
                         <div className="flex items-center justify-between md:justify-start">
+
                             <Filter className="text-slate-600 w-5" />
                             <Link className="text-left-0 md:pl-10 text-slate-600 mr-0 whitespace-nowrap text-base  uppercase font-bold p-4 px-0">
+
                                 Filter
                             </Link>
                         </div>
                         <div className="flex flex-col justify-between">
+
                             <Link className="text-left-0 text-slate-600 mr-0 whitespace-nowrap text-base  uppercase font-bold pt-4 px-0">
+
                                 Kategori
                             </Link>
                             <div className="flex flex-wrap p-0">
                                 <div className="flex items-center p-2 w-auto">
                                     <Checkbox />{" "}
                                     <p className="pl-2 text-slate-600 mr-0 whitespace-nowrap text-xs md:text-base uppercase font-bold">
+
                                         {" "}
                                         KEPESENG{" "}
                                     </p>
@@ -118,13 +125,17 @@ export default function FilterSearchSide() {
                             <hr className="w-full" />
                         </div>
                         <div className="flex flex-col justify-between">
+
                             <Link className="text-left-0 text-slate-600 mr-0 whitespace-nowrap text-base  uppercase font-bold pt-4 px-0">
+
                                 Jenis Karya
                             </Link>
                             <div className="flex flex-wrap p-0">
                                 <div className="flex items-center p-2 w-auto">
                                     <Checkbox />{" "}
+
                                     <p className="pl-2 text-slate-600 mr-0 whitespace-nowrap text-xs md:text-base uppercase font-bold">
+
                                         {" "}
                                         KEPESENG
                                     </p>

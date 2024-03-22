@@ -4,6 +4,7 @@ import { Filter } from "feather-icons-react/build/IconComponents";
 import FilterSearchSide from "@/Components/situsiba/FilterSearchSide";
 import { CardBox, Checkbox } from "@/Components/default";
 
+
 export default function SearchLayout({ children }) {
     return (
         <>
@@ -37,6 +38,7 @@ export default function SearchLayout({ children }) {
                 </svg>
                 <div className="absolute w-[100vw]">
                     <div className="flex flex-col items-center justify-center pt-10">
+
                         <h1 className="text-white text-xl md:text-2xl">
                             Platfrom bagi warga
                         </h1>
@@ -61,6 +63,7 @@ export default function SearchLayout({ children }) {
                         <FilterSearchSide />
 
                         <div className="w-1/3">
+
                             <CardBox className="w-[100%] mx-auto mb-20">
                                 {/* Filter start */}
                                 <div className="flex flex-row items-center justify-between p-5">
@@ -72,20 +75,24 @@ export default function SearchLayout({ children }) {
                                 </div>
                                 <div className="flex flex-col -pt-6 pb-10 ml-4">
                                     <div className="flex items-center justify-start">
+
                                         <Filter className="text-slate-600 w-5" />
                                         <Link className="text-left-0 md:pl-10 text-slate-600 mr-0 whitespace-nowrap text-base  uppercase font-bold p-4 px-0">
+
+
                                             Filter
                                         </Link>
                                     </div>
                                     <div className="flex flex-col justify-between">
+
                                         <Link className="text-left-0 text-slate-600 mr-0 whitespace-nowrap text-base  uppercase font-bold pt-4 px-0">
+
                                             Kategori
                                         </Link>
                                         <div className="flex flex-wrap p-0">
                                             <div className="flex items-center p-2 w-auto">
                                                 <Checkbox />{" "}
                                                 <p className="pl-2 text-slate-600 mr-0 whitespace-nowrap text-xs md:text-base uppercase font-bold">
-                                                    {" "}
                                                     KEPESENG{" "}
                                                 </p>
                                             </div>
@@ -112,7 +119,7 @@ export default function SearchLayout({ children }) {
                                 {/* Filter end */}
                             </CardBox>
                         </div>
-                        <div className="w-2/3 ">{children}</div>
+                        <div className="w-full lg:w-2/3 ">{children}</div>
                     </div>
                 </div>
             </div>
