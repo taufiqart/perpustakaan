@@ -21,6 +21,27 @@ class Situsiba extends Controller
      *
      * @return \Illuminate\Http\Response | \Inertia\Response | null
      */
+    public function search()
+    {
+        $postType = PostType::where('slug', 'paper')->first();
+        $papers = (clone $postType)->posts()->inRandomOrder()->limit(9)->get();
+        $paper_latests = (clone $postType)->posts()->latest('created_at')->limit(5)->get();
+        $paper_mostreads = (clone $postType)->posts()->withCount('pivotView')->orderBy('pivot_view_count','desc')->limit(5)->get();
+        // return dd($paper_mostreads);
+
+        Meta::addMeta('title', 'SITU SIBA');
+        Meta::addMeta('description', 'Selamat datang di SITU SIBA disini kami menyediakan platform bagi siswa siswi SMKN 1 Pasuruan agar Karya Tulis seperti Cerpen, Novel ataupun karya ilmiah agar dapat dipublish dan dibaca oleh umum.');
+        Meta::addMeta('keywords', 'membaca,baca,tulis,menulis,karya,cerpen');
+        Meta::addProperty('og:title', 'SITU SIBA');
+        Meta::addProperty('og:description', 'SITU SIBA');
+
+        return Inertia::render('situsiba/Search', compact('papers', 'paper_latests', 'paper_mostreads'));
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response | \Inertia\Response | null
+     */
     public function index()
     {
         $postType = PostType::where('slug', 'paper')->first();

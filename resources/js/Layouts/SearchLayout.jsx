@@ -59,10 +59,10 @@ export default function SearchLayout({ children }) {
                         />
                     </div>
 
-                    <div className="flex flex-row gap-10">
+                    <div className="lg:flex lg:flex-row lg:gap-10">
                         <FilterSearchSide />
 
-                        <div className="w-1/3">
+                        <div className="w-1/3 hidden lg:block">
 
                             <CardBox className="w-[100%] mx-auto mb-20">
                                 {/* Filter start */}
@@ -119,7 +119,7 @@ export default function SearchLayout({ children }) {
                                 {/* Filter end */}
                             </CardBox>
                         </div>
-                        <div className="w-full lg:w-2/3 ">{children}</div>
+                        <div className="w-full lg:w-2/3">{children}</div>
                     </div>
                 </div>
             </div>

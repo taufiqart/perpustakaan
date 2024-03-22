@@ -64,7 +64,8 @@ require __DIR__ . '/auth.php';
 
 Route::prefix('situsiba')->group(function () {
     Route::get('/', [\App\Http\Controllers\Situsiba\Situsiba::class, 'index'])->name('situsiba.index');
-    Route::middleware('read_handler')->get('papers/{slug}', [\App\Http\Controllers\Situsiba\Situsiba::class, 'show'])->name('situsiba.paper.show');
+    Route::get('/papers/search', [\App\Http\Controllers\Situsiba\Situsiba::class, 'search'])->name('situsiba.search');
+    Route::middleware('read_handler')->get('papers/s/{slug}', [\App\Http\Controllers\Situsiba\Situsiba::class, 'show'])->name('situsiba.paper.show');
     Route::get('{any}', function () {
         return redirect(route('situsiba.index'));
     })->where('any', '.*');
