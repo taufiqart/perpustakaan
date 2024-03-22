@@ -128,7 +128,7 @@ export default function BookViewCustom({
                         <div className="flex gap-2 md:gap-4">
                             <p className="w-full md:max-w-fit">
                                 {`by ${
-                                    paper?.user.user_detail.full_name ||
+                                    paper?.user?.user_detail.full_name ||
                                     "Anonymous"
                                 }`}
                             </p>

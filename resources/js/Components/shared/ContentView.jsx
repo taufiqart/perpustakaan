@@ -32,7 +32,9 @@ export default function ContentView({ content, fileList = [], ...props }) {
     const [file, setFile] = React.useState(fileList[0]);
 
     React.useEffect(() => {
-        file.uri = file.url;
+        if (file) {
+            file.uri = file.url;
+        }
     }, []);
 
     const _DocPreview = React.useMemo(() => DocPreview);
