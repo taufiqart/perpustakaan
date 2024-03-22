@@ -117,7 +117,7 @@ export default function FilterSidebar() {
                             />
 
                             <button
-                                className="ml-3 w-fit rounded-full text-center p-2 border border-gray-400 bg-white dark:bg-gray-600  text-sm  
+                                className="ml-3 w-fit rounded-full text-center p-2 border border-gray-400 bg-white dark:bg-gray-600  text-sm
                                 hover:border-blue-400 transition-all duration-300 active:border-blue-700"
                                 type="button"
                             >

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 
 import {
     ChevronsLeft,
@@ -7,7 +7,7 @@ import {
     Search,
 } from "feather-icons-react/build/IconComponents";
 
-import { Checkbox } from "@/Components/default";
+import { CustomCheckbox } from "@/Components/default";
 
 export default function FilterSearchSide() {
     const [show, setShow] = React.useState(false);
@@ -16,6 +16,7 @@ export default function FilterSearchSide() {
     const [translateX, setTranslateX] = React.useState(0);
     let navRef = React.useRef();
     const [windowResizing, setWindowResizing] = React.useState(false);
+    const props = usePage().props;
 
     React.useEffect(() => {
         let timeout;
@@ -99,49 +100,46 @@ export default function FilterSearchSide() {
                     </div>
                     <div className="flex flex-col pt-10">
                         <div className="flex items-center justify-between md:justify-start">
-
-                            <Filter className="text-slate-600 w-5" />
-                            <Link className="text-left-0 md:pl-10 text-slate-600 mr-0 whitespace-nowrap text-base  uppercase font-bold p-4 px-0">
-
+                            <Filter className=" w-5" />
+                            <Link className="text-left-0 md:pl-10  mr-0 whitespace-nowrap text-base  uppercase font-bold p-4 px-0">
                                 Filter
                             </Link>
                         </div>
                         <div className="flex flex-col justify-between">
-
-                            <Link className="text-left-0 text-slate-600 mr-0 whitespace-nowrap text-base  uppercase font-bold pt-4 px-0">
-
+                            <Link className="text-left-0  mr-0 whitespace-nowrap text-base  uppercase font-bold pt-4 px-0">
                                 Kategori
                             </Link>
                             <div className="flex flex-wrap p-0">
-                                <div className="flex items-center p-2 w-auto">
-                                    <Checkbox />{" "}
-                                    <p className="pl-2 text-slate-600 mr-0 whitespace-nowrap text-xs md:text-base uppercase font-bold">
-
-                                        {" "}
-                                        KEPESENG{" "}
-                                    </p>
-                                </div>
+                                {props.categories &&
+                                    props.categories.map((e, key) => {
+                                        return (
+                                            <CustomCheckbox
+                                                key={key}
+                                                label={e.category}
+                                                name="genres[]"
+                                            />
+                                        );
+                                    })}
                             </div>
-                            <hr className="w-full" />
+                            <hr className="w-full mt-2" />
                         </div>
                         <div className="flex flex-col justify-between">
-
-                            <Link className="text-left-0 text-slate-600 mr-0 whitespace-nowrap text-base  uppercase font-bold pt-4 px-0">
-
+                            <Link className="text-left-0  mr-0 whitespace-nowrap text-base  uppercase font-bold pt-4 px-0">
                                 Jenis Karya
                             </Link>
                             <div className="flex flex-wrap p-0">
-                                <div className="flex items-center p-2 w-auto">
-                                    <Checkbox />{" "}
-
-                                    <p className="pl-2 text-slate-600 mr-0 whitespace-nowrap text-xs md:text-base uppercase font-bold">
-
-                                        {" "}
-                                        KEPESENG
-                                    </p>
-                                </div>
+                                {props.genres &&
+                                    props.genres.map((e, key) => {
+                                        return (
+                                            <CustomCheckbox
+                                                key={key}
+                                                label={e.genre}
+                                                name="genres[]"
+                                            />
+                                        );
+                                    })}
                             </div>
-                            <hr className="w-full" />
+                            <hr className="w-full mt-2" />
                         </div>
                     </div>
                 </nav>
