@@ -1,11 +1,20 @@
-import { Link } from "@inertiajs/react";
+import React from "react";
+import { Link, usePage } from "@inertiajs/react";
 import { Filter } from "feather-icons-react/build/IconComponents";
 
 import FilterSearchSide from "@/Components/situsiba/FilterSearchSide";
-import { CardBox, Checkbox } from "@/Components/default";
-
+import { CardBox } from "@/Components/default";
+import { CustomCheckbox } from "@/Components/default";
 
 export default function SearchLayout({ children }) {
+    const props = usePage().props;
+    const [search, setSearch] = React.useState("");
+
+    const handleSearch = () => {
+        console.log(search);
+    };
+
+
     return (
         <>
             <div className="flex overflow-hidden ">
@@ -36,7 +45,7 @@ export default function SearchLayout({ children }) {
                         </linearGradient>
                     </defs>
                 </svg>
-                <div className="absolute w-[100vw]">
+                <div className="absolute ">
                     <div className="flex flex-col items-center justify-center pt-10">
 
                         <h1 className="text-white text-xl md:text-2xl">
@@ -50,20 +59,34 @@ export default function SearchLayout({ children }) {
                         </h1>
                     </div>
                     <div className="w-full p-5 sticky top-0 text-center z-10">
-                        <input
+                        {/* <input
                             type="text"
                             name=""
                             id=""
                             placeholder="cari judul / kategori"
                             className=" w-full md:w-2/3 rounded-2xl text-center text-slate-500 text-xs md:text-base lg:text-lg border-green-400 hover:border-blue-400 active:border-blue-700 ring-green-400 transition delay-150 duration-300 ease-in-out"
+                        /> */}
+                        <input
+                            type="text"
+                            name=""
+                            id=""
+                            placeholder="cari judul / kategori"
+                            onChange={(e) => setSearch(e.target.value)}
+                            className="w-[80%] md:w-2/3 rounded-full text-center text-slate-500 border text-sm border-green-400 hover:border-blue-400 active:border-blue-700 ring-green-400 transition delay-150 duration-300 ease-in-out"
                         />
+                        <button
+                            onClick={handleSearch}
+                            className="w-fit bg-white items-center justify-center py-2 px-4 mx-2 rounded-full text-center text-slate-500 border text-sm border-green-400 hover:bg-green-400 hover:text-white active:border-blue-700 ring-green-400 transition delay-150 duration-300 ease-in-out"
+                        >
+                            <i className="fas fa-search"></i>
+                        </button>
                     </div>
+
 
                     <div className="lg:flex lg:flex-row lg:gap-10">
                         <FilterSearchSide />
 
                         <div className="w-1/3 hidden lg:block">
-
                             <CardBox className="w-[100%] mx-auto mb-20">
                                 {/* Filter start */}
                                 <div className="flex flex-row items-center justify-between p-5">
@@ -84,42 +107,47 @@ export default function SearchLayout({ children }) {
                                         </Link>
                                     </div>
                                     <div className="flex flex-col justify-between">
-
-                                        <Link className="text-left-0 text-slate-600 mr-0 whitespace-nowrap text-base  uppercase font-bold pt-4 px-0">
-
+                                        <Link className="text-left-0  mr-0 whitespace-nowrap text-base  uppercase font-bold pt-4 px-0">
                                             Kategori
                                         </Link>
                                         <div className="flex flex-wrap p-0">
-                                            <div className="flex items-center p-2 w-auto">
-                                                <Checkbox />{" "}
-                                                <p className="pl-2 text-slate-600 mr-0 whitespace-nowrap text-xs md:text-base uppercase font-bold">
-                                                    KEPESENG{" "}
-                                                </p>
-                                            </div>
+                                            {props.categories &&
+                                                props.categories.map((e, key) => {
+                                                    return (
+                                                        <CustomCheckbox
+                                                            key={key}
+                                                            label={e.category}
+                                                            name="genres[]"
+                                                        />
+                                                    );
+                                                })}
                                         </div>
-                                        <hr className="w-full" />
+                                        <hr className="w-full mt-2" />
                                     </div>
                                     <div className="flex flex-col justify-between">
-                                        <Link className="text-left-0 text-slate-600 mr-0 whitespace-nowrap text-base  uppercase font-bold pt-4 px-0">
+                                        <Link className="text-left-0  mr-0 whitespace-nowrap text-base  uppercase font-bold pt-4 px-0">
                                             Jenis Karya
                                         </Link>
                                         <div className="flex flex-wrap p-0">
-                                            <div className="flex items-center p-2 w-auto">
-                                                <Checkbox />{" "}
-                                                <p className="pl-2 text-slate-600 mr-0 whitespace-nowrap text-xs md:text-base uppercase font-bold">
-                                                    {" "}
-                                                    KEPESENG
-                                                </p>
-                                            </div>
+                                            {props.genres &&
+                                                props.genres.map((e, key) => {
+                                                    return (
+                                                        <CustomCheckbox
+                                                            key={key}
+                                                            label={e.genre}
+                                                            name="genres[]"
+                                                        />
+                                                    );
+                                                })}
                                         </div>
-                                        <hr className="w-full" />
+                                        <hr className="w-full mt-2" />
                                     </div>
                                 </div>
 
                                 {/* Filter end */}
                             </CardBox>
                         </div>
-                        <div className="w-full lg:w-2/3">{children}</div>
+                        <div className="xl:w-2/3">{children}</div>
                     </div>
                 </div>
             </div>
