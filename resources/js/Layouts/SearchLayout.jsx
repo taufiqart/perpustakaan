@@ -46,11 +46,11 @@ export default function SearchLayout({ children }) {
                         <input type="text" name="" id="" placeholder="cari judul / kategori" className=" w-full md:w-2/3 rounded-2xl text-center text-blueGray-500 text-xs md:text-base lg:text-lg border-green-400 hover:border-blue-400 active:border-blue-700 ring-green-400 transition delay-150 duration-300 ease-in-out" />
                     </div>
 
-                    <div className="flex flex-row gap-10">
+                    <div className="lg:flex lg:flex-row lg:gap-10">
                         <FilterSearchSide/>
 
 
-                        <div className="w-1/3">
+                        <div className="w-1/3 hidden lg:block">
                             <CardBox className="w-[100%] mx-auto mb-20">
                                 {/* Filter start */}
                                 <div className="flex flex-row items-center justify-between p-5">
@@ -102,7 +102,7 @@ export default function SearchLayout({ children }) {
                                 {/* Filter end */}
                             </CardBox>
                         </div>
-                        <div className="w-2/3 ">{children}</div>
+                        <div className="w-full lg:w-2/3 ">{children}</div>
                     </div>
 
 
