@@ -27,3 +27,8 @@ function getGenderOption()
     return $gender;
 }
 
+
+function clear_html_tag($html)
+{
+    return trim(preg_replace('/ +/', ' ', preg_replace('/[^A-Za-z0-9 ]/', ' ', urldecode(html_entity_decode(strip_tags($html))))));
+}
