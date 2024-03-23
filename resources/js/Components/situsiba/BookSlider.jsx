@@ -8,51 +8,78 @@ import {
 import { BookCard } from "@/Components/shared";
 
 function BookSlider({ data }) {
+    const [showBtn, setShowBtn] = React.useState(false);
     const contentRef = React.useRef();
+
     const scrollLeft = () => {
         contentRef.current.scrollLeft -=
-            contentRef.current.firstChild.getBoundingClientRect().width;
-    };
-    const scrollRight = () => {
-        contentRef.current.scrollLeft +=
+            contentRef.current.getBoundingClientRect().width -
             contentRef.current.firstChild.getBoundingClientRect().width;
     };
 
+    const scrollRight = () => {
+        contentRef.current.scrollLeft +=
+            contentRef.current.getBoundingClientRect().width -
+            contentRef.current.firstChild.getBoundingClientRect().width;
+    };
+
+    window.addEventListener("resize", () => {
+        if (contentRef?.current) {
+            setShowBtn(
+                contentRef.current.getBoundingClientRect().width <
+                    contentRef.current.scrollWidth
+            );
+        }
+    });
+
+    React.useEffect(() => {
+        if (contentRef?.current) {
+            setShowBtn(
+                contentRef.current.getBoundingClientRect().width <
+                    contentRef.current.scrollWidth
+            );
+        }
+    }, []);
+
     return (
-        <div className="relative justify-center group 2xl:mx-auto">
-            <div className="absolute right-0 top-5 2xl:group-hover:block 2xl:hidden">
-                <button
-                    onClick={scrollLeft}
-                    className="2xl:hidden p-2 m-2 rounded-full bg-white shadow-md"
+        <div className="flex flex-col justify-center group 2xl:mx-auto">
+            {showBtn && (
+                <div className="ml-auto right-0 top-5 2xl:group-hover:block">
+                    <button
+                        onClick={scrollLeft}
+                        className="p-2 m-2 rounded-full bg-white shadow-md"
+                    >
+                        <ChevronLeft />
+                    </button>
+                    <button
+                        onClick={scrollRight}
+                        className="p-2 m-2 rounded-full bg-white shadow-md"
+                    >
+                        <ChevronRight />
+                    </button>
+                </div>
+            )}
+            <div className="flex justify-center scrollbar-hide">
+                <div
+                    id="content"
+                    ref={contentRef}
+                    className="transition-all duration-1000 scrollbar-hide overflow-auto flex flex-row items-center gap-4 snap-mandatory snap-x scroll-smooth"
                 >
-                    <ChevronLeft />
-                </button>
-                <button
-                    onClick={scrollRight}
-                    className="2xl:hidden p-2 m-2 rounded-full bg-white shadow-md lg:z-3"
-                >
-                    <ChevronRight />
-                </button>
-            </div>
-            <div
-                id="content"
-                ref={contentRef}
-                className="transition-all flex overflow-auto scroll-smooth scrollbar-hide snap-mandatory snap-x py-2 duration-1000"
-            >
-                <div className="flex flex-row items-center justify-center gap-16 my-20">
                     {data &&
                         data.length > 0 &&
                         data.map((paper) => {
                             return (
-                                <BookCard
-                                    key={paper.slug}
-                                    image={paper.poster}
-                                    title={paper.title}
-                                    url={route(
-                                        "situsiba.paper.show",
-                                        paper.slug
-                                    )}
-                                />
+                                <div key={paper.slug} className="snap-center">
+                                    <BookCard
+                                        key={paper.slug}
+                                        image={paper.poster}
+                                        title={paper.title}
+                                        url={route(
+                                            "situsiba.paper.show",
+                                            paper.slug
+                                        )}
+                                    />
+                                </div>
                             );
                         })}
                 </div>

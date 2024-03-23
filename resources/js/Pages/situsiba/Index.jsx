@@ -28,7 +28,6 @@ export default function Index() {
                 <SectionBook
                     data={props.paper_latests}
                     title={"Terbaru"}
-                    link={{ label: "Lainnya", href: "/situsiba/latest" }}
                 />
                 {/* Terbaru end */}
             </CardBox>
@@ -38,7 +37,6 @@ export default function Index() {
                 <SectionBook
                     data={props.paper_mostreads}
                     title={"Terbanyak dibaca"}
-                    link={{ label: "Lainnya", href: "/situsiba/mostreads" }}
                 />
                 {/* Terbanyak end */}
             </CardBox>

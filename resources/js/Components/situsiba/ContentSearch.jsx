@@ -13,7 +13,7 @@ export default function ContentSearch({ papers, className = "" }) {
                                 image={paper.poster}
                                 title={paper.title}
                                 url={route("situsiba.paper.show", paper.slug)}
-                                className="scale-[0.8] md:scale-100 relative -m-5 md:m-1"
+                                className="scale-[0.8] md:scale-100 relative !-m-5 md:!m-1"
                             />
                         );
                     })

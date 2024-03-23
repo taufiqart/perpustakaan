@@ -1,10 +1,13 @@
 import React from "react";
+import { router } from "@inertiajs/react";
 
 export default function Search() {
     const [search, setSearch] = React.useState("");
 
     const handleSearch = () => {
-        console.log(search);
+        const url = new URL(route("situsiba.search"));
+        url.searchParams.set("search", search);
+        router.get(url);
     };
 
     return (
