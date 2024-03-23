@@ -4,20 +4,23 @@ export default function CustomCheckbox({
     label,
     checked = false,
     className,
+    onChange=()=>{},
     ...props
 }) {
     const [_checked, setChecked] = React.useState(checked);
+
     return (
         <div className={`relative flex items-start m-1`}>
             <input
                 {...props}
                 type="checkbox"
-                className={`hidden peer `}
+                className={`hidden peer`}
                 checked={_checked}
                 onChange={() => {}}
             />
             <label
                 onClick={() => {
+                    onChange();
                     setChecked(!_checked);
                 }}
                 className={`"inline-flex items-center justify-between w-auto p-2 

@@ -1,13 +1,9 @@
 import React from "react";
-import { Link, usePage } from "@inertiajs/react";
+import { Link, usePage, router } from "@inertiajs/react";
 
-import {
-    ChevronsLeft,
-    Filter,
-    Search,
-} from "feather-icons-react/build/IconComponents";
+import { ChevronsLeft, Search } from "feather-icons-react/build/IconComponents";
 
-import { CustomCheckbox } from "@/Components/default";
+import Filter from "@/Components/situsiba/Filter";
 
 export default function FilterSidebar() {
     const [show, setShow] = React.useState(false);
@@ -17,6 +13,9 @@ export default function FilterSidebar() {
     let navRef = React.useRef();
     const [windowResizing, setWindowResizing] = React.useState(false);
     const props = usePage().props;
+
+    const [url, setUrl] = React.useState(new URL(window.location.href));
+    const [search, setSearch] = React.useState("");
 
     React.useEffect(() => {
         let timeout;
@@ -54,16 +53,29 @@ export default function FilterSidebar() {
         setShow(param);
         param ? setTranslateX(0) : setTranslateX(0 - (width + 500));
     };
+
     React.useEffect(() => {
         const dark = window.localStorage.getItem("dark");
         if (dark != null && dark != undefined && dark == "true") {
             document.querySelector("#dark-toggle").checked = true;
         }
     }, []);
+
     const handleMode = () => {
         const dark = document.querySelector("html").classList.toggle("dark");
         window.localStorage.setItem("dark", dark);
     };
+
+    const handleSearch = () => {
+        url.searchParams.set("search", search);
+        router.get(`${route("situsiba.search")}${url.search}`);
+    };
+
+    const onFilter = (url) => {
+        url.searchParams.set("search", search);
+        setUrl(url);
+    };
+
     return (
         <>
             <div className="sticky top-0 pt-[10vh] z-10 max-w-fit">
@@ -85,7 +97,7 @@ export default function FilterSidebar() {
                     style={{
                         transform: `translate(${translateX}px,0)`,
                     }}
-                    className={`dark:bg-gray-900 dark:text-white text-slate-600 left-0 fixed z-20 top-0 bottom-0 bg-white/85 overflow-y-auto flex-row flex-nowrap overflow-hidden shadow-2xl backdrop-blur-sm rounded-lg items-center justify-between w-10/12 md:w-2/6 lg:w-2/6 py-4 px-6 duration-1000`}
+                    className={`dark:bg-gray-900 dark:text-white text-slate-600 left-0 fixed z-20 top-0 bottom-0 bg-white/85 overflow-y-auto flex-row flex-nowrap overflow-hidden shadow-2xl backdrop-blur-sm rounded-lg items-center justify-between w-10/12 md:w-2/4 lg:w-2/6 py-4 px-6 duration-1000`}
                 >
                     <div className="flex flex-row items-center justify-between ">
                         <div className="">
@@ -102,7 +114,7 @@ export default function FilterSidebar() {
                             type="button"
                             title="sembunyikan search"
                         >
-                            <ChevronsLeft className="" />
+                            <ChevronsLeft className="dark:text-white" />
                         </button>
                     </div>
                     <div className="flex flex-row items-center justify-center pt-10">
@@ -110,13 +122,13 @@ export default function FilterSidebar() {
                         <div className="flex w-full items-center">
                             <input
                                 type="text"
-                                name=""
-                                id=""
+                                onChange={(e) => setSearch(e.target.value)}
                                 placeholder="cari buku"
                                 className="w-full rounded-full text-center p-2 dark:placeholder:text-white text-sm dark:bg-gray-600 border-gray-400  hover:border-blue-400 active:border-blue-700 transition duration-300 ease-in-out"
                             />
 
                             <button
+                                onClick={handleSearch}
                                 className="ml-3 w-fit rounded-full text-center p-2 border border-gray-400 bg-white dark:bg-gray-600  text-sm
                                 hover:border-blue-400 transition-all duration-300 active:border-blue-700"
                                 type="button"
@@ -126,50 +138,7 @@ export default function FilterSidebar() {
                         </div>
                         {/* Search start */}
                     </div>
-                    <div className="flex flex-col pt-10">
-                        <div className="flex items-center justify-between md:justify-start">
-                            <Filter className=" w-5" />
-                            <Link className="text-left-0 md:pl-10  mr-0 whitespace-nowrap text-base  uppercase font-bold p-4 px-0">
-                                Filter
-                            </Link>
-                        </div>
-                        <div className="flex flex-col justify-between">
-                            <Link className="text-left-0  mr-0 whitespace-nowrap text-base  uppercase font-bold pt-4 px-0">
-                                Kategori
-                            </Link>
-                            <div className="flex flex-wrap p-0">
-                                {props.categories &&
-                                    props.categories.map((e, key) => {
-                                        return (
-                                            <CustomCheckbox
-                                                key={key}
-                                                label={e.category}
-                                                name="genres[]"
-                                            />
-                                        );
-                                    })}
-                            </div>
-                            <hr className="w-full mt-2" />
-                        </div>
-                        <div className="flex flex-col justify-between">
-                            <Link className="text-left-0  mr-0 whitespace-nowrap text-base  uppercase font-bold pt-4 px-0">
-                                Jenis Karya
-                            </Link>
-                            <div className="flex flex-wrap p-0">
-                                {props.genres &&
-                                    props.genres.map((e, key) => {
-                                        return (
-                                            <CustomCheckbox
-                                                key={key}
-                                                label={e.genre}
-                                                name="genres[]"
-                                            />
-                                        );
-                                    })}
-                            </div>
-                            <hr className="w-full mt-2" />
-                        </div>
-                    </div>
+                    <Filter onFilter={onFilter} />
                     <div className="mt-8">
                         <div className="flex justify-start gap-10 items-center">
                             <i className="fas fa-cog"></i>

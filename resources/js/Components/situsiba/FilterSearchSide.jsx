@@ -3,11 +3,10 @@ import { Link, usePage } from "@inertiajs/react";
 
 import {
     ChevronsLeft,
-    Filter,
     Search,
 } from "feather-icons-react/build/IconComponents";
 
-import { CustomCheckbox } from "@/Components/default";
+import Filter from "@/Components/situsiba/Filter"
 
 export default function FilterSearchSide() {
     const [show, setShow] = React.useState(false);
@@ -70,13 +69,13 @@ export default function FilterSearchSide() {
                 </button>
             </div>
 
-            <div className={load || windowResizing ? "opacity-0" : ""}>
+            <div className={load || windowResizing ? "opacity-0 lg:hidden" : "lg:hidden"}>
                 <nav
                     ref={navRef}
                     style={{
                         transform: `translate(${translateX}px,0)`,
                     }}
-                    className={`left-0 fixed z-20 top-0 bottom-0 bg-white/85 overflow-y-auto flex-row flex-nowrap overflow-hidden shadow-2xl backdrop-blur-sm rounded-lg items-center justify-between w-10/12 md:w-2/6 lg:w-2/6 py-4 px-6 duration-1000`}
+                    className={`left-0 fixed z-20 top-0 bottom-0 bg-white/85 overflow-y-auto flex-row flex-nowrap overflow-hidden shadow-2xl backdrop-blur-sm rounded-lg items-center justify-between w-10/12  md:w-2/4 lg:w-2/6 py-4 px-6 duration-1000`}
                 >
                     <div className="flex flex-row items-center justify-between ">
                         <div className="">
@@ -98,50 +97,8 @@ export default function FilterSearchSide() {
                             <ChevronsLeft className="" />
                         </button>
                     </div>
-                    <div className="flex flex-col pt-10">
-                        <div className="flex items-center justify-between md:justify-start">
-                            <Filter className=" w-5" />
-                            <Link className="text-left-0 md:pl-10  mr-0 whitespace-nowrap text-base  uppercase font-bold p-4 px-0">
-                                Filter
-                            </Link>
-                        </div>
-                        <div className="flex flex-col justify-between">
-                            <Link className="text-left-0  mr-0 whitespace-nowrap text-base  uppercase font-bold pt-4 px-0">
-                                Kategori
-                            </Link>
-                            <div className="flex flex-wrap p-0">
-                                {props.categories &&
-                                    props.categories.map((e, key) => {
-                                        return (
-                                            <CustomCheckbox
-                                                key={key}
-                                                label={e.category}
-                                                name="genres[]"
-                                            />
-                                        );
-                                    })}
-                            </div>
-                            <hr className="w-full mt-2" />
-                        </div>
-                        <div className="flex flex-col justify-between">
-                            <Link className="text-left-0  mr-0 whitespace-nowrap text-base  uppercase font-bold pt-4 px-0">
-                                Jenis Karya
-                            </Link>
-                            <div className="flex flex-wrap p-0">
-                                {props.genres &&
-                                    props.genres.map((e, key) => {
-                                        return (
-                                            <CustomCheckbox
-                                                key={key}
-                                                label={e.genre}
-                                                name="genres[]"
-                                            />
-                                        );
-                                    })}
-                            </div>
-                            <hr className="w-full mt-2" />
-                        </div>
-                    </div>
+                    <Filter onclickFilter={true} />
+
                 </nav>
                 {show && (
                     <div
