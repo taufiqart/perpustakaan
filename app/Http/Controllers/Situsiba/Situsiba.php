@@ -22,17 +22,52 @@ class Situsiba extends Controller
         $postType = PostType::where('slug', 'paper')->first();
 
         $papers = (clone $postType)->posts();
-        if ($request->get("search")) {
+
+        if (!empty($request->get("search"))) {
             $query = ["like", "%{$request->get("search")}%"];
             $papers = $papers->where("title", ...$query)
-                ->orWhere("content", ...$query)
-                ->latest('created_at')->limit(9)->get();
-        } else {
-            $papers = $papers->latest('created_at')->limit(9)->get();
+                ->orWhere("content", ...$query);
         }
 
+
+        if (!empty($request->get("genres"))) {
+            $filter = gettype($request->get("genres")) == "string" ? [$request->get("genres")] : $request->get("genres");
+            $papers = $papers->whereHas("genres", function ($genre) use ($filter) {
+                $genre = $genre->where("genre", "like", "%$filter[0]%");
+                unset ($filter[0]);
+                if (count($filter) > 0) {
+                    foreach ($filter as $f) {
+                        $genre = $genre->where("genre", "like", "%$f%");
+                    }
+                }
+                return $genre;
+            });
+        }
+
+        if (!empty($request->get("category"))) {
+            $filter = gettype($request->get("category")) == "string" ? [$request->get("category")] : $request->get("category");
+
+            $papers = $papers->whereHas("categories", function ($genre) use ($filter) {
+                $genre = $genre->where("category", "like", "%$filter[0]%");
+                unset ($filter[0]);
+                if (count($filter) > 0) {
+                    foreach ($filter as $f) {
+                        $genre = $genre->where("category", "like", "%$f%");
+                    }
+                }
+                return $genre;
+            });
+        }
+
+        $papers = $papers->latest('created_at')->limit(9)->get();
+
+        $recom_papers = (clone $postType)->posts()->inRandomOrder()->limit(4)->get();
+
+        $categories = PostCategory::orderBy('category', 'asc')->get();
+        $genres = PostGenre::orderBy('genre', 'asc')->get();
+
         DefaultMetadata("situsiba");
-        return Inertia::render('situsiba/Search', compact('papers'));
+        return Inertia::render('situsiba/Search', compact('papers','recom_papers', 'categories', 'genres'));
     }
 
     /**
@@ -96,7 +131,7 @@ class Situsiba extends Controller
 
         $metadata = MetadataSitusiba();
         $metadata["image"] = [$paper->poster];
-        $metadata["title"] = [$paper->title ." - ". env("APP_NAME_SITUSIBA")];
+        $metadata["title"] = [$paper->title . " - " . env("APP_NAME_SITUSIBA")];
 
         if (!empty (GenerateDescription($paper))) {
             $metadata["description"] = [GenerateDescription($paper)];
