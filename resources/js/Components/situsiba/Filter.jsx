@@ -17,7 +17,6 @@ export default function Filter({
     const props = usePage().props;
 
     const handleFilter = ({ filter, value, button = false }) => {
-        
         if (url.searchParams.getAll(filter).includes(value)) {
             url.searchParams.delete(filter, value);
         } else {
@@ -26,7 +25,7 @@ export default function Filter({
 
         if (onclickFilter) {
             router.get(url.href);
-        }else{
+        } else {
             onFilter(url);
         }
     };
@@ -41,10 +40,7 @@ export default function Filter({
                     </div>
                 </div>
                 <div className="flex flex-col justify-between">
-                    <Link
-                        href={route("situsiba.category")}
-                        className="text-left-0  mr-0 whitespace-nowrap text-base  uppercase font-bold pt-4 px-0"
-                    >
+                    <Link className="text-left-0  mr-0 whitespace-nowrap text-base  uppercase font-bold pt-4 px-0">
                         Kategori
                     </Link>
                     <div className="flex flex-wrap p-0">
@@ -72,10 +68,7 @@ export default function Filter({
                     <hr className="w-full mt-2" />
                 </div>
                 <div className="flex flex-col justify-between">
-                    <Link
-                        href={route("situsiba.genre")}
-                        className="text-left-0  mr-0 whitespace-nowrap text-base  uppercase font-bold pt-4 px-0"
-                    >
+                    <Link className="text-left-0  mr-0 whitespace-nowrap text-base  uppercase font-bold pt-4 px-0">
                         Jenis Karya
                     </Link>
                     <div className="flex flex-wrap p-0">

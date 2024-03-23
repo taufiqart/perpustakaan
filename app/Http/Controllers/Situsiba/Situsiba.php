@@ -12,63 +12,7 @@ use App\Models\PostType;
 
 class Situsiba extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response | \Inertia\Response | null
-     */
-    public function search(Request $request)
-    {
-        $postType = PostType::where('slug', 'paper')->first();
 
-        $papers = (clone $postType)->posts();
-
-        if (!empty($request->get("search"))) {
-            $query = ["like", "%{$request->get("search")}%"];
-            $papers = $papers->where("title", ...$query)
-                ->orWhere("content", ...$query);
-        }
-
-
-        if (!empty($request->get("genres"))) {
-            $filter = gettype($request->get("genres")) == "string" ? [$request->get("genres")] : $request->get("genres");
-            $papers = $papers->whereHas("genres", function ($genre) use ($filter) {
-                $genre = $genre->where("genre", "like", "%$filter[0]%");
-                unset ($filter[0]);
-                if (count($filter) > 0) {
-                    foreach ($filter as $f) {
-                        $genre = $genre->where("genre", "like", "%$f%");
-                    }
-                }
-                return $genre;
-            });
-        }
-
-        if (!empty($request->get("category"))) {
-            $filter = gettype($request->get("category")) == "string" ? [$request->get("category")] : $request->get("category");
-
-            $papers = $papers->whereHas("categories", function ($genre) use ($filter) {
-                $genre = $genre->where("category", "like", "%$filter[0]%");
-                unset ($filter[0]);
-                if (count($filter) > 0) {
-                    foreach ($filter as $f) {
-                        $genre = $genre->where("category", "like", "%$f%");
-                    }
-                }
-                return $genre;
-            });
-        }
-
-        $papers = $papers->latest('created_at')->limit(9)->get();
-
-        $recom_papers = (clone $postType)->posts()->inRandomOrder()->limit(4)->get();
-
-        $categories = PostCategory::orderBy('category', 'asc')->get();
-        $genres = PostGenre::orderBy('genre', 'asc')->get();
-
-        DefaultMetadata("situsiba");
-        return Inertia::render('situsiba/Search', compact('papers','recom_papers', 'categories', 'genres'));
-    }
 
     /**
      * Display a listing of the resource.
@@ -142,36 +86,60 @@ class Situsiba extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Display a listing of the resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response | null
+     * @return \Illuminate\Http\Response | \Inertia\Response | null
      */
-    public function edit($id)
+    public function search(Request $request)
     {
-        //
-    }
+        $postType = PostType::where('slug', 'paper')->first();
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response | null
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+        $papers = (clone $postType)->posts();
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response | null
-     */
-    public function destroy($id)
-    {
-        //
+        if (!empty ($request->get("search"))) {
+            $query = ["like", "%{$request->get("search")}%"];
+            $papers = $papers->where("title", ...$query)
+                ->orWhere("content", ...$query);
+        }
+
+
+        if (!empty ($request->get("genres"))) {
+            $filter = gettype($request->get("genres")) == "string" ? [$request->get("genres")] : $request->get("genres");
+            $papers = $papers->whereHas("genres", function ($genre) use ($filter) {
+                $genre = $genre->where("genre", "like", "%$filter[0]%");
+                unset ($filter[0]);
+                if (count($filter) > 0) {
+                    foreach ($filter as $f) {
+                        $genre = $genre->where("genre", "like", "%$f%");
+                    }
+                }
+                return $genre;
+            });
+        }
+
+        if (!empty ($request->get("category"))) {
+            $filter = gettype($request->get("category")) == "string" ? [$request->get("category")] : $request->get("category");
+
+            $papers = $papers->whereHas("categories", function ($genre) use ($filter) {
+                $genre = $genre->where("category", "like", "%$filter[0]%");
+                unset ($filter[0]);
+                if (count($filter) > 0) {
+                    foreach ($filter as $f) {
+                        $genre = $genre->where("category", "like", "%$f%");
+                    }
+                }
+                return $genre;
+            });
+        }
+
+        $papers = $papers->latest('created_at')->limit(9)->get();
+
+        $recom_papers = (clone $postType)->posts()->inRandomOrder()->limit(4)->get();
+
+        $categories = PostCategory::orderBy('category', 'asc')->get();
+        $genres = PostGenre::orderBy('genre', 'asc')->get();
+
+        DefaultMetadata("situsiba");
+        return Inertia::render('situsiba/Search', compact('papers', 'recom_papers', 'categories', 'genres'));
     }
 }
