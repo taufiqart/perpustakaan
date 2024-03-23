@@ -1,6 +1,5 @@
 import React from "react";
 export default function RenderFileIcon({ file, loadFile = (file) => {} }) {
-    console.log(file);
     return (
         <>
             {file.type.includes("audio/") && (

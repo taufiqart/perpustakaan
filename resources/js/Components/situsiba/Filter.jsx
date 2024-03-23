@@ -17,8 +17,14 @@ export default function Filter({
     const props = usePage().props;
 
     const handleFilter = ({ filter, value, button = false }) => {
-        if (url.searchParams.getAll(filter).includes(value)) {
+        if (
+            url.searchParams.getAll(filter).includes(value) ||
+            url.searchParams
+                .getAll(filter.split("[").join("[0"))
+                .includes(value)
+        ) {
             url.searchParams.delete(filter, value);
+            url.searchParams.delete(filter.split("[").join("[0"), value);
         } else {
             url.searchParams.append(filter, value);
         }
@@ -55,9 +61,14 @@ export default function Filter({
                                             })
                                         }
                                         value={e.category}
-                                        checked={filter
-                                            .getAll("category[]")
-                                            ?.includes(e.category)}
+                                        checked={
+                                            filter
+                                                .getAll("category[]")
+                                                ?.includes(e.category) ||
+                                            filter
+                                                .getAll("category[0]")
+                                                ?.includes(e.category)
+                                        }
                                         key={key}
                                         label={e.category}
                                         name="category[]"
@@ -82,9 +93,14 @@ export default function Filter({
                                                 value: e.genre,
                                             });
                                         }}
-                                        checked={filter
-                                            .getAll("genres[]")
-                                            ?.includes(e.genre)}
+                                        checked={
+                                            filter
+                                                .getAll("genres[]")
+                                                ?.includes(e.genre) ||
+                                            filter
+                                                .getAll("genres[0]")
+                                                ?.includes(e.genre)
+                                        }
                                         key={key}
                                         label={e.genre}
                                         name="genres[]"

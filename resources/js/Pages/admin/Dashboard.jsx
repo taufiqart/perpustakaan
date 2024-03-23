@@ -41,7 +41,6 @@ export const options = {
 
 export default function Dashboard(props) {
     let _unique = props.reads.map((e) => {
-        console.log(e);
         return {
             major_class_short: e.major_class_short,
             major_class: e.major_class,

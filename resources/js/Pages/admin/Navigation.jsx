@@ -68,7 +68,6 @@ export default function Navigation({ categories }) {
 
     const onSubmitCategory = (e) => {
         e.preventDefault();
-        // console.log(data);
         if (data?.edit) {
             put(route("navigation.update", data.id), {
                 onSuccess: () => setTimeout(() => onFormAddClose(), [1000]),

@@ -124,7 +124,6 @@ export default function Create({
             },
         });
     };
-    console.log({ identity_types, member_types, class_rooms, majors, data });
 
     return (
         <AdminLayout>

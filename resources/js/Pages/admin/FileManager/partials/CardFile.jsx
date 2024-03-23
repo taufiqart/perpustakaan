@@ -68,11 +68,9 @@ export default function CardFile({ file }) {
     };
     const renameFile = (e) => {
         e.preventDefault();
-        console.log(data);
         put(route("file.rename"), {
             onSuccess: () => setTimeout(() => onFormRenameClose(), [1000]),
         });
-        console.log(flash);
     };
 
     const copyFunction = async (type = "link", file) => {

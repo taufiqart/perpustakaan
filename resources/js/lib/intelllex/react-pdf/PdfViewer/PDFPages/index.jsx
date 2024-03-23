@@ -10,7 +10,6 @@ PDFJS.workerSrc = new URL(
 ).toString();
 
 const SCROLL_TOP_PADDING = 200;
-console.log(PDFJS);
 
 export class PdfPages extends React.Component {
     componentDidMount() {
@@ -40,7 +39,6 @@ export class PdfPages extends React.Component {
         PDFJS.externalLinkTarget = PDFJS.LinkTarget.PARENT;
         this._eventBus = new PDFJS.EventBus();
         // PDF Link Service
-        console.log(this._eventBus);
         this._pdfLinkService = new PDFJS.PDFLinkService({
             eventBus: this._eventBus,
         });

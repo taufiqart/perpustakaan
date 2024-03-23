@@ -247,7 +247,6 @@ export default function ImageFromText({ text, setData }) {
                         options={fontLists}
                         onChange={(value) => {
                             setFont(value.value);
-                            console.log(value);
                         }}
                     />
 

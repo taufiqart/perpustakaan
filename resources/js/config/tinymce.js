@@ -20,9 +20,6 @@ function tiny_image_upload_handler(blobInfo, success, failure, progress) {
             failure("HTTP Error: " + xhr.status);
             return;
         }
-        console.log(xhr);
-        console.log(e);
-        console.log(blobInfo.blob());
 
         json = JSON.parse(xhr.responseText);
 

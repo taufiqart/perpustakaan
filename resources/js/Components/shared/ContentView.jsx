@@ -39,7 +39,6 @@ export default function ContentView({ content, fileList = [], ...props }) {
 
     const _DocPreview = React.useMemo(() => DocPreview);
 
-    console.log(file);
     return (
         <>
             <div className="flex flex-col justify-center items-center px-3 md:px-14 transition-all duration-500">

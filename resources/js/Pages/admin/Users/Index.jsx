@@ -19,7 +19,6 @@ import {
 import { BookLoader } from "@/Components/shared";
 
 export default function UserIndex({ users }) {
-    console.log(users);
     const [confirmDelete, setConfirmDelete] = React.useState(false);
     const [flash, setFlash] = React.useState();
 
